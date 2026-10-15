@@ -1,6 +1,7 @@
 // P1 全量展示适配层：支持全部 10 步教学内容，保持单一三维场景与底层运动学
 import * as THREE from '../vendor/three/three.module.js';
 import {ComparisonView} from './comparison-view.js';
+import {ASSEMBLY_MODELS, assemblyKind} from './assembly-models.js';
 
 export const PAGES = {
   1: {
@@ -118,10 +119,11 @@ export const PAGES = {
 export class ProjectionPresentation {
   constructor(app) {
     this.app = app;
-    this.inferredAssembly = new URLSearchParams(location.search).get('assembly') === 'inferred';
-    this.assemblyModelUrl = this.inferredAssembly ? './models/hero_robot_inferred.glb' : './models/hero_robot_clean.glb';
+    this.assemblyKind = assemblyKind(new URLSearchParams(location.search).get('assembly'));
+    this.assemblyModelUrl = ASSEMBLY_MODELS[this.assemblyKind].url;
     document.querySelector('#assembly-toolbar').after(document.querySelector('#compare-panel'));
-    document.querySelector('#hero-asset').value = this.inferredAssembly ? 'inferred' : 'original';
+    for (const option of document.querySelector('#hero-asset').options) option.textContent = ASSEMBLY_MODELS[option.value].label;
+    document.querySelector('#hero-asset').value = this.assemblyKind;
     document.querySelector('#hero-asset').addEventListener('change', () => this.changeAssembly());
     const notes = document.querySelector('#teacher-notes');
     if (notes) {
@@ -206,8 +208,8 @@ export class ProjectionPresentation {
     if (!page) return;
     document.querySelectorAll('.compare-btn').forEach(button => button.classList.remove('active'));
     document.querySelector('#compare-status').textContent = '';
-    document.querySelector('.model-tag').textContent = step.id === 10 && this.inferredAssembly
-      ? '推定装配 · 重复偏移补偿 · 未机械核验'
+    document.querySelector('.model-tag').textContent = step.id === 10
+      ? this.viewer.heroRobotModel ? ASSEMBLY_MODELS[this.assemblyKind].tag : '英雄模型未加载'
       : '功能示意模型 · 非接线指导';
 
     this.viewer.cameraMode = 'FIXED';
@@ -309,33 +311,35 @@ export class ProjectionPresentation {
       document.querySelector('#assembly-status').textContent = '英雄模型未加载；请重播重试。';
       return;
     }
-    this.inferredAssembly = loaded.endsWith('hero_robot_inferred.glb');
+    const entry = Object.entries(ASSEMBLY_MODELS).find(([, model]) => model.url === loaded);
+    if (!entry) throw new Error('已加载的英雄模型不在装配选择表中');
+    const [kind, model] = entry;
+    this.assemblyKind = kind;
     const status = document.querySelector('#assembly-status');
-    status.classList.toggle('inferred', this.inferredAssembly);
-    status.textContent = this.inferredAssembly
-      ? '推定修复，待机械核验；未认定真实装配关系。'
-      : '原样模型：偏置子组保留；主体取景可排除该组，完整资产取景可查看全部。';
-    document.querySelector('#hero-asset').value = this.inferredAssembly ? 'inferred' : 'original';
-    document.querySelector('.model-tag').textContent = this.inferredAssembly ? '推定修复 · 未机械核验' : '原始GLB · 存在偏置子装配';
+    status.classList.toggle('inferred', kind === 'inferred');
+    status.textContent = model.status;
+    document.querySelector('#hero-asset').value = kind;
+    document.querySelector('.model-tag').textContent = model.tag;
   }
 
   async changeAssembly() {
-    const inferred = document.querySelector('#hero-asset').value === 'inferred';
-    const url = inferred ? './models/hero_robot_inferred.glb' : './models/hero_robot_clean.glb';
+    const kind = assemblyKind(document.querySelector('#hero-asset').value);
+    const url = ASSEMBLY_MODELS[kind].url;
     this.assemblyModelUrl = url;
     const revision = this.assetRevision = (this.assetRevision || 0) + 1;
     document.querySelector('#assembly-status').textContent = '正在装载所选资产，旧模型保留至加载成功…';
     try {
       const result = await this.viewer.loadHeroRobot(url);
       if (!result || revision !== this.assetRevision) return;
+      this.assemblyKind = kind;
       if (this.app.currentStepIndex === 9) this.updateAssemblyStatus();
       const locationUrl = new URL(location.href);
-      if (inferred) locationUrl.searchParams.set('assembly','inferred');
-      else locationUrl.searchParams.delete('assembly');
+      if (kind === 'step') locationUrl.searchParams.delete('assembly');
+      else locationUrl.searchParams.set('assembly',kind);
       history.replaceState(null,'',locationUrl);
     } catch (error) {
       if (revision !== this.assetRevision) return;
-      this.assemblyModelUrl = this.viewer.heroRobotUrl || './models/hero_robot_clean.glb';
+      this.assemblyModelUrl = this.viewer.heroRobotUrl || url;
       if (this.app.currentStepIndex === 9) {
         this.updateAssemblyStatus();
         document.querySelector('#assembly-status').textContent += ` 加载失败，保留原状态：${error.message || '资源不可用'}`;

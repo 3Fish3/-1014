@@ -1,0 +1,58 @@
+{
+  "environment": "Chromium headless SwiftShader; not mechanical or hardware performance certification",
+  "pages": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "initial": {
+        "count": 347534,
+        "maxXY": 0.8146939283419397,
+        "maxZ": 0.9998989821950103,
+        "hidden": [],
+        "overflow": false
+      },
+      "maxPositionErrorMm": 0.00006121500332285268,
+      "visibilityPreservesCamera": true,
+      "defaultStep": true,
+      "referenceLinksPreserved": true
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "initial": {
+        "count": 347534,
+        "maxXY": 0.8146939283419397,
+        "maxZ": 0.9998989821950103,
+        "hidden": [],
+        "overflow": false
+      },
+      "maxPositionErrorMm": 0.00006121500332285268,
+      "visibilityPreservesCamera": true,
+      "defaultStep": true,
+      "referenceLinksPreserved": true
+    }
+  ],
+  "hashes": {
+    "web/models/hero_robot_step_aligned.glb": "cfb8cb7d333a7b8a6973424e2b774616604fef250c777530a6cbfa0674c599af",
+    "web/models/hero_robot_clean.glb": "f2eefd1ee718e8c0bebd7490968d5b62b4f99a6b640e57905bb3ef940c374baf",
+    "web/models/hero_robot_inferred.glb": "d85a76bd7a2835362efc5839d71e837dfc34fb9b7470d22fd2e03bc7d95337ff",
+    "web/models/repairs/yaw-offset-inferred.json": "5f9d7f037466648813e0f1c7e7f9bdafaea5fbe7f17195383e3052f072181ed9"
+  },
+  "initialFailures": [
+    {
+      "classroom": false,
+      "status": 503,
+      "noFallback": true,
+      "retryPassed": true
+    },
+    {
+      "classroom": true,
+      "status": 503,
+      "noFallback": true,
+      "retryPassed": true
+    }
+  ],
+  "passed": true,
+  "errors": [],
+  "failed": []
+}

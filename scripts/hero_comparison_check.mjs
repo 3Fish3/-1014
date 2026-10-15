@@ -35,7 +35,10 @@ try{
   page.on('response',r=>{if(r.status()>=400&&!expectedFailure)report.failed.push(r.url());});
   await page.route('**/*',route=>{if(!['localhost','127.0.0.1'].includes(new URL(route.request().url()).hostname)){report.external.push(route.request().url());return route.abort();}return route.continue();});
   await page.goto(`${base}/ui-v2.html?step=10`);await ready(page);
-  const initial=await page.evaluate(metrics);assert.equal(initial.canvasCount,1);assert.equal(initial.overflow,false);assert.ok(initial.url.endsWith('hero_robot_clean.glb'));assert.equal(initial.offsetVisible,true);
+  const initial=await page.evaluate(metrics);assert.equal(initial.canvasCount,1);assert.equal(initial.overflow,false);assert.ok(initial.url.endsWith('hero_robot_step_aligned.glb'));assert.equal(initial.offsetVisible,true);
+  assert.equal(await page.locator('#hero-asset').inputValue(),'step');
+  assert.match(await page.locator('#assembly-status').innerText(),/位置经用户确认/);
+  assert.match(await page.locator('.model-tag').innerText(),/未机械认证/);
   const assertFits=m=>{
    assert.equal(m.overflow,false);assert.ok(!overlaps(m.views[0].rect,m.views[1].rect));
    for(const view of m.views){assert.ok(view.count>0);assert.ok(view.heightFraction>.32,'模型主体过小');for(const [axis,n] of Object.entries(view.range))assert.ok(Math.abs(n)<(axis.endsWith('Z')?1:.99),`模型裁切或离开各自观察区：${axis}=${n}`);assert.ok(view.rect.width>250&&view.rect.height>180);}
@@ -43,7 +46,7 @@ try{
    assert.ok(!overlaps(m.views[0].rect,m.toolbar));assert.ok(!overlaps(m.panel,m.caption));
   };
   assertFits(initial);
-  await page.screenshot({path:`${output}/original-subject-${width}.png`});
+  await page.screenshot({path:`${output}/step-default-${width}.png`});
   // 左右真实拖拽仅改变自身相机。
   for(const index of[0,1]){
    const before=await cameraState(page),rect=initial.views[index].rect;
@@ -89,8 +92,10 @@ try{
   assert.equal(await page.evaluate(()=>app.viewer.comparisonHighlights.size),0);
   // 完整原样取景包含偏置组；原样/候选均可重载。
   await page.locator('#hero-asset').selectOption('original');await page.waitForFunction(()=>app.viewer.heroRobotUrl.endsWith('hero_robot_clean.glb')&&!app.viewer.heroRobotPromise);
+  const originalSubject=await page.evaluate(metrics);
+  assert.ok(originalSubject.views[1].count<initial.views[1].count,'默认STEP应纳入549，不沿用原样的取景排除');
   await page.locator('#hero-framing').selectOption('complete');
-  const complete=await page.evaluate(metrics);assert.ok(complete.views[1].count>initial.views[1].count);for(const [axis,n]of Object.entries(complete.views[1].range))assert.ok(Math.abs(n)<(axis.endsWith('Z')?1:.99));
+  const complete=await page.evaluate(metrics);assert.ok(complete.views[1].count>originalSubject.views[1].count);for(const [axis,n]of Object.entries(complete.views[1].range))assert.ok(Math.abs(n)<(axis.endsWith('Z')?1:.99));
   await page.screenshot({path:`${output}/original-complete-${width}.png`});
   await page.locator('#hero-framing').selectOption('subject');
   // 退出恢复主相机layers及渲染状态，重入恢复双区；暂停不妨碍观察。
@@ -137,17 +142,29 @@ try{
   await page.locator('#hero-asset').selectOption('original');await page.waitForFunction(()=>document.querySelector('#assembly-status').textContent.includes('加载失败'));
   assert.equal(await page.evaluate(()=>app.viewer.heroRobotUrl),oldUrl);assert.equal(await page.locator('#hero-asset').inputValue(),'inferred');assert.ok((await page.locator('.model-tag').textContent()).includes('未机械核验'));
   expectedFailure=false;await page.unroute('**/hero_robot_clean.glb');
-  await page.locator('#hero-asset').selectOption('original');await ready(page);assert.ok((await page.evaluate(()=>app.viewer.heroRobotUrl)).endsWith('hero_robot_clean.glb'));
+  // Failed STEP selection must retain inferred model, selector and URL; never fall back silently.
+  const retainedUrl=page.url();
+  await page.route('**/hero_robot_step_aligned.glb',route=>route.fulfill({status:503,body:'intentional STEP failure'}));expectedFailure=true;
+  await page.locator('#hero-asset').selectOption('step');await page.waitForFunction(()=>document.querySelector('#assembly-status').textContent.includes('加载失败'));
+  assert.ok((await page.evaluate(()=>app.viewer.heroRobotUrl)).endsWith('hero_robot_inferred.glb'));
+  assert.equal(await page.locator('#hero-asset').inputValue(),'inferred');assert.equal(page.url(),retainedUrl);
+  assert.ok((await page.evaluate(()=>app.projection.assemblyModelUrl)).endsWith('hero_robot_inferred.glb'));
+  expectedFailure=false;await page.unroute('**/hero_robot_step_aligned.glb');
+  await page.locator('#hero-asset').selectOption('step');await ready(page);
+  assert.ok((await page.evaluate(()=>app.viewer.heroRobotUrl)).endsWith('hero_robot_step_aligned.glb'));
+  assert.equal(await page.locator('#hero-asset').inputValue(),'step');assert.equal(new URL(page.url()).searchParams.has('assembly'),false);
+  assert.match(await page.locator('.model-tag').textContent(),/STEP对齐/);
+  assert.equal(await page.evaluate(()=>app.viewer.heroOffsetGroup.visible),true);
   await page.setViewportSize({width:width-40,height:height-20});await page.waitForTimeout(150);assertFits(await page.evaluate(metrics));
   report.pages.push({width,height,initial,candidate,complete,highlights,assetCamera:{before:beforeSwitch[0],after:afterSwitch,maxError:assetCameraMaxError,tolerance:1e-12},independentControls:true,racePassed:true,exitRestorePassed:true,loadFailurePreserved:true});await page.close();
  }
  // DPR=2补充检查：仍只创建一个renderer，两个视区在高DPI下不互相裁切。
  const retina=await browser.newPage({viewport:{width:1366,height:768},deviceScaleFactor:2});
- retina.on('pageerror',e=>report.errors.push(e.message));await retina.goto(`${base}/ui-v2.html?step=10&assembly=inferred`);await ready(retina);
+ retina.on('pageerror',e=>report.errors.push(e.message));await retina.goto(`${base}/ui-v2.html?step=10`);await ready(retina);
  const dpr=await retina.evaluate(()=>({ratio:app.viewer.renderer.getPixelRatio(),width:app.viewer.renderer.domElement.width,cssWidth:app.viewer.width,canvases:document.querySelectorAll('canvas').length}));
  assert.equal(dpr.ratio,2);assert.equal(dpr.width,Math.floor(dpr.cssWidth*2));assert.equal(dpr.canvases,1);
  const retinaMetrics=await retina.evaluate(metrics);for(const view of retinaMetrics.views)for(const[axis,n]of Object.entries(view.range))assert.ok(Math.abs(n)<(axis.endsWith('Z')?1:.99));
- await retina.screenshot({path:`${output}/candidate-dpr2-1366.png`,scale:'css'});report.dpr=dpr;await retina.close();
+ await retina.screenshot({path:`${output}/step-dpr2-1366.png`,scale:'css'});report.dpr=dpr;await retina.close();
  assert.deepEqual(report.errors,[]);assert.deepEqual(report.failed,[]);assert.deepEqual(report.external,[]);
  report.passed=true;writeFileSync(`${output}/report.json`,JSON.stringify(report,null,2));console.log('MR-3双观察区与高亮、独立相机、资产切换/迟到回包、布局回归通过。');
 }catch(error){report.passed=false;report.failure=error.stack;writeFileSync(`${output}/report.json`,JSON.stringify(report,null,2));throw error;}

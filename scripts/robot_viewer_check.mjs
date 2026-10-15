@@ -7,7 +7,7 @@ const output = process.env.OUTPUT_DIR || '.tmp/ci/robot-viewer';
 mkdirSync(output, {recursive: true});
 const base = process.argv[2] || 'http://127.0.0.1:8080';
 const executablePath = process.env.BROWSER_PATH || (existsSync('.tmp/browser/chrome-linux/chrome') ? '.tmp/browser/chrome-linux/chrome' : chromium.executablePath());
-const paths = ['web/models/hero_robot_clean.glb', 'web/models/hero_robot_inferred.glb', 'web/models/repairs/yaw-offset-inferred.json'];
+const paths = ['web/models/hero_robot_step_aligned.glb', 'web/models/hero_robot_clean.glb', 'web/models/hero_robot_inferred.glb', 'web/models/repairs/yaw-offset-inferred.json'];
 const hashes = () => Object.fromEntries(paths.map(path => [path, createHash('sha256').update(readFileSync(path)).digest('hex')]));
 const originalHashes = hashes();
 const browser = await chromium.launch({executablePath, args: ['--no-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader']});
@@ -53,7 +53,9 @@ try {
     });
     await page.goto(`${base}/viewer_full.html`);await page.waitForFunction(() => window.robotViewer?.visibility);
     const beforeFlags = await flags(page);
-    assert.deepEqual(beforeFlags.filter(([, visible]) => !visible).map(([i]) => i), [549]);
+    assert.deepEqual(beforeFlags.filter(([, visible]) => !visible).map(([i]) => i), []);
+    assert.ok((await page.evaluate(() => viewer.heroRobotUrl)).endsWith('hero_robot_step_aligned.glb'));
+    assert.match(await page.locator('.notice').innerText(), /位置经用户确认/);
     assert.equal(await page.locator('#structure-tree button[data-node-index]').count(), 574);
     const transforms = await page.evaluate(() => [...robotViewer.nodes].map(([i, n]) => [i, n.position.toArray(), n.quaternion.toArray(), n.scale.toArray()]));
     const initial = await page.evaluate(geometryMetrics);assertFits(initial);
@@ -111,12 +113,14 @@ try {
     await page.locator('#reset').click();
 
     await choose(page, 549);
+    assert.equal(await page.locator('#structure-tree [data-node-index="549"]').getAttribute('data-visibility'), 'visible');
+    await page.locator('#hide-selected').click();
     assert.equal(await page.locator('#structure-tree [data-node-index="549"]').getAttribute('data-visibility'), 'self-hidden');
     assert.equal(await page.locator('#structure-tree [data-node-index="552"]').getAttribute('data-visibility'), 'ancestor-hidden');
     await page.locator('#show-selected').click();
     await page.locator('#reset').click(); // 明确手动取景，显隐本身不再移动相机。
     const complete = await page.evaluate(geometryMetrics);assertFits(complete);
-    assert.ok(Math.hypot(...complete.size) > Math.hypot(...initial.size) * 2);
+    assert.deepEqual(complete.size, initial.size, '恢复已对齐的组不得出现原样悬空组的超大包围盒');
     await page.locator('#restore-default').click();assert.deepEqual(await flags(page), beforeFlags);
 
     // 隐藏子件后显示其父组，不能抹掉子件自己的隐藏状态。
@@ -180,7 +184,7 @@ try {
     await page.close();
   }
   assert.deepEqual(hashes(), originalHashes);assert.deepEqual(report.errors, []);assert.deepEqual(report.failed, []);assert.deepEqual(report.external, []);
-  report.passed = true;writeFileSync(`${output}/report.json`, JSON.stringify(report, null, 2));console.log('独立查看页通过：默认隐藏549、点选/拖动、结构树显隐、隔离快照、可见取景、双分辨率与资产哈希。');
+  report.passed = true;writeFileSync(`${output}/report.json`, JSON.stringify(report, null, 2));console.log('独立查看页通过：默认STEP且549可见、点选/拖动、结构树显隐、隔离快照、可见取景、双分辨率与资产哈希。');
 } catch (error) {
   report.passed = false;report.failure = error.stack;writeFileSync(`${output}/report.json`, JSON.stringify(report, null, 2));throw error;
 } finally {await browser.close();}

@@ -12,13 +12,15 @@ const browser=await chromium.launch({executablePath,args:['--no-sandbox','--use-
 const report={sourceHash:hash,errors:[],failed:[],external:[],pages:[],verifiedAgainstCAD:false};
 try{
  for(const [width,height]of [[1920,1080],[1366,768]]){
-  for(const inferred of [false,true]){
+  for(const kind of ['step','original','inferred']){
+   const inferred=kind==='inferred';
+   const expectedFile={step:'hero_robot_step_aligned.glb',original:'hero_robot_clean.glb',inferred:'hero_robot_inferred.glb'}[kind];
    const page=await browser.newPage({viewport:{width,height}}),models=[];
    page.on('pageerror',e=>report.errors.push(e.message));
    page.on('response',r=>{if(r.status()>=400)report.failed.push(r.url());});
    page.on('request',r=>{if(r.url().endsWith('.glb'))models.push(new URL(r.url()).pathname);});
    await page.route('**/*',route=>{if(!['localhost','127.0.0.1'].includes(new URL(route.request().url()).hostname)){report.external.push(route.request().url());return route.abort();}return route.continue();});
-   await page.goto(`${base}/ui-v2.html?step=10${inferred?'&assembly=inferred':''}`);
+   await page.goto(`${base}/ui-v2.html?step=10${kind==='step'?'':`&assembly=${kind}`}`);
    await page.waitForFunction(()=>app?.viewer?.heroRobotModel?.visible&&document.querySelector('#step-badge').textContent.includes('10'));
    await page.waitForFunction(()=>app.projection.comparison.active&&!app.viewer.isTransitioningCamera);
    const metrics=await page.evaluate(async()=>{
@@ -29,14 +31,16 @@ try{
     const positions=[];
     for(const o of comparison.meshes(1)){const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++)positions.push(new T.Vector3().fromBufferAttribute(a,i).applyMatrix4(o.matrixWorld).project(camera));}
     const xs=positions.map(p=>p.x),ys=positions.map(p=>p.y);
-    return {size:size.toArray(),range:{minX:xs.reduce((a,b)=>Math.min(a,b),Infinity),maxX:xs.reduce((a,b)=>Math.max(a,b),-Infinity),minY:ys.reduce((a,b)=>Math.min(a,b),Infinity),maxY:ys.reduce((a,b)=>Math.max(a,b),-Infinity)},inferred:app.projection.inferredAssembly,model:app.projection.assemblyModelUrl,label:document.querySelector('.model-tag').textContent};
+    return {size:size.toArray(),range:{minX:xs.reduce((a,b)=>Math.min(a,b),Infinity),maxX:xs.reduce((a,b)=>Math.max(a,b),-Infinity),minY:ys.reduce((a,b)=>Math.min(a,b),Infinity),maxY:ys.reduce((a,b)=>Math.max(a,b),-Infinity)},kind:app.projection.assemblyKind,model:app.projection.assemblyModelUrl,label:document.querySelector('.model-tag').textContent};
    });
-   assert.equal(metrics.inferred,inferred);
-   assert.ok(models.some(m=>m.endsWith(inferred?'hero_robot_inferred.glb':'hero_robot_clean.glb')));
-   assert.ok(!models.some(m=>m.endsWith(inferred?'hero_robot_clean.glb':'hero_robot_inferred.glb')));
+   assert.equal(metrics.kind,kind);
+   assert.ok(models.some(m=>m.endsWith(expectedFile)));
+   assert.ok(models.filter(m=>m.includes('/hero_robot_')).every(m=>m.endsWith(expectedFile)));
+   assert.equal(await page.locator('#hero-asset').inputValue(),kind);
+   if(kind==='step')assert.match(metrics.label,/STEP对齐/);
    if(inferred)assert.ok(metrics.label.includes('未机械核验'));
    for(const value of Object.values(metrics.range))assert.ok(Math.abs(value)<1.01,'候选几何越出画布');
-   await page.screenshot({path:`${output}/${inferred?'candidate':'original'}-${width}.png`});
+   await page.screenshot({path:`${output}/${kind}-${width}.png`});
    if(inferred){await page.locator('.compare-btn[data-kind="motor"]').click();assert.ok((await page.locator('#compare-status').textContent()).length>0);}
    // 原样主体取景并未隐藏偏置组，完整资产取景仍应包含其所有顶点。
    const offsetVisible=await page.evaluate(()=>app.viewer.heroOffsetGroup?.visible);
@@ -47,7 +51,7 @@ try{
      app.viewer.scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);
      return c.meshes(1).every(o=>{const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const p=new T.Vector3().fromBufferAttribute(a,i).applyMatrix4(o.matrixWorld).project(camera);if(Math.max(Math.abs(p.x),Math.abs(p.y),Math.abs(p.z))>=1)return false;}return true;});
    });assert.equal(completeFits,true);
-   report.pages.push({width,height,inferred,models,metrics,offsetVisible,completeFits});await page.close();
+   report.pages.push({width,height,kind,inferred,models,metrics,offsetVisible,completeFits});await page.close();
   }
  }
  // 在原始坐标工作台中导入同一个补丁，聚焦装配接口验证没有搬动单个子件。

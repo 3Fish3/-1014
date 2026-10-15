@@ -2,9 +2,19 @@ import * as THREE from '../vendor/three/three.module.js';
 import {SceneViewer} from './viewer.js';
 import {StructureVisibility} from './structure-visibility.js';
 import {pickNode} from './model-editor/selection.js';
+import {ASSEMBLY_MODELS, assemblyKind} from './assembly-models.js';
 
 const $ = id => document.getElementById(id);
 const viewport = $('canvas');
+const selectedAssembly = assemblyKind(new URLSearchParams(location.search).get('assembly'));
+const originalReference = selectedAssembly === 'original';
+const descriptions = {
+  step: 'STEP对齐版：位置经用户确认，#549完整显示。同步带工作面、张紧及整车机械设计未认证。',
+  original: '原样参考：默认隐藏 #549 偏置组，可用“全部显示”恢复；原GLB未修改。',
+  inferred: '旧推定版：重复平移补偿，未机械核验；保留供历史对照。'
+};
+document.querySelector('h1').textContent = `英雄机器人 · ${{step: 'STEP对齐版', original: '原样参考', inferred: '旧推定版'}[selectedAssembly]}`;
+document.querySelector('.notice').textContent = descriptions[selectedAssembly];
 const viewer = new SceneViewer(viewport);
 window.viewer = viewer; // 保留原独立观察页的验收入口。
 viewer.scene.background = new THREE.Color(0xf4f7fb);
@@ -239,7 +249,7 @@ window.addEventListener('pagehide', event => {
 }, {once: false});
 
 try {
-  robot = await viewer.loadHeroRobot('./models/hero_robot_clean.glb');
+  robot = await viewer.loadHeroRobot(ASSEMBLY_MODELS[selectedAssembly].url);
   if (robot && !disposed) {
     robot.traverse(object => {
       const index = object.userData.cadNodeIndex;
@@ -254,16 +264,16 @@ try {
       }
     }
     const hidden = nodes.get(549);
-    if (hidden?.userData.cadName !== 'Yaw轴装配体2.1改' || parents.get(549) !== 543 || parents.get(543) !== 389) throw new Error('默认隐藏目标的名称或层级不符，未进行猜测隐藏');
-    visibility = new StructureVisibility(robot, nodes, [549]);
+    if (hidden?.userData.cadName !== 'Yaw轴装配体2.1改' || parents.get(549) !== 543 || parents.get(543) !== 389) throw new Error('装配目标的名称或层级不符，未应用显隐策略');
+    visibility = new StructureVisibility(robot, nodes, originalReference ? [549] : []);
     buildTree();
     updateUI();
     for (const id of ['reset', 'show-all', 'restore-default']) $(id).disabled = false;
     fitVisible();
-    status('默认隐藏 #549；原文件未删除，可通过结构树或“全部显示”恢复。');
+    status(descriptions[selectedAssembly]);
   }
 } catch (error) {
   if (!disposed) { $('status').textContent = `加载失败：${error.message}`; console.error(error); }
 }
 // 仅本地验收状态，不提供文件写入或远端控制接口。
-window.robotViewer = {viewer, nodes, indices, parents, get root() { return robot; }, get visibility() { return visibility; }, get selected() { return selected; }, select, fitVisible, boundsOfVisible};
+window.robotViewer = {viewer, nodes, indices, parents, assemblyKind: selectedAssembly, get root() { return robot; }, get visibility() { return visibility; }, get selected() { return selected; }, select, fitVisible, boundsOfVisible};

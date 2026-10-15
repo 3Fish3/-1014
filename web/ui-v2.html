@@ -52,9 +52,9 @@
         </div>
       </div>
       <div id="assembly-toolbar" hidden>
-        <label>英雄资产 <select id="hero-asset"><option value="original">原样模型</option><option value="inferred">推定修复候选</option></select></label>
+        <label>英雄资产 <select id="hero-asset"><option value="step">STEP对齐（默认）</option><option value="original">原样模型</option><option value="inferred">旧推定修复候选</option></select></label>
         <label>取景 <select id="hero-framing"><option value="subject">主体（仅取景排除原样偏置组）</option><option value="complete">完整资产</option></select></label>
-        <span id="assembly-status" role="status">原样模型；偏置件保留</span>
+        <span id="assembly-status" role="status">默认STEP对齐版；等待加载，未机械认证</span>
       </div>
 
       <!-- 画面底部说明与线路图例 -->
@@ -171,7 +171,8 @@
       </div>
 
       <p><a href="./model-editor.html" target="_blank" rel="noopener">GLB 装配修复工作台（人工调整，待机械核验）</a></p>
-      <p><a href="./ui-v2.html?step=10&amp;assembly=inferred" target="_blank" rel="noopener">偏置子装配补偿候选预览（推定位置，未机械核验）</a></p>
+      <p>默认使用STEP对齐版：位置经用户确认；同步带工作面、张紧及整车机械设计未认证。</p>
+      <p><a href="./ui-v2.html?step=10&amp;assembly=original" target="_blank" rel="noopener">原样模型参考（保留偏置子装配）</a> · <a href="./ui-v2.html?step=10&amp;assembly=inferred" target="_blank" rel="noopener">旧推定补偿参考（未机械核验）</a></p>
       <div class="notes-diagram" style="margin-top: 14px; display: none;">
         <img id="diagram-img" alt="讲师参考示意图">
         <p id="diagram-badge"></p>
