@@ -1,0 +1,116 @@
+{
+  "sourceHash": "f2eefd1ee718e8c0bebd7490968d5b62b4f99a6b640e57905bb3ef940c374baf",
+  "errors": [],
+  "failed": [],
+  "external": [],
+  "pages": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "inferred": false,
+      "models": [
+        "/models/diff_car_teaching.glb",
+        "/models/hero_robot_clean.glb"
+      ],
+      "metrics": {
+        "size": [
+          0.4517996817213444,
+          0.42088998509013503,
+          0.4661427195356015
+        ],
+        "range": {
+          "minX": 0.07114994336413707,
+          "maxX": 0.93826868442916,
+          "minY": -0.3000480375999427,
+          "maxY": 0.22892240800069583
+        },
+        "inferred": false,
+        "model": "./models/hero_robot_clean.glb",
+        "label": "功能示意模型 · 非接线指导"
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "inferred": true,
+      "models": [
+        "/models/diff_car_teaching.glb",
+        "/models/hero_robot_inferred.glb"
+      ],
+      "metrics": {
+        "size": [
+          0.4636662165760632,
+          0.3251782544018656,
+          0.4636662577545563
+        ],
+        "range": {
+          "minX": 0.08812746903612499,
+          "maxX": 0.947841795605961,
+          "minY": -0.7119998831603538,
+          "maxY": 0.3848059781131379
+        },
+        "inferred": true,
+        "model": "./models/hero_robot_inferred.glb",
+        "label": "推定装配 · 重复偏移补偿 · 未机械核验"
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "inferred": false,
+      "models": [
+        "/models/diff_car_teaching.glb",
+        "/models/hero_robot_clean.glb"
+      ],
+      "metrics": {
+        "size": [
+          0.4517996817213444,
+          0.42088998509013503,
+          0.4661427195356015
+        ],
+        "range": {
+          "minX": 0.06879721652366877,
+          "maxX": 0.9374144512089982,
+          "minY": -0.31693653095399565,
+          "maxY": 0.2484655376364208
+        },
+        "inferred": false,
+        "model": "./models/hero_robot_clean.glb",
+        "label": "功能示意模型 · 非接线指导"
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "inferred": true,
+      "models": [
+        "/models/diff_car_teaching.glb",
+        "/models/hero_robot_inferred.glb"
+      ],
+      "metrics": {
+        "size": [
+          0.4636662165760632,
+          0.3251782544018656,
+          0.4636662577545563
+        ],
+        "range": {
+          "minX": 0.08600075230656186,
+          "maxX": 0.9478964751994782,
+          "minY": -0.7742764703606839,
+          "maxY": 0.41876996198166444
+        },
+        "inferred": true,
+        "model": "./models/hero_robot_inferred.glb",
+        "label": "推定装配 · 重复偏移补偿 · 未机械核验"
+      }
+    }
+  ],
+  "verifiedAgainstCAD": false,
+  "rawInterface": {
+    "changedNodes": [
+      549
+    ],
+    "contactGap": -3.621215416416135e-8
+  },
+  "passed": true
+}

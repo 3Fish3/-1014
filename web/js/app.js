@@ -281,7 +281,7 @@ class TeachingApp {
     // 仅在第 10 步实车对照时按需异步加载真实整车模型
     if (step.isComparisonStep && !this.viewer.heroRobotModel) {
       try {
-        await this.viewer.loadHeroRobot('./models/hero_robot_clean.glb');
+        await this.viewer.loadHeroRobot(this.projection?.assemblyModelUrl || './models/hero_robot_clean.glb');
       } catch (err) {
         this.dom.diagramBadge.textContent = `整车加载失败：${err.message}，请检查模型文件后重播`;
         console.error(err);

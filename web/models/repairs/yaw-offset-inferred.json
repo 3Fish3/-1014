@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "filename": "hero_robot_clean.glb",
+    "sha256": "f2eefd1ee718e8c0bebd7490968d5b62b4f99a6b640e57905bb3ef940c374baf",
+    "sizeBytes": 6150804
+  },
+  "coordinateSpace": "local",
+  "edits": [
+    {
+      "nodeIndex": 549,
+      "nodePath": "/1:整车5/389:云台2(齿轮改)/543:yaw轴3改/549:Yaw轴装配体2.1改",
+      "original": {
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "repaired": {
+        "translation": [
+          -1.280010819,
+          -1.367624966,
+          -1.386149849
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "note": "推定装配：子组疑似重复使用上层全局坐标，仅补偿父组平移；无CAD或照片依据，未机械核验。",
+      "verifiedAgainstCAD": false
+    }
+  ]
+}

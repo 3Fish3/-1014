@@ -117,6 +117,8 @@ export const PAGES = {
 export class ProjectionPresentation {
   constructor(app) {
     this.app = app;
+    this.inferredAssembly = new URLSearchParams(location.search).get('assembly') === 'inferred';
+    this.assemblyModelUrl = this.inferredAssembly ? './models/hero_robot_inferred.glb' : './models/hero_robot_clean.glb';
     const notes = document.querySelector('#teacher-notes');
     if (notes) {
       document.querySelector('#btn-notes')?.addEventListener('click', () => notes.showModal());
@@ -196,6 +198,9 @@ export class ProjectionPresentation {
   update(step) {
     const page = PAGES[step.id];
     if (!page) return;
+    document.querySelector('.model-tag').textContent = step.id === 10 && this.inferredAssembly
+      ? '推定装配 · 重复偏移补偿 · 未机械核验'
+      : '功能示意模型 · 非接线指导';
 
     this.viewer.cameraMode = 'FIXED';
     const btnCam = document.querySelector('#btn-cam-mode');
