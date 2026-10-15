@@ -1,5 +1,6 @@
 // P1 全量展示适配层：支持全部 10 步教学内容，保持单一三维场景与底层运动学
 import * as THREE from '../vendor/three/three.module.js';
+import {ComparisonView} from './comparison-view.js';
 
 export const PAGES = {
   1: {
@@ -108,7 +109,7 @@ export const PAGES = {
     image: './assets/images/ui-v2/team-hero-chassis.jpg',
     alt: '战队 RoboMaster 实车底盘及装甲板机械结构实物照',
     caption: '实车映射：具体机械机构变化万千，但底盘必须解决的【承载、驱动、供电、控制】四大通用问题永远相同！',
-    lines: ['车架承载：亚克力底板 ➔ 航空铝 CNC 镂空底盘与防弹装甲。', '动力与控制：有刷小电机 ➔ 4 颗 M3508 无刷电机 + C620 高性能电调组 + CAN 总线高速通信。'],
+    lines: ['车架承载：从教学底板到整车框架、轮组和云台；材质与防护性能未认证。', 'CAD 中可识别轮组和电机；电调、主控型号与位置，以及实际通信接线仍待核验。'],
     keywords: ['机械承载', '动力执行', '供电稳压', '主控通信'],
     topic: '第 10 步：真实整车工程对照'
   }
@@ -119,6 +120,9 @@ export class ProjectionPresentation {
     this.app = app;
     this.inferredAssembly = new URLSearchParams(location.search).get('assembly') === 'inferred';
     this.assemblyModelUrl = this.inferredAssembly ? './models/hero_robot_inferred.glb' : './models/hero_robot_clean.glb';
+    document.querySelector('#assembly-toolbar').after(document.querySelector('#compare-panel'));
+    document.querySelector('#hero-asset').value = this.inferredAssembly ? 'inferred' : 'original';
+    document.querySelector('#hero-asset').addEventListener('change', () => this.changeAssembly());
     const notes = document.querySelector('#teacher-notes');
     if (notes) {
       document.querySelector('#btn-notes')?.addEventListener('click', () => notes.showModal());
@@ -135,6 +139,8 @@ export class ProjectionPresentation {
 
   attachViewer(viewer) {
     this.viewer = viewer;
+    this.comparison = new ComparisonView(viewer);
+    viewer.comparisonView = this.comparison;
     viewer.scene.background = new THREE.Color('#f5f7fb');
     viewer.scene.fog = new THREE.Fog('#f5f7fb', 0.65, 2.5);
     viewer.renderer.toneMappingExposure = 1.05;
@@ -153,12 +159,12 @@ export class ProjectionPresentation {
     }
     this.observer = new ResizeObserver(() => {
       viewer.handleResize();
-      if (viewer.diffCarModel && viewer.cameraMode === 'FIXED') {
+      if (viewer.diffCarModel && (this.comparison.active || viewer.cameraMode === 'FIXED')) {
         this.fitModel(false);
       }
     });
     this.observer.observe(this.app.dom.canvasContainer);
-    window.addEventListener('pagehide', () => this.observer.disconnect(), { once: true });
+    window.addEventListener('pagehide', event => { if (!event.persisted) this.observer.disconnect(); });
   }
 
   afterModelLoaded() {
@@ -198,6 +204,8 @@ export class ProjectionPresentation {
   update(step) {
     const page = PAGES[step.id];
     if (!page) return;
+    document.querySelectorAll('.compare-btn').forEach(button => button.classList.remove('active'));
+    document.querySelector('#compare-status').textContent = '';
     document.querySelector('.model-tag').textContent = step.id === 10 && this.inferredAssembly
       ? '推定装配 · 重复偏移补偿 · 未机械核验'
       : '功能示意模型 · 非接线指导';
@@ -257,6 +265,10 @@ export class ProjectionPresentation {
 
     const comparePanel = document.querySelector('#compare-panel');
     if (comparePanel) comparePanel.hidden = step.id !== 10;
+    document.querySelector('#assembly-toolbar').hidden = step.id !== 10;
+    this.app.dom.btnCamMode.disabled = step.id === 10;
+    this.comparison.setActive(step.id === 10);
+    if (step.id === 10) this.updateAssemblyStatus();
 
     // 探索提示文案
     const hintEl = document.querySelector('#exploration-hint');
@@ -271,7 +283,7 @@ export class ProjectionPresentation {
         hintEl.textContent = '💡 自由探索提示：拖动下方左右轮滑块（无数字显示），验证左右轮速不等时车身向哪一侧弯曲。';
         hintEl.hidden = false;
       } else if (step.id === 10) {
-        hintEl.textContent = '💡 实车映射提示：点击底栏各个功能区域，对比教学小车和 RoboMaster 真实战车在各系统上的工程实现。';
+        hintEl.textContent = '分别拖动两个观察区旋转、滚轮缩放；下方功能按钮高亮可识别部件。英雄供电和控制位置尚未确认。';
         hintEl.hidden = false;
       } else {
         hintEl.hidden = true;
@@ -291,6 +303,46 @@ export class ProjectionPresentation {
     });
   }
 
+  updateAssemblyStatus() {
+    const loaded = this.viewer.heroRobotUrl;
+    if (!loaded) {
+      document.querySelector('#assembly-status').textContent = '英雄模型未加载；请重播重试。';
+      return;
+    }
+    this.inferredAssembly = loaded.endsWith('hero_robot_inferred.glb');
+    const status = document.querySelector('#assembly-status');
+    status.classList.toggle('inferred', this.inferredAssembly);
+    status.textContent = this.inferredAssembly
+      ? '推定修复，待机械核验；未认定真实装配关系。'
+      : '原样模型：偏置子组保留；主体取景可排除该组，完整资产取景可查看全部。';
+    document.querySelector('#hero-asset').value = this.inferredAssembly ? 'inferred' : 'original';
+    document.querySelector('.model-tag').textContent = this.inferredAssembly ? '推定修复 · 未机械核验' : '原始GLB · 存在偏置子装配';
+  }
+
+  async changeAssembly() {
+    const inferred = document.querySelector('#hero-asset').value === 'inferred';
+    const url = inferred ? './models/hero_robot_inferred.glb' : './models/hero_robot_clean.glb';
+    this.assemblyModelUrl = url;
+    const revision = this.assetRevision = (this.assetRevision || 0) + 1;
+    document.querySelector('#assembly-status').textContent = '正在装载所选资产，旧模型保留至加载成功…';
+    try {
+      const result = await this.viewer.loadHeroRobot(url);
+      if (!result || revision !== this.assetRevision) return;
+      if (this.app.currentStepIndex === 9) this.updateAssemblyStatus();
+      const locationUrl = new URL(location.href);
+      if (inferred) locationUrl.searchParams.set('assembly','inferred');
+      else locationUrl.searchParams.delete('assembly');
+      history.replaceState(null,'',locationUrl);
+    } catch (error) {
+      if (revision !== this.assetRevision) return;
+      this.assemblyModelUrl = this.viewer.heroRobotUrl || './models/hero_robot_clean.glb';
+      if (this.app.currentStepIndex === 9) {
+        this.updateAssemblyStatus();
+        document.querySelector('#assembly-status').textContent += ` 加载失败，保留原状态：${error.message || '资源不可用'}`;
+      }
+    }
+  }
+
   resetView() {
     this.viewer.render(this.app.kinematics.update(0), 0);
     this.fitModel(false);
@@ -300,30 +352,20 @@ export class ProjectionPresentation {
   fitModel(animate) {
     const v = this.viewer;
     if (!v.diffCarModel) return;
+    if (this.comparison.active) { this.comparison.fitAll(); return; }
 
     v.carRoot.updateMatrixWorld(true);
     const bounds = new THREE.Box3();
 
-    // 如果处于第 10 步实车对照模式且英雄模型可见，同时计算教学小车与英雄战车的联合包围盒
-    const isStep10 = this.app.currentStepIndex === 9;
-    if (isStep10 && v.heroRobotModel && v.heroRobotModel.visible) {
-      bounds.union(new THREE.Box3().setFromObject(v.carRoot, true));
-      bounds.union(new THREE.Box3().setFromObject(v.heroRobotModel, true));
-    } else {
-      for (const node of v.nodesMap.values()) {
-        if (node.visible) {
-          bounds.union(new THREE.Box3().setFromObject(node, true));
-        }
-      }
+    for (const node of v.nodesMap.values()) {
+      if (node.visible) bounds.union(new THREE.Box3().setFromObject(node, true));
     }
 
     if (bounds.isEmpty()) return;
 
     bounds.expandByScalar(0.02); // 留出呼吸边距
     const center = bounds.getCenter(new THREE.Vector3());
-    const direction = isStep10
-      ? new THREE.Vector3(-0.05, 0.72, 1.15).normalize()
-      : new THREE.Vector3(-1, 0.85, 1.15).normalize();
+    const direction = new THREE.Vector3(-1, 0.85, 1.15).normalize();
 
     const rotation = new THREE.Matrix4().lookAt(center.clone().add(direction), center, new THREE.Vector3(0, 1, 0));
     const inverse = rotation.clone().invert();
@@ -332,9 +374,6 @@ export class ProjectionPresentation {
 
     let distance = 0;
     const objects = [...v.nodesMap.values(), v.leftArrowMesh, v.rightArrowMesh];
-    if (isStep10 && v.heroRobotModel && v.heroRobotModel.visible) {
-      objects.push(v.heroRobotModel);
-    }
 
     for (const node of objects) {
       if (node && node.visible) {
@@ -349,7 +388,7 @@ export class ProjectionPresentation {
       }
     }
 
-    distance *= isStep10 ? 1.05 : 1.15;
+    distance *= 1.15;
     const position = center.clone().addScaledVector(direction, distance);
     v.followOffsetDistance = distance * 0.82;
     v.followOffsetHeight = distance * 0.65;

@@ -218,5 +218,5 @@ const observer=new ResizeObserver(()=>{const width=viewport.clientWidth,height=v
 function frame(){if(disposed)return;requestAnimationFrame(frame);orbit.update();if(selected!==null&&source&&box.visible)box.box.copy(boundsOf(source.nodes.get(selected)));renderer.render(scene,camera);}frame();
 window.addEventListener('pagehide',()=>{disposed=true;observer.disconnect();gizmo.dispose();orbit.dispose();if(source)disposeModel(source.root);grid.geometry.dispose();grid.material.dispose();axes.geometry.dispose();axes.material.dispose();box.geometry.dispose();box.material.dispose();renderer.dispose();},{once:true});
 // 只暴露本地工作台状态，供可复现浏览器验收；不提供服务器写入接口。
-window.modelEditor={get source(){return source;},get selected(){return selected;},get dirty(){return dirty;},get candidates(){return candidates;},history,gizmo,camera,scene,renderer,open,select,changes,applyNumeric,exportGlb,savePatch,importPatch};
+window.modelEditor={get source(){return source;},get selected(){return selected;},get dirty(){return dirty;},get candidates(){return candidates;},history,gizmo,camera,orbit,scene,renderer,open,select,changes,applyNumeric,exportGlb,savePatch,importPatch};
 refresh();

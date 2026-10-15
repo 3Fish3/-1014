@@ -59,8 +59,9 @@ try {
       const bounding = await page.evaluate(async () => {
         const T = await import('./vendor/three/three.module.js');
         const v = app.viewer;
+        const camera = app.projection.comparison.active ? app.projection.comparison.views[0].camera : v.camera;
         v.scene.updateMatrixWorld(true);
-        v.camera.updateMatrixWorld(true);
+        camera.updateMatrixWorld(true);
         const points = [];
         for (const node of [...v.nodesMap.values(), v.leftArrowMesh, v.rightArrowMesh]) {
           if (node?.visible) {
@@ -68,7 +69,7 @@ try {
               if (mesh.isMesh) {
                 const pos = mesh.geometry.attributes.position;
                 for (let i = 0; i < pos.count; i++) {
-                  points.push(new T.Vector3().fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld).project(v.camera));
+                  points.push(new T.Vector3().fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld).project(camera));
                 }
               }
             });

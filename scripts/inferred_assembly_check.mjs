@@ -20,13 +20,14 @@ try{
    await page.route('**/*',route=>{if(!['localhost','127.0.0.1'].includes(new URL(route.request().url()).hostname)){report.external.push(route.request().url());return route.abort();}return route.continue();});
    await page.goto(`${base}/ui-v2.html?step=10${inferred?'&assembly=inferred':''}`);
    await page.waitForFunction(()=>app?.viewer?.heroRobotModel?.visible&&document.querySelector('#step-badge').textContent.includes('10'));
-   await page.waitForFunction(()=>!app.viewer.isTransitioningCamera);
+   await page.waitForFunction(()=>app.projection.comparison.active&&!app.viewer.isTransitioningCamera);
    const metrics=await page.evaluate(async()=>{
     const T=await import('./vendor/three/three.module.js'),v=app.viewer;
-    v.scene.updateMatrixWorld(true);v.camera.updateMatrixWorld(true);
+    const comparison=app.projection.comparison,camera=comparison.views[1].camera;
+    v.scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);
     const box=new T.Box3().setFromObject(v.heroRobotModel,true),size=box.getSize(new T.Vector3());
     const positions=[];
-    v.heroRobotModel.traverse(o=>{if(!o.isMesh)return;const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++)positions.push(new T.Vector3().fromBufferAttribute(a,i).applyMatrix4(o.matrixWorld).project(v.camera));});
+    for(const o of comparison.meshes(1)){const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++)positions.push(new T.Vector3().fromBufferAttribute(a,i).applyMatrix4(o.matrixWorld).project(camera));}
     const xs=positions.map(p=>p.x),ys=positions.map(p=>p.y);
     return {size:size.toArray(),range:{minX:xs.reduce((a,b)=>Math.min(a,b),Infinity),maxX:xs.reduce((a,b)=>Math.max(a,b),-Infinity),minY:ys.reduce((a,b)=>Math.min(a,b),Infinity),maxY:ys.reduce((a,b)=>Math.max(a,b),-Infinity)},inferred:app.projection.inferredAssembly,model:app.projection.assemblyModelUrl,label:document.querySelector('.model-tag').textContent};
    });
@@ -37,7 +38,16 @@ try{
    for(const value of Object.values(metrics.range))assert.ok(Math.abs(value)<1.01,'候选几何越出画布');
    await page.screenshot({path:`${output}/${inferred?'candidate':'original'}-${width}.png`});
    if(inferred){await page.locator('.compare-btn[data-kind="motor"]').click();assert.ok((await page.locator('#compare-status').textContent()).length>0);}
-   report.pages.push({width,height,inferred,models,metrics});await page.close();
+   // 原样主体取景并未隐藏偏置组，完整资产取景仍应包含其所有顶点。
+   const offsetVisible=await page.evaluate(()=>app.viewer.heroOffsetGroup?.visible);
+   assert.equal(offsetVisible,true);
+   await page.locator('#hero-framing').selectOption('complete');
+   const completeFits=await page.evaluate(async()=>{
+     const T=await import('./vendor/three/three.module.js'),c=app.projection.comparison,camera=c.views[1].camera;
+     app.viewer.scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);
+     return c.meshes(1).every(o=>{const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const p=new T.Vector3().fromBufferAttribute(a,i).applyMatrix4(o.matrixWorld).project(camera);if(Math.max(Math.abs(p.x),Math.abs(p.y),Math.abs(p.z))>=1)return false;}return true;});
+   });assert.equal(completeFits,true);
+   report.pages.push({width,height,inferred,models,metrics,offsetVisible,completeFits});await page.close();
   }
  }
  // 在原始坐标工作台中导入同一个补丁，聚焦装配接口验证没有搬动单个子件。

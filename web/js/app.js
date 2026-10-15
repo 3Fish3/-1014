@@ -56,10 +56,11 @@ class TeachingApp {
     // 1. 初始化 3D 渲染查看器
     this.viewer = new SceneViewer(this.dom.canvasContainer);
     this.projection?.attachViewer(this.viewer);
-    window.addEventListener('pagehide', () => {
+    window.addEventListener('pagehide', event => {
+      if (event.persisted) return; // bfcache挂起保留场景，真正离开才销毁。
       this.viewer.dispose();
       this.stopped = true;
-    }, {once:true});
+    });
 
     // 2. 加载小车 3D 模型
     try {
@@ -134,7 +135,10 @@ class TeachingApp {
     document.querySelectorAll('.compare').forEach(button => button.addEventListener('click', () => {
       const kind = button.dataset.kind;
       const matches = this.viewer.highlightComparison(kind);
-      document.querySelector('#compare-status').textContent = matches.hero.length ? '已按 CAD 节点名高亮对应功能区域；名称不等同实物认证。' : '实车该区域尚未确认，未进行猜测高亮；请结合实物补充核验。';
+      document.querySelectorAll('.compare').forEach(b => b.classList.toggle('active', b === button));
+      document.querySelector('#compare-status').textContent = matches.hero.length
+        ? '两侧可识别区域已高亮；CAD 名称匹配不等同机械认证。'
+        : `教学小车${matches.teaching.length ? '对应区域已高亮' : '暂无可识别区域'}；英雄侧位置未确认，不猜测高亮。`;
     }));
     // 步骤导航按钮
     this.dom.btnPrev.addEventListener('click', () => this.prevStep());
@@ -288,7 +292,7 @@ class TeachingApp {
       }
     }
 
-    this.projection?.update(step);
+    if (this.currentStepIndex === index) this.projection?.update(step);
   }
 
   prevStep() {

@@ -1,0 +1,22 @@
+/* MR-3：仅第10步使用，底部功能工具独占演示区行，不覆盖知识卡片。 */
+#comparison-regions[hidden], #assembly-toolbar[hidden], .demonstration > #compare-panel[hidden] { display:none; }
+#comparison-regions { position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+#comparison-regions section { position:relative;min-width:0;min-height:0;border:1px solid #cfdced;border-radius:10px;touch-action:none;overflow:hidden; }
+.view-label { position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:rgba(255,255,255,.93);font-size:17px;font-weight:700;pointer-events:none; }
+.view-label button { pointer-events:auto;font-size:14px;padding:4px 8px;border-radius:7px; }
+#assembly-toolbar { display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;padding:10px 4px 5px;flex:none;font-size:15px; }
+#assembly-toolbar label { display:flex;align-items:center;gap:5px; }
+#assembly-toolbar select { min-width:0;max-width:270px;font:inherit;color:#14213d;border:1px solid #b9cce6;border-radius:7px;background:white;padding:5px; }
+#assembly-status { flex-basis:100%;padding:5px 8px;border-radius:5px;background:#f1f5f9;color:#526175;line-height:1.4; }
+#assembly-status.inferred { color:#8a4b0b;background:#fffbeb;border-left:3px solid #d99a24; }
+.demonstration > #compare-panel { flex:none;flex-wrap:wrap;justify-content:flex-start;gap:7px;margin-top:5px;padding:8px;border-radius:8px; }
+#compare-status { flex-basis:100%;min-height:20px;font-size:14px;line-height:1.4;color:#526175; }
+.compare-title { font-size:15px;font-weight:700; }
+.compare-btn.active { background:#d8f5fa;border-color:#0891a2;color:#0e5668; }
+@media(max-width:1450px),(max-height:850px) {
+  #assembly-toolbar { gap:6px 10px;font-size:14px;padding-top:7px; }
+  #assembly-toolbar select { max-width:240px; }
+  .view-label { font-size:15px;padding:6px; }
+  .view-label button { font-size:13px; }
+  .demonstration > #compare-panel .compare-btn { font-size:14px;padding:5px 8px; }
+}

@@ -1,0 +1,890 @@
+{
+  "sourceHash": "f2eefd1ee718e8c0bebd7490968d5b62b4f99a6b640e57905bb3ef940c374baf",
+  "candidateHash": "d85a76bd7a2835362efc5839d71e837dfc34fb9b7470d22fd2e03bc7d95337ff",
+  "verifiedAgainstCAD": false,
+  "mechanicalStatus": "推定修复，待机械核验",
+  "units": "GLB源坐标单位，未换算成制造精度",
+  "contactClassificationEpsilon": 0.000001,
+  "before": {
+    "bearingAxisOffsetXZ": [
+      1.28001082,
+      1.3861498800000003
+    ],
+    "axisParallelError": 0,
+    "contactGap": 1.367624929787846,
+    "bearingBottomY": 2.734849896,
+    "plateTopY": 1.367224966212154,
+    "driveDrivenAxisDistanceXZ": 1.8039539106242763,
+    "gearYOverlap": -1.3536249472715487
+  },
+  "after": {
+    "bearingAxisOffsetXZ": [
+      1.000000082740371e-9,
+      3.100000012246085e-8
+    ],
+    "axisParallelError": 0,
+    "contactGap": -3.621215416416135e-8,
+    "bearingBottomY": 1.36722493,
+    "plateTopY": 1.367224966212154,
+    "driveDrivenAxisDistanceXZ": 0.11499997099999981,
+    "gearYOverlap": 0.007999989125472728
+  },
+  "holes": [
+    {
+      "center": [
+        2.462581085766346e-16,
+        -0.0003999997878458986,
+        -0.06499999858818113
+      ],
+      "radius": 0.0025999983362192092,
+      "residual": 5.941427905220564e-17,
+      "vertices": 3,
+      "node": 547,
+      "nearestBolt": {
+        "bolt": 562,
+        "distance": 9.881811341428157e-10
+      }
+    },
+    {
+      "center": [
+        -3.3025156250994113e-16,
+        -0.0003999997878458986,
+        0.06500000087364259
+      ],
+      "radius": 0.002600001446872639,
+      "residual": 1.929879867024198e-16,
+      "vertices": 3,
+      "node": 547,
+      "nearestBolt": {
+        "bolt": 570,
+        "distance": 3.27364259311578e-9
+      }
+    },
+    {
+      "center": [
+        0.0000174869430877643,
+        -0.000400036000000048,
+        0.06496973986620855
+      ],
+      "radius": 0.0026502300390761064,
+      "residual": 1.929879867024198e-16,
+      "vertices": 3,
+      "node": 552,
+      "nearestBolt": {
+        "bolt": 570,
+        "distance": 0.00003494744100407687
+      }
+    },
+    {
+      "center": [
+        -0.05627416267547833,
+        -0.000400036000000048,
+        0.03246973809051128
+      ],
+      "radius": 0.0026502300390758124,
+      "residual": 1.9081958235744878e-16,
+      "vertices": 3,
+      "node": 552,
+      "nearestBolt": {
+        "bolt": 572,
+        "distance": 0.00003495070862423326
+      }
+    }
+  ],
+  "sourcePairs": [
+    {
+      "pair": [
+        552,
+        547
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座加工件2.1-1",
+        "yaw轴3改-1/云台底座板-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 161700,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        553,
+        547
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/云台支架基座加工件4.0-1",
+        "yaw轴3改-1/云台底座板-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 27720,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        559,
+        547
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/云台支架基座加工件4.0-3",
+        "yaw轴3改-1/云台底座板-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 27720,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        551,
+        563
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/从动齿轮  2M45齿-1",
+        "yaw轴3改-1/主动齿轮  2M45齿-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 737800,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        550,
+        552
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座压板2.1-3-1",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座加工件2.1-1"
+      ],
+      "aabbIntersected": true,
+      "status": "surface-contact-review-required",
+      "totalTrianglePairs": 99470,
+      "trianglePairsVisited": 99470,
+      "triangleAabbCandidates": 1623,
+      "properCrossings": 0,
+      "contacts": 455,
+      "degeneratePairs": 0,
+      "examples": [
+        {
+          "triangles": [
+            47,
+            29
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            47,
+            30
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            47,
+            31
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            47,
+            33
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            47,
+            290
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            47,
+            389
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            47,
+            390
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            48,
+            29
+          ],
+          "kind": "coplanar-contact"
+        }
+      ]
+    },
+    {
+      "pair": [
+        551,
+        552
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/从动齿轮  2M45齿-1",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座加工件2.1-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 425320,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        555,
+        551
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/60齿同步带轮挡边板-2mm-1",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/从动齿轮  2M45齿-1"
+      ],
+      "aabbIntersected": true,
+      "status": "surface-contact-review-required",
+      "totalTrianglePairs": 107632,
+      "trianglePairsVisited": 107632,
+      "triangleAabbCandidates": 3247,
+      "properCrossings": 0,
+      "contacts": 1290,
+      "degeneratePairs": 0,
+      "examples": [
+        {
+          "triangles": [
+            1,
+            377
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            1,
+            379
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            1,
+            841
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            2,
+            379
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            2,
+            380
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            2,
+            841
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            3,
+            377
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            4,
+            380
+          ],
+          "kind": "edge-contact"
+        }
+      ]
+    },
+    {
+      "pair": [
+        556,
+        551
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/60齿同步带轮挡边板-2mm-5",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/从动齿轮  2M45齿-1"
+      ],
+      "aabbIntersected": true,
+      "status": "surface-contact-review-required",
+      "totalTrianglePairs": 107632,
+      "trianglePairsVisited": 107632,
+      "triangleAabbCandidates": 3483,
+      "properCrossings": 0,
+      "contacts": 1535,
+      "degeneratePairs": 0,
+      "examples": [
+        {
+          "triangles": [
+            0,
+            744
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            745
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            746
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            747
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            765
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            770
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            774
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            854
+          ],
+          "kind": "edge-contact"
+        }
+      ]
+    },
+    {
+      "pair": [
+        553,
+        559
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/云台支架基座加工件4.0-1",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/云台支架基座加工件4.0-3"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 7056,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        552,
+        566
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座加工件2.1-1",
+        "yaw轴3改-1/DM-J4310 V1.1减速电机-2"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 1355340,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    }
+  ],
+  "candidatePairs": [
+    {
+      "pair": [
+        552,
+        547
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座加工件2.1-1",
+        "yaw轴3改-1/云台底座板-1"
+      ],
+      "aabbIntersected": true,
+      "status": "surface-contact-review-required",
+      "totalTrianglePairs": 161700,
+      "trianglePairsVisited": 161700,
+      "triangleAabbCandidates": 1420,
+      "properCrossings": 0,
+      "contacts": 525,
+      "degeneratePairs": 0,
+      "examples": [
+        {
+          "triangles": [
+            128,
+            7
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            128,
+            9
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            128,
+            289
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            129,
+            7
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            129,
+            9
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            129,
+            289
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            132,
+            3
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            132,
+            4
+          ],
+          "kind": "coplanar-contact"
+        }
+      ]
+    },
+    {
+      "pair": [
+        553,
+        547
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/云台支架基座加工件4.0-1",
+        "yaw轴3改-1/云台底座板-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 27720,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        559,
+        547
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/云台支架基座加工件4.0-3",
+        "yaw轴3改-1/云台底座板-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 27720,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        551,
+        563
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/从动齿轮  2M45齿-1",
+        "yaw轴3改-1/主动齿轮  2M45齿-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 737800,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        550,
+        552
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座压板2.1-3-1",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座加工件2.1-1"
+      ],
+      "aabbIntersected": true,
+      "status": "surface-contact-review-required",
+      "totalTrianglePairs": 99470,
+      "trianglePairsVisited": 99470,
+      "triangleAabbCandidates": 1623,
+      "properCrossings": 0,
+      "contacts": 455,
+      "degeneratePairs": 0,
+      "examples": [
+        {
+          "triangles": [
+            47,
+            29
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            47,
+            30
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            47,
+            31
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            47,
+            33
+          ],
+          "kind": "coplanar-contact"
+        },
+        {
+          "triangles": [
+            47,
+            290
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            47,
+            389
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            47,
+            390
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            48,
+            29
+          ],
+          "kind": "coplanar-contact"
+        }
+      ]
+    },
+    {
+      "pair": [
+        551,
+        552
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/从动齿轮  2M45齿-1",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座加工件2.1-1"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 425320,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        555,
+        551
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/60齿同步带轮挡边板-2mm-1",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/从动齿轮  2M45齿-1"
+      ],
+      "aabbIntersected": true,
+      "status": "surface-contact-review-required",
+      "totalTrianglePairs": 107632,
+      "trianglePairsVisited": 107632,
+      "triangleAabbCandidates": 3247,
+      "properCrossings": 0,
+      "contacts": 1290,
+      "degeneratePairs": 0,
+      "examples": [
+        {
+          "triangles": [
+            1,
+            377
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            1,
+            379
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            1,
+            841
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            2,
+            379
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            2,
+            380
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            2,
+            841
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            3,
+            377
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            4,
+            380
+          ],
+          "kind": "edge-contact"
+        }
+      ]
+    },
+    {
+      "pair": [
+        556,
+        551
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/60齿同步带轮挡边板-2mm-5",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/从动齿轮  2M45齿-1"
+      ],
+      "aabbIntersected": true,
+      "status": "surface-contact-review-required",
+      "totalTrianglePairs": 107632,
+      "trianglePairsVisited": 107632,
+      "triangleAabbCandidates": 3483,
+      "properCrossings": 0,
+      "contacts": 1535,
+      "degeneratePairs": 0,
+      "examples": [
+        {
+          "triangles": [
+            0,
+            744
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            745
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            746
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            747
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            765
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            770
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            774
+          ],
+          "kind": "edge-contact"
+        },
+        {
+          "triangles": [
+            0,
+            854
+          ],
+          "kind": "edge-contact"
+        }
+      ]
+    },
+    {
+      "pair": [
+        553,
+        559
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/云台支架基座加工件4.0-1",
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/云台支架基座加工件4.0-3"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 7056,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    },
+    {
+      "pair": [
+        552,
+        566
+      ],
+      "names": [
+        "yaw轴3改-1/Yaw轴装配体2.1改-1/外环轴承座加工件2.1-1",
+        "yaw轴3改-1/DM-J4310 V1.1减速电机-2"
+      ],
+      "aabbIntersected": false,
+      "status": "aabb-separated",
+      "totalTrianglePairs": 1355340,
+      "trianglePairsVisited": 0,
+      "triangleAabbCandidates": 0,
+      "properCrossings": 0,
+      "contacts": 0,
+      "degeneratePairs": 0,
+      "examples": []
+    }
+  ],
+  "coverage": {
+    "selectedPairs": 10,
+    "triangleSampling": false,
+    "exampleLimit": 8,
+    "scope": "549内部主零件及其与547底板、543下相邻驱动零件的指定对；非整车全对扫描"
+  },
+  "limitations": [
+    "AABB重叠不等于穿模；接触面、边接触与实际贯穿分类分开",
+    "无表面交线不能排除完全包含；未进行封闭实体布尔体积或公差分析",
+    "只检查所列10对，螺栓螺纹/所有其他整车零件不在碰撞覆盖内",
+    "简化网格可能丢失孔、倒角或微小接触；epsilon不是制造公差",
+    "两个45齿命名零件中心距约0.115，传动形式和缺件未确认，不能推断直接齿轮啮合"
+  ]
+}

@@ -1,5 +1,7 @@
 # GLB 装配修复工作台：MR-1 / MR-2
 
+> 下文保留MR-1/MR-2阶段验收快照。后续候选校核、双观察区教学集成及当前限制见 [MR-3交付与证据](mr3/README.md)。
+
 ## 交付范围
 
 基线为 `feat/ui-v2-p1` 的 `1fc1877`（含上轮CI输出隔离修复），开发分支 `feat/model-assembly-editor`。

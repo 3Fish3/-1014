@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RoboMaster 电控教学系统 · 第二章 从零制造一台能移动的机器人 (投影版)</title>
   <link rel="stylesheet" href="./css/projection.css">
+  <link rel="stylesheet" href="./css/comparison.css">
   <script type="importmap">
   {
     "imports": {
@@ -44,7 +45,17 @@
       </div>
 
       <!-- WebGL 渲染容器 -->
-      <div id="canvas-container" aria-label="可交互旋转缩放的三维小车模型"></div>
+      <div id="canvas-container" aria-label="可交互旋转缩放的三维小车模型">
+        <div id="comparison-regions" hidden>
+          <section id="comparison-teaching" aria-label="教学小车独立观察区"><div class="view-label">教学小车 <button type="button">复位视角</button></div></section>
+          <section id="comparison-hero" aria-label="英雄机器人独立观察区"><div class="view-label">英雄机器人 <button type="button">复位视角</button></div></section>
+        </div>
+      </div>
+      <div id="assembly-toolbar" hidden>
+        <label>英雄资产 <select id="hero-asset"><option value="original">原样模型</option><option value="inferred">推定修复候选</option></select></label>
+        <label>取景 <select id="hero-framing"><option value="subject">主体（仅取景排除原样偏置组）</option><option value="complete">完整资产</option></select></label>
+        <span id="assembly-status" role="status">原样模型；偏置件保留</span>
+      </div>
 
       <!-- 画面底部说明与线路图例 -->
       <div class="scene-caption">
@@ -122,13 +133,13 @@
     </div>
 
     <div id="compare-panel" class="compare-panel-footer" hidden>
-      <span style="font-size: 13px; font-weight: bold; color: #1e293b; margin-right: 6px;">实车系统对照:</span>
+      <span class="compare-title">功能对照</span>
       <button class="compare-btn compare" data-kind="frame">承载车架</button>
       <button class="compare-btn compare" data-kind="wheel">动力轮组</button>
       <button class="compare-btn compare" data-kind="motor">驱动电机</button>
       <button class="compare-btn compare" data-kind="power">电源管理</button>
       <button class="compare-btn compare" data-kind="control">电调与主控</button>
-      <span id="compare-status" style="font-size: 12px; color: #64748b; margin-left: 8px;"></span>
+      <span id="compare-status" role="status"></span>
     </div>
 
     <div class="footer-actions">

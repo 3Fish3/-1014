@@ -3,7 +3,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 const output=process.env.OUTPUT_DIR || 'docs';
 mkdirSync(output,{recursive:true});
 const results={};
-for(const name of ['hero_robot_clean','diff_car_teaching']){
+for(const name of ['hero_robot_clean','hero_robot_inferred','diff_car_teaching']){
  const report=await validator.validateBytes(new Uint8Array(readFileSync(`web/models/${name}.glb`)));
  results[name]=report.issues;
 }

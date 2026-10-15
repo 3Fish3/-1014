@@ -46,15 +46,20 @@ jobs:
       - name: Validate committed models
         env:
           OUTPUT_DIR: .tmp/ci/models
-        run: node scripts/validate_models.mjs
+        run: |
+          node scripts/validate_models.mjs
+          OUTPUT_DIR=.tmp/ci/hero-assembly node scripts/hero_assembly_audit.mjs
 
       - name: Verify V1 and V2 in a browser
         run: |
-          python3 -m http.server 8080 --bind 127.0.0.1 --directory web > .tmp/ci/server.log 2>&1 &
+          python3 -m http.server 8080 --bind 127.0.0.1 --directory web \
+            > .tmp/ci/server.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           for attempt in {1..30}; do
-            if curl --fail --silent http://127.0.0.1:8080/ > /dev/null; then break; fi
+            if curl --fail --silent http://127.0.0.1:8080/ > /dev/null; then
+              break
+            fi
             sleep 1
           done
           curl --fail --silent http://127.0.0.1:8080/ > /dev/null
@@ -68,6 +73,10 @@ jobs:
             node scripts/model_repair_check.mjs http://127.0.0.1:8080
           OUTPUT_DIR=.tmp/ci/inferred-assembly \
             node scripts/inferred_assembly_check.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/hero-comparison \
+            node scripts/hero_comparison_check.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/hero-assembly \
+            node scripts/hero_assembly_evidence.mjs http://127.0.0.1:8080
           git diff --exit-code
 
       - name: Package verified commit

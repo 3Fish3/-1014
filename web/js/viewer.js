@@ -53,6 +53,9 @@ export class SceneViewer {
     this.nodesMap = new Map();
     this.originalMaterials = new Map();
     this.heroRobotPromise = null;
+    this.heroRobotUrl = null;
+    this.heroPendingUrl = null;
+    this.heroRequestId = 0;
     this.diffCarPromise = null;
     this.currentStep = null;
     this.isComparison = false;
@@ -236,18 +239,20 @@ export class SceneViewer {
   /** 按需懒加载英雄机器人整车模型 */
   async loadHeroRobot(url) {
     if (this.disposed) throw new Error('Viewer disposed');
-    if (this.heroRobotModel) {
+    if (this.heroRobotModel && this.heroRobotUrl === url && !this.heroRobotPromise) {
       this.heroRobotModel.visible = !this.currentStep || this.isComparison;
       return this.heroRobotModel;
     }
-    if (this.heroRobotPromise) return this.heroRobotPromise;
+    if (this.heroRobotPromise && this.heroPendingUrl === url) return this.heroRobotPromise;
+    const requestId = ++this.heroRequestId;
+    this.heroPendingUrl = url;
     const loader = new GLTFLoader();
     this.heroRobotPromise = new Promise((resolve, reject) => {
       loader.load(
         url,
         (gltf) => {
           const model = gltf.scene;
-          if (this.disposed) {
+          if (this.disposed || requestId !== this.heroRequestId) {
             this.releaseResources(model);
             resolve(null);
             return;
@@ -268,20 +273,37 @@ export class SceneViewer {
           normalized.add(model);
           normalized.scale.setScalar(scale);
           normalized.position.set(-center.x * scale, -bounds.min.y * scale, -center.z * scale);
+          this.comparisonView?.restoreLayers();
+          this.clearComparisonHighlight();
+          if (this.heroRobotModel) {
+            this.scene.remove(this.heroRobotModel);
+            this.releaseResources(this.heroRobotModel);
+          }
+          this.heroRobotUrl = url;
+          this.heroOffsetGroup = null;
+          model.traverse(node => {
+            const index = gltf.parser.associations.get(node)?.nodes;
+            if (index !== undefined) node.userData.cadName = gltf.parser.json.nodes[index].name || '';
+            else if (node.isMesh && node.parent?.userData.cadName) node.userData.cadName = node.parent.userData.cadName;
+            if (index === 549) this.heroOffsetGroup = node;
+          });
           this.heroRobotModel = new THREE.Group();
           this.heroRobotModel.add(normalized);
           this.heroRobotModel.position.x = 0.32;
           this.heroRobotModel.visible = !this.currentStep || this.isComparison;
           this.scene.add(this.heroRobotModel);
           if (this.comparisonKind) this.highlightComparison(this.comparisonKind);
+          this.comparisonView?.syncModels();
           resolve(this.heroRobotModel);
         },
         undefined,
         (err) => reject(err)
       );
-    }).catch((err) => {
-      this.heroRobotPromise = null;
-      throw err;
+    }).finally(() => {
+      if (requestId === this.heroRequestId) {
+        this.heroRobotPromise = null;
+        this.heroPendingUrl = null;
+      }
     });
     return this.heroRobotPromise;
   }
@@ -368,23 +390,25 @@ export class SceneViewer {
     const patterns = {
       wheel: /(?:wheel|caster|官方麦轮|车轮|轮胎)/i,
       motor: /motor|电机/i,
-      frame: /frame|车架|底盘|框架/i
+      frame: /frame|车架|底盘|框架|铝管30x30x270|外壳下铝管30x15x200/i
     };
     const pattern = patterns[kind];
-    if (!pattern) return result;
+    if (!['wheel','motor','frame','power','control'].includes(kind)) return result;
     this.comparisonHighlights = new Map();
     const teachingNames = {
       wheel: ['Node_LeftWheel', 'Node_RightWheel', 'Node_Casters'],
       motor: ['Node_LeftMotor', 'Node_RightMotor'],
-      frame: ['Node_Frame']
+      frame: ['Node_Frame'],
+      power: ['Node_Battery', 'Node_BuckConverter'],
+      control: ['Node_STM32', 'Node_MotorDriver']
     };
     const visit = (root, names, teaching = false) => {
       if (!root) return;
       root.traverse((node) => {
         // CAD 节点名含完整路径，只匹配末段，避免“底盘/电机”误算车架。
-        const name = node.name.split('/').at(-1);
+        const name = (node.userData.cadName || node.name).split('/').at(-1);
         if (teaching ? !teachingNames[kind].includes(node.name) :
-          (!node.isMesh || !pattern.test(name) ||
+          (!node.isMesh || !pattern || !pattern.test(name) ||
             (kind === 'wheel' && /侧板|法兰|联轴器|固定|支架/i.test(name)))) return;
         names.push(node.name);
         const paint = (mesh) => {
@@ -393,7 +417,9 @@ export class SceneViewer {
           const copies = [original].flat().map((material) => {
             const copy = material.clone();
             if (copy.emissive) copy.emissive.setHex(0x007788);
-            else if (copy.color) copy.color.setHex(0x00e5ff);
+            if (copy.color) copy.color.setHex(0x00cce6);
+            // 原厂CAD含unlit材质，不能只改无效的emissive。
+            copy.vertexColors = false;
             return copy;
           });
           this.comparisonHighlights.set(mesh, original);
@@ -514,7 +540,8 @@ export class SceneViewer {
     }
 
     if (dt > 0) this.controls.update();
-    this.renderer.render(this.scene, this.camera);
+    if (this.comparisonView?.active) this.comparisonView.render();
+    else this.renderer.render(this.scene, this.camera);
   }
 
   /** 去重释放模型/场景资源，也用于 dispose 后迟到的加载结果。 */
@@ -550,6 +577,7 @@ export class SceneViewer {
     this.disposed = true;
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('visibilitychange', this.handleVisibilityChange);
+    this.comparisonView?.dispose();
     this.controls.dispose();
     this.clearComparisonHighlight();
     this.releaseResources(this.scene);
