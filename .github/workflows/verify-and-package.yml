@@ -77,6 +77,8 @@ jobs:
             node scripts/hero_comparison_check.mjs http://127.0.0.1:8080
           OUTPUT_DIR=.tmp/ci/hero-assembly \
             node scripts/hero_assembly_evidence.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/robot-viewer \
+            node scripts/robot_viewer_check.mjs http://127.0.0.1:8080
           git diff --exit-code
 
       - name: Package verified commit

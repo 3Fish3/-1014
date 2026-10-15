@@ -283,7 +283,10 @@ export class SceneViewer {
           this.heroOffsetGroup = null;
           model.traverse(node => {
             const index = gltf.parser.associations.get(node)?.nodes;
-            if (index !== undefined) node.userData.cadName = gltf.parser.json.nodes[index].name || '';
+            if (index !== undefined) {
+              node.userData.cadName = gltf.parser.json.nodes[index].name || '';
+              node.userData.cadNodeIndex = index;
+            }
             else if (node.isMesh && node.parent?.userData.cadName) node.userData.cadName = node.parent.userData.cadName;
             if (index === 549) this.heroOffsetGroup = node;
           });

@@ -49,6 +49,8 @@ test('源码产物只在成功后打包，CI证据隔离且短期保留',()=>{
   assert.match(browser.run,/OUTPUT_DIR=\.tmp\/ci\/inferred-assembly/);
   assert.match(browser.run,/OUTPUT_DIR=\.tmp\/ci\/hero-comparison/);
   assert.ok(browser.run.includes('scripts/hero_comparison_check.mjs'));
+  assert.match(browser.run,/OUTPUT_DIR=\.tmp\/ci\/robot-viewer/);
+  assert.ok(browser.run.includes('scripts/robot_viewer_check.mjs'));
   const models=steps.find(step=>step.run?.includes('scripts/validate_models.mjs'));
   assert.ok(models.run.includes('scripts/hero_assembly_audit.mjs'));
   assert.match(models.run,/OUTPUT_DIR=\.tmp\/ci\/hero-assembly/);

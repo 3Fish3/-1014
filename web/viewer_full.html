@@ -1,30 +1,54 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>整车模型观察</title>
-<style>body{margin:0;background:#0e131d;color:#eee;font:14px system-ui}#canvas{height:100vh}header,aside{position:fixed;background:#111c2ee8;padding:14px;border:1px solid #334155;border-radius:10px;z-index:2}header{top:16px;left:16px;right:16px;display:flex;gap:12px;align-items:center}aside{bottom:20px;left:20px;max-width:400px}button,a{background:#16364d;border:1px solid #38bdf8;color:white;padding:8px;cursor:pointer;text-decoration:none}#status{color:#67e8f9}</style>
-<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script></head>
-<body><header><strong>用户整车 · 三维观察</strong><button id="rotate">自动旋转</button><button id="wire">切换线框</button><button id="reset">复位视角</button><a href="./index.html">返回课程</a><span id="status">正在加载整车…</span></header>
-<aside>源 CAD 含偏置子装配，保留原相对位置，未猜测重新装配。原始 CAD 经有损减面后用于网页观察。支持拖动旋转、滚轮缩放。<br>电机／轮组节点来自 CAD 名称；实际电调、主控与供电板型号待核对，不能仅凭模型推断。<br>文件体积不等于浏览器总内存，性能记录见交付文档。</aside><div id="canvas"></div>
-<script type="module">
-import * as THREE from 'three';
-import { SceneViewer } from './js/viewer.js';
-const viewer=new SceneViewer(document.querySelector('#canvas'));
-window.viewer=viewer;
-try {
- const robot=await viewer.loadHeroRobot('./models/hero_robot_clean.glb');
- robot.visible=true;
- // 基于实际世界包围盒重新居中，无原点与单位假设。
- robot.position.set(0,0,0);robot.scale.setScalar(1);robot.updateMatrixWorld(true);
- const bounds=new THREE.Box3().setFromObject(robot);const size=bounds.getSize(new THREE.Vector3());
- const scale=1.1/Math.max(size.x,size.y,size.z);robot.scale.setScalar(scale);
- const center=bounds.getCenter(new THREE.Vector3());robot.position.set(-center.x*scale,-bounds.min.y*scale,-center.z*scale);
- viewer.camera.position.set(1.5,1.1,1.6);viewer.controls.target.set(0,.55,0);
- document.querySelector('#status').textContent='整车已加载 · 本地资源';
- let wireframe=false;
- document.querySelector('#wire').onclick=()=>{wireframe=!wireframe;robot.traverse(o=>{if(o.isMesh)for(const m of [].concat(o.material))m.wireframe=wireframe;});};
-} catch(e) {document.querySelector('#status').textContent='加载失败：'+e.message;console.error(e);}
-document.querySelector('#rotate').onclick=()=>{viewer.controls.autoRotate=!viewer.controls.autoRotate;};
-document.querySelector('#reset').onclick=()=>{viewer.camera.position.set(1.5,1.1,1.6);viewer.controls.target.set(0,.55,0);};
-let lastTime=performance.now();
-function frame(time){const dt=Math.min((time-lastTime)/1000,.05);lastTime=time;if(!document.hidden)viewer.render(null,dt);requestAnimationFrame(frame);}requestAnimationFrame(frame);
-window.addEventListener('pagehide',()=>viewer.dispose(),{once:true});
-</script></body></html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>机器人结构查看</title>
+  <link rel="stylesheet" href="./css/robot-viewer.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script>
+</head>
+<body>
+  <header>
+    <a href="./ui-v2.html">返回课程</a>
+    <h1>英雄机器人 · 结构查看</h1>
+    <div class="view-actions">
+      <button id="rotate" aria-pressed="false">自动旋转</button>
+      <button id="wire" aria-pressed="false">线框</button>
+      <button id="reset" disabled>适配可见结构</button>
+    </div>
+  </header>
+  <main>
+    <aside class="structure-panel" aria-label="CAD结构树与显隐工具">
+      <h2>结构树</h2>
+      <input id="search" type="search" placeholder="搜索名称或节点编号" aria-label="搜索结构">
+      <div class="tree-legend">可见 · 自身隐藏 · 祖先隐藏</div>
+      <div id="structure-tree" aria-label="模型结构树"></div>
+      <section class="selection-tools">
+        <h2>选中结构</h2>
+        <div id="selection-name">未选择</div>
+        <p id="selection-state">单击模型或左侧树选中；拖动旋转，滚轮缩放。</p>
+        <div class="actions">
+          <button id="hide-selected" disabled>隐藏选中</button>
+          <button id="show-selected" disabled>显示选中</button>
+          <button id="isolate-selected" disabled>隔离选中</button>
+          <button id="focus-selected" disabled>聚焦选中</button>
+          <button id="parent-selected" disabled>选择父组</button>
+          <button id="exit-isolation" disabled>退出隔离</button>
+        </div>
+        <div class="actions global-actions">
+          <button id="show-all" disabled>全部显示</button>
+          <button id="restore-default" disabled>恢复默认</button>
+        </div>
+        <p>显示选中会打开必要祖先，但保留组内其他隐藏设置。隔离期间隐藏或显示会先退出隔离。</p>
+      </section>
+    </aside>
+    <section class="scene-panel" aria-label="机器人三维观察区">
+      <div class="notice">独立查看页默认隐藏 #549 偏置装配组；原文件未删除，可用“全部显示”恢复。不影响课堂默认模型。</div>
+      <div id="canvas" aria-label="可点选旋转缩放的整车模型"></div>
+      <div class="scene-help">单击选中 · 拖动旋转 · 滚轮缩放 · H 隐藏 · Shift+H 显示 · F 聚焦 · Esc 清除选择</div>
+    </section>
+  </main>
+  <footer><span id="status" role="status">正在加载整车…</span><span>仅结构观察与显隐；不含动力学仿真，不保存到源模型。</span></footer>
+  <script type="module" src="./js/robot-viewer.js"></script>
+</body>
+</html>
