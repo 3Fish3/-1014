@@ -5,7 +5,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 
 const executablePath = process.env.BROWSER_PATH || (existsSync('.tmp/browser/chrome-linux/chrome') ? '.tmp/browser/chrome-linux/chrome' : chromium.executablePath());
 const base = process.argv[2] || 'http://127.0.0.1:8080';
-const output = 'docs/ui-v2/p1';
+const output = process.env.OUTPUT_DIR || 'docs/ui-v2/p1';
 mkdirSync(output, { recursive: true });
 
 const browser = await chromium.launch({ executablePath, args: ['--no-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });

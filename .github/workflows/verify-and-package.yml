@@ -58,9 +58,12 @@ jobs:
             sleep 1
           done
           curl --fail --silent http://127.0.0.1:8080/ > /dev/null
-          OUTPUT_DIR=.tmp/ci/v1 node scripts/browser_check.mjs http://127.0.0.1:8080
-          OUTPUT_DIR=.tmp/ci/v2-p0 node scripts/ui_v2_check.mjs http://127.0.0.1:8080
-          node scripts/ui_v2_p1_check.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/v1 \
+            node scripts/browser_check.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/v2-p0 \
+            node scripts/ui_v2_check.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/v2-p1 \
+            node scripts/ui_v2_p1_check.mjs http://127.0.0.1:8080
           git diff --exit-code
 
       - name: Package verified commit
