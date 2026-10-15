@@ -1,0 +1,234 @@
+{
+  "passed": true,
+  "hashes": {
+    "hero_robot_step_aligned.glb": "cfb8cb7d333a7b8a6973424e2b774616604fef250c777530a6cbfa0674c599af",
+    "hero_robot_clean.glb": "f2eefd1ee718e8c0bebd7490968d5b62b4f99a6b640e57905bb3ef940c374baf",
+    "hero_robot_inferred.glb": "d85a76bd7a2835362efc5839d71e837dfc34fb9b7470d22fd2e03bc7d95337ff",
+    "diff_car_teaching.glb": "bf561d777edffc595cffcc40b500aa0a646b56145471129e91ae6b410a5f82e7",
+    "repairs/yaw-offset-inferred.json": "5f9d7f037466648813e0f1c7e7f9bdafaea5fbe7f17195383e3052f072181ed9",
+    "repairs/yaw-step-aligned.json": "c6be03342b19f2724a364d717ac5e96d0e1dedcfbb3111c92d8d144674dbfcda"
+  },
+  "pages": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "scenes": [
+        {
+          "scene": 0,
+          "title": "从一台英雄机器人开始认识电控",
+          "metrics": {
+            "count": 347534,
+            "maxXY": 0.7968328422332015,
+            "maxZ": 0.9999003001565826,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 1,
+          "title": "认识完整机器人",
+          "metrics": {
+            "count": 347534,
+            "maxXY": 0.7968328422332015,
+            "maxZ": 0.9999003001565826,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 2,
+          "title": "云台 · 改变瞄准方向",
+          "metrics": {
+            "count": 37315,
+            "maxXY": 0.5738905800991211,
+            "maxZ": 0.9998993949705157,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 3,
+          "title": "底盘 · 承载与移动",
+          "metrics": {
+            "count": 294220,
+            "maxXY": 0.7384433210213076,
+            "maxZ": 0.9998978157351519,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 4,
+          "title": "发射机构 · 输送与发射",
+          "metrics": {
+            "count": 39897,
+            "maxXY": 0.4768708772781282,
+            "maxZ": 0.9998998769261358,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 5,
+          "title": "从结构走向电机",
+          "metrics": {
+            "count": 347534,
+            "maxXY": 0.7968328422332015,
+            "maxZ": 0.9999003001565826,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        }
+      ],
+      "resourceCycles": [
+        {
+          "geometries": 216,
+          "textures": 0,
+          "programs": 7
+        },
+        {
+          "geometries": 216,
+          "textures": 0,
+          "programs": 7
+        },
+        {
+          "geometries": 216,
+          "textures": 0,
+          "programs": 7
+        },
+        {
+          "geometries": 216,
+          "textures": 0,
+          "programs": 7
+        }
+      ],
+      "invariant": {
+        "matrices": true,
+        "materialRefs": true,
+        "materialProperties": true
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "scenes": [
+        {
+          "scene": 0,
+          "title": "从一台英雄机器人开始认识电控",
+          "metrics": {
+            "count": 347534,
+            "maxXY": 0.7968328422332015,
+            "maxZ": 0.9999003001565826,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 1,
+          "title": "认识完整机器人",
+          "metrics": {
+            "count": 347534,
+            "maxXY": 0.7968328422332015,
+            "maxZ": 0.9999003001565826,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 2,
+          "title": "云台 · 改变瞄准方向",
+          "metrics": {
+            "count": 37315,
+            "maxXY": 0.5738905800991211,
+            "maxZ": 0.9998993949705157,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 3,
+          "title": "底盘 · 承载与移动",
+          "metrics": {
+            "count": 294220,
+            "maxXY": 0.7384433210213076,
+            "maxZ": 0.9998978157351519,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 4,
+          "title": "发射机构 · 输送与发射",
+          "metrics": {
+            "count": 39897,
+            "maxXY": 0.4768708772781282,
+            "maxZ": 0.9998998769261358,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        },
+        {
+          "scene": 5,
+          "title": "从结构走向电机",
+          "metrics": {
+            "count": 347534,
+            "maxXY": 0.7968328422332015,
+            "maxZ": 0.9999003001565826,
+            "hidden": [],
+            "overflow": false,
+            "canvases": 1
+          }
+        }
+      ],
+      "resourceCycles": [
+        {
+          "geometries": 216,
+          "textures": 0,
+          "programs": 7
+        },
+        {
+          "geometries": 216,
+          "textures": 0,
+          "programs": 7
+        },
+        {
+          "geometries": 216,
+          "textures": 0,
+          "programs": 7
+        },
+        {
+          "geometries": 216,
+          "textures": 0,
+          "programs": 7
+        }
+      ],
+      "invariant": {
+        "matrices": true,
+        "materialRefs": true,
+        "materialProperties": true
+      }
+    }
+  ],
+  "failures": [
+    {
+      "status": 503,
+      "explicitError": true,
+      "noFallback": true
+    }
+  ],
+  "external": [],
+  "errors": [],
+  "httpFailures": [],
+  "environment": "Chromium headless SwiftShader. Renderer counters are not total process/GPU memory, a leak proof or classroom hardware performance certification."
+}

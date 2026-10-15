@@ -81,6 +81,8 @@ jobs:
             node scripts/robot_viewer_check.mjs http://127.0.0.1:8080
           OUTPUT_DIR=.tmp/ci/step-alignment \
             node scripts/step_alignment_check.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/hero-tour \
+            node scripts/hero_tour_check.mjs http://127.0.0.1:8080
           git diff --exit-code
 
       - name: Package verified commit

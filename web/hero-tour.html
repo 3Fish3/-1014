@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第一章 · 英雄机器人结构导览</title>
+  <link rel="stylesheet" href="./css/hero-tour.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script>
+</head>
+<body>
+  <header class="tour-header">
+    <div class="header-left">
+      <a href="./ui-v2.html" class="nav-back-link">← 返回课程总览</a>
+      <div class="header-title-wrap">
+        <span class="lesson-tag">第一章</span>
+        <h1 class="header-title">英雄机器人结构导览</h1>
+      </div>
+    </div>
+    <div class="header-right">
+      <nav class="scene-steps" id="tour-steps" aria-label="导览场景进度"></nav>
+    </div>
+  </header>
+
+  <main class="tour-main">
+    <section class="tour-viewport-panel" aria-label="3D模型主展示区">
+      <div id="tour-canvas" aria-label="英雄机器人3D模型投影画布"></div>
+    </section>
+
+    <aside class="tour-sidebar" aria-label="教学导览信息与控制侧栏">
+      <div class="sidebar-header">
+        <div class="scene-counter" id="tour-scene-counter">场景 1 / 6</div>
+        <h2 id="tour-title">从一台英雄机器人开始认识电控</h2>
+        <div id="tour-keywords" class="tour-keywords" aria-label="教学核心关键词"></div>
+      </div>
+
+      <div class="sidebar-body">
+        <p id="tour-description">先看到真正需要控制的机器人，再理解程序有什么作用。</p>
+
+        <section class="modules-section" id="tour-modules-section">
+          <div class="section-title-row">
+            <h3 class="section-title">核心结构模块</h3>
+            <button type="button" id="tour-reveal" class="reveal-btn">揭示结构名称 (0/3)</button>
+          </div>
+          <div id="tour-modules" class="tour-modules-grid" aria-label="三大核心结构模块">
+            <button type="button" class="tour-btn module-btn" data-module="gimbal">云台</button>
+            <button type="button" class="tour-btn module-btn" data-module="chassis">底盘</button>
+            <button type="button" class="tour-btn module-btn" data-module="launcher">发射机构</button>
+          </div>
+        </section>
+
+        <section class="details-section" id="tour-details-section">
+          <h3 class="section-title">当前部件细节</h3>
+          <div id="tour-details" class="tour-details-grid" aria-label="结构细节聚焦与查看"></div>
+          <div id="tour-detail-note" class="detail-note-card" style="display: none;"></div>
+        </section>
+      </div>
+
+      <div class="sidebar-footer">
+        <a id="tour-continue" href="./ui-v2.html?step=3" class="continue-btn" style="display: none;">
+          前往第二章 · 电机与动力教学 →
+        </a>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="tour-footer">
+    <div class="footer-status-bar">
+      <span class="status-indicator-dot"></span>
+      <span id="tour-status" role="status">正在加载整车模型…</span>
+    </div>
+
+    <div class="footer-controls">
+      <button type="button" id="tour-prev" class="ctrl-btn" disabled>上一步</button>
+      <button type="button" id="tour-next" class="ctrl-btn">下一步</button>
+      <span class="ctrl-divider"></span>
+      <button type="button" id="tour-reset" class="ctrl-btn">恢复整车</button>
+      <button type="button" id="tour-replay" class="ctrl-btn">重播</button>
+      <button type="button" id="tour-rotate" class="ctrl-btn" aria-pressed="false">慢速旋转</button>
+      <span class="ctrl-divider"></span>
+      <button type="button" id="tour-isolate" class="ctrl-btn isolate-btn" disabled aria-pressed="false">隔离所选</button>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/hero-tour.js"></script>
+</body>
+</html>
