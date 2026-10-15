@@ -9,6 +9,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from resize_glb_textures import resize
+
 
 def optimize_hero_robot(source_path: Path | None = None) -> bool:
     project_root = Path(__file__).resolve().parent.parent
@@ -50,6 +52,7 @@ def optimize_hero_robot(source_path: Path | None = None) -> bool:
     ]
     try:
         subprocess.run(cmd, check=True)
+        resize(out_clean)
         out_mb = out_clean.stat().st_size / 1024 / 1024
         print(f"✓ 成功生成轻量化整车模型: {out_clean} ({out_mb:.2f} MB)")
         return True

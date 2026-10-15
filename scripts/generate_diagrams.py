@@ -6,7 +6,7 @@
 
 from pathlib import Path
 
-IMG_DIR = Path("/home/kekeyuyu/projects/hushi_ec_teach/web/assets/images")
+IMG_DIR = Path(__file__).resolve().parent.parent / "web/assets/images"
 IMG_DIR.mkdir(parents=True, exist_ok=True)
 
 DIAGRAMS = {
@@ -41,7 +41,7 @@ DIAGRAMS = {
   <circle cx="200" cy="160" r="8" fill="#e2e8f0"/>
   <text x="200" y="200" fill="#c084fc" font-size="11" text-anchor="middle" font-family="sans-serif">后万向支撑轮</text>
   <!-- 地面接触提示 -->
-  <text x="200" y="225" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">双轮驱动提供前进动力 · 万向轮保持车身三点水平平衡</text>
+  <text x="200" y="225" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">双轮提供前进动力 · 辅助轮提供支撑</text>
 </svg>""",
 
     "motor.svg": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
@@ -103,7 +103,7 @@ DIAGRAMS = {
   <text x="345" y="119" fill="#34d399" font-size="11" font-family="sans-serif">➔ 供给单片机</text>
   <!-- 警示 -->
   <text x="200" y="195" fill="#fbbf24" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">⚠️ 严禁将未稳压的动力电池直接接到 STM32 芯片引脚！</text>
-  <text x="200" y="218" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">动力回路与微控制器控制电路必须电压匹配与供电隔离</text>
+  <text x="200" y="218" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">电压须匹配；分色示意不代表电气隔离</text>
 </svg>""",
 
     "stm32.svg": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
@@ -135,7 +135,7 @@ DIAGRAMS = {
   <text x="145" y="154" fill="#38bdf8" font-size="12" font-weight="bold" font-family="sans-serif">控制信号路径 (PWM 调速脉冲 / 方向引脚电平)</text>
   <!-- 总结 -->
   <rect x="40" y="185" width="320" height="35" rx="6" fill="#1e293b"/>
-  <text x="200" y="207" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="sans-serif">物理隔离：信息流与电能流各司其职，保证控制稳定</text>
+  <text x="200" y="207" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="sans-serif">信息流与电能流用途不同；本图不是接线指导</text>
 </svg>""",
 
     "motion.svg": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
@@ -188,11 +188,11 @@ DIAGRAMS = {
   <text x="100" y="185" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">【主控】 STM32 单板开发板</text>
   <!-- 英雄机器人 -->
   <text x="300" y="35" fill="#f59e0b" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">RoboMaster 英雄机器人</text>
-  <text x="300" y="65" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【车架】 航空铝 CNC 镂空 + 装甲板</text>
-  <text x="300" y="95" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【驱动】 4 颗 DJI M3508 无刷电机</text>
-  <text x="300" y="125" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【轮组】 4 颗 152mm 麦克纳姆全向轮</text>
-  <text x="300" y="155" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【电调】 RoboMaster C620 高性能电调</text>
-  <text x="300" y="185" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【主控】 MC02 A板主控 + CAN 总线广播</text>
+  <text x="300" y="65" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【车架】 真实整车 CAD 外形参考</text>
+  <text x="300" y="95" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【驱动】 CAD 名称含 M3508</text>
+  <text x="300" y="125" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【轮组】 按 CAD 具名节点辨认</text>
+  <text x="300" y="155" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【驱动器】 型号与位置待核对</text>
+  <text x="300" y="185" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【主控】 型号与位置待核对</text>
   <!-- 共同结论 -->
   <text x="200" y="222" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">机械结构虽然不同，但解决【承载、动力、供电、决策】的电控法则完全共通！</text>
 </svg>"""

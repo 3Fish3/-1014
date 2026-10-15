@@ -1,0 +1,46 @@
+{
+  "environment": "Chromium headless / SwiftShader software rendering; not target projector GPU",
+  "teachingLoadMs": 1790.8275160000003,
+  "heroLoadMs": 393.4767790000001,
+  "frameTiming": {
+    "medianMs": 150,
+    "p95Ms": 166.69999999999982,
+    "samples": 30
+  },
+  "geometry": {
+    "centerDrift": 0,
+    "bottom": -1.490116086078075e-10
+  },
+  "before": {
+    "memory": {
+      "geometries": 224,
+      "textures": 0
+    },
+    "calls": 659,
+    "triangles": 386438,
+    "programs": 6,
+    "heap": 21562899
+  },
+  "after": {
+    "memory": {
+      "geometries": 224,
+      "textures": 0
+    },
+    "calls": 659,
+    "triangles": 386438,
+    "programs": 6,
+    "heap": 18411903
+  },
+  "full": {
+    "geometries": 213,
+    "textures": 0,
+    "calls": 648,
+    "triangles": 383990,
+    "programs": 5,
+    "heap": 36868849
+  },
+  "errors": [],
+  "failed": [],
+  "external": [],
+  "passed": true
+}

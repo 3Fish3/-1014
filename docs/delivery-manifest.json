@@ -1,0 +1,174 @@
+{
+  "web/viewer_full.html": {
+    "bytes": 3146,
+    "sha256": "474f01ff98ba8fa44c1c1948edec8caacfc411ac2f71c39ca8e97ee4155db481"
+  },
+  "web/index.html": {
+    "bytes": 8088,
+    "sha256": "999e8eaa7f417f8191e2576a7d15d534ab0e5e2db8fde3380fd153304d8d62fa"
+  },
+  "web/css/style.css": {
+    "bytes": 13018,
+    "sha256": "df58c5f8a878431ab8f8ffbfcf2ae9ab4393766a2e57bf7b9815a01f7c4423cb"
+  },
+  "web/js/lesson.js": {
+    "bytes": 4103,
+    "sha256": "9f0240a12cfcfc0a3e2586fa13ca807963fb32f79702d53b71e9d88e2ffd98b4"
+  },
+  "web/js/kinematics.js": {
+    "bytes": 4279,
+    "sha256": "14f32adb7f3a4111aec4221e8cbf13ab001d74837eadc7d334cfd4d55a4a04b0"
+  },
+  "web/js/app.js": {
+    "bytes": 14050,
+    "sha256": "e7e19e049885ff7fd40f462929317679bea2ef4c4b4e774758a63afc860ff500"
+  },
+  "web/js/viewer.js": {
+    "bytes": 21990,
+    "sha256": "7190f0d1d6ab49a15bde6f5736d4e49e79b6f37898b915c73e6349bb342360c3"
+  },
+  "web/models/hero_robot_clean.glb": {
+    "bytes": 6150804,
+    "sha256": "f2eefd1ee718e8c0bebd7490968d5b62b4f99a6b640e57905bb3ef940c374baf"
+  },
+  "web/models/diff_car_teaching.glb": {
+    "bytes": 50048,
+    "sha256": "bf561d777edffc595cffcc40b500aa0a646b56145471129e91ae6b410a5f82e7"
+  },
+  "web/vendor/THREE-LICENSE.txt": {
+    "bytes": 1081,
+    "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+  },
+  "web/vendor/three/three.module.js": {
+    "bytes": 603113,
+    "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+  },
+  "web/vendor/three/OrbitControls.js": {
+    "bytes": 38703,
+    "sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c"
+  },
+  "web/vendor/three/GLTFLoader.js": {
+    "bytes": 114739,
+    "sha256": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a"
+  },
+  "web/vendor/three/three.core.js": {
+    "bytes": 1403455,
+    "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20"
+  },
+  "web/vendor/utils/BufferGeometryUtils.js": {
+    "bytes": 35539,
+    "sha256": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751"
+  },
+  "web/assets/images/sentinel_chassis_layout.png": {
+    "bytes": 116143,
+    "sha256": "59b6787d208c4463e39b3595a51751fa6ba939bf89eba47322b9930f24a2794e"
+  },
+  "web/assets/images/frame.svg": {
+    "bytes": 1058,
+    "sha256": "9bf57ac8e6ffe10ced552b549f6cbcbcc483d5a6d43216836d07db0a3778e6f4"
+  },
+  "web/assets/images/wheel.svg": {
+    "bytes": 1563,
+    "sha256": "f8dcd795c66a69f3263903c4c21020c4b9f466c738955c82dc4d02985e0a7450"
+  },
+  "web/assets/images/motor.svg": {
+    "bytes": 1677,
+    "sha256": "615617cad42f262720027712fca7861fae85a518c43b65b8a6bbecb9b5874bd9"
+  },
+  "web/assets/images/driver.svg": {
+    "bytes": 1672,
+    "sha256": "b0004c339e217ea6b657b91b73e804f20497ec4084bec11ba6cd5475745ca988"
+  },
+  "web/assets/images/battery.svg": {
+    "bytes": 1816,
+    "sha256": "70dbda499bb0bef62b48b6f2e71c07b68a321ff557b90a33d2b859e69479e324"
+  },
+  "web/assets/images/stm32.svg": {
+    "bytes": 1238,
+    "sha256": "e3fb948d87c1efa0c93e892b7744286914598c645b358f9c22ff4f774aca7dc3"
+  },
+  "web/assets/images/wiring.svg": {
+    "bytes": 1320,
+    "sha256": "d2915d97287d920364bd4cc1f37515d09d97d39c05763dab0bb8ff8001ea06a1"
+  },
+  "web/assets/images/motion.svg": {
+    "bytes": 1441,
+    "sha256": "601b582ab1fe038371098333343d371aa73df2972141287bd09b7d7038389e78"
+  },
+  "web/assets/images/differential.svg": {
+    "bytes": 1641,
+    "sha256": "a6fea274605d3ac0828d74c2e778e2daf56e084b247170ffd370c28be01e0186"
+  },
+  "web/assets/images/comparison.svg": {
+    "bytes": 2324,
+    "sha256": "938e173fa241333c117d7c30ed4041dfaeebfd1ee0c69919be60a1cd8e03fe5e"
+  },
+  "web/assets/images/alphabot-official.jpg": {
+    "bytes": 205202,
+    "sha256": "f0afd1cd3f2f64cf641fb4956bac6444e360321270cf8455e4153e3145857409"
+  },
+  "web/assets/images/team-controller.jpg": {
+    "bytes": 152856,
+    "sha256": "440fe93079c6151c62ac70bbe7afb7b9650e3ed92525d8d23b92b5bc23a549dd"
+  },
+  "web/assets/images/team-chassis.jpg": {
+    "bytes": 210031,
+    "sha256": "52f86573b4fca1bf4be66d29cccae56a1fb8d6cf2945f23f1f9294d9a43e5349"
+  },
+  "web/assets/images/alphabot-car.jpg": {
+    "bytes": 203082,
+    "sha256": "2fc38340553f3551cfb7a0b6c51a505c60e443bd46694312491cb16539903c39"
+  },
+  "web/assets/code/dji.cpp.txt": {
+    "bytes": 3170,
+    "sha256": "5b8afbeee394925d45740bfb1311273b277d2daf1d1e95bbb443bd328712a24d"
+  },
+  "web/assets/code/omni_kinematics.cpp.txt": {
+    "bytes": 4515,
+    "sha256": "2daabd1c5b00c568c1af535f7fa62a2fd9bd65bd7782fde9a9041b41c082ad52"
+  },
+  "web/assets/code/dji.hpp.txt": {
+    "bytes": 1587,
+    "sha256": "e00e2acb8a0c559eb7a12877ca1a54b01738206904a27f29b40a7c919c170ee6"
+  },
+  "web/assets/code/omni_kinematics.hpp.txt": {
+    "bytes": 2065,
+    "sha256": "5886275b30b55146d3e3a4e3f31a5d95ab2b7af2110048ae96fb197fd05c6fd8"
+  },
+  "docs/pdf/讲解文档.pdf": {
+    "bytes": 862204,
+    "sha256": "98af41648016b6176c5dc1a46cc14c02b875e63c65737d41de0461fa8cf9f225"
+  },
+  "docs/pdf/设计思路与流程.pdf": {
+    "bytes": 1037613,
+    "sha256": "8f85a7d22da4c5280e384a0a813cc0c7e291664b329f4a846985ee8eabbeaa78"
+  },
+  "docs/pdf/脚本使用说明.pdf": {
+    "bytes": 552201,
+    "sha256": "f26eab84ee316f4280a3a9210a55b003078ad032e7821ffcea72a154073736ff"
+  },
+  "docs/media/step-01.png": {
+    "bytes": 161825,
+    "sha256": "fbeb4f09fb43fad5b7971a9ce5384561f4f9a473ff6b3390218550d8df25cb0b"
+  },
+  "docs/media/step-10.png": {
+    "bytes": 330926,
+    "sha256": "3445423c790d66cf6d03661467fa4cfb27eb46d988b128896d4bf6b3f6166d73"
+  },
+  "docs/media/step-09.png": {
+    "bytes": 214833,
+    "sha256": "420f8d54ccb0407228ff6532aeb284f66a0f3adf3cca8d786642c01475e501dd"
+  },
+  "docs/media/full-robot.png": {
+    "bytes": 169661,
+    "sha256": "8a0d53b457eea445c8eff992e2f2996259a43ddd7daacae72f501863e4e5e4de"
+  },
+  "docs/media/教学仿真操作演示.mp4": {
+    "bytes": 1241318,
+    "sha256": "169ca0343d60c4cf873305381e80646e84f6217979ef0b1f5ecbc2a21ad945cf"
+  },
+  "docs/media/step-07.png": {
+    "bytes": 211134,
+    "sha256": "91d8a46b55a87435da1615753e5f0fec74d06f275800d86c422417ebd110b923"
+  }
+}

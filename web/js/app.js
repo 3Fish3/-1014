@@ -53,12 +53,18 @@ class TeachingApp {
   async init() {
     // 1. 初始化 3D 渲染查看器
     this.viewer = new SceneViewer(this.dom.canvasContainer);
+    window.addEventListener('pagehide', () => {
+      this.viewer.dispose();
+      this.stopped = true;
+    }, {once:true});
 
     // 2. 加载小车 3D 模型
     try {
       await this.viewer.loadDiffCar('./models/diff_car_teaching.glb');
     } catch (err) {
+      this.dom.canvasContainer.textContent = `教学模型加载失败，请检查本地模型文件：${err.message}`;
       console.error('加载小车模型失败:', err);
+      return;
     }
 
     // 3. 构建步骤指示圆点导航
@@ -119,6 +125,11 @@ class TeachingApp {
   }
 
   bindEvents() {
+    document.querySelectorAll('.compare').forEach(button => button.addEventListener('click', () => {
+      const kind = button.dataset.kind;
+      const matches = this.viewer.highlightComparison(kind);
+      document.querySelector('#compare-status').textContent = matches.hero.length ? '已按 CAD 节点名高亮对应功能区域；名称不等同实物认证。' : '实车该区域尚未确认，未进行猜测高亮；请结合实物补充核验。';
+    }));
     // 步骤导航按钮
     this.dom.btnPrev.addEventListener('click', () => this.prevStep());
     this.dom.btnNext.addEventListener('click', () => this.nextStep());
@@ -132,6 +143,7 @@ class TeachingApp {
       const texts = ['主控发出指令','驱动器接收指令','电机带动车轮'];
       const step = LESSON_STEPS[6];
       this.viewer.applyStepState({...step,focusNode:names[this.chainStage]});
+      this.viewer.setInstructionStage(this.chainStage);
       document.querySelector('#chain-status').textContent = texts[this.chainStage];
       this.chainStage = (this.chainStage + 1) % 3;
     });
@@ -244,6 +256,7 @@ class TeachingApp {
     this.dom.presetControls.parentElement.style.display = isMotionStep ? 'block' : 'none';
     this.dom.sliderControls.parentElement.style.display = step.isFreeSliderStep ? 'block' : 'none';
     document.querySelector('#chain-panel').hidden = index !== 6;
+    document.querySelector('#compare-panel').hidden = index !== 9;
     this.chainStage = 0;
 
     if (!isMotionStep) {
@@ -279,6 +292,8 @@ class TeachingApp {
   }
 
   replayStep() {
+    this.kinematics.resetPose();
+    this.updateSliderUI(0, 0);
     this.goToStep(this.currentStepIndex);
   }
 
@@ -324,6 +339,7 @@ class TeachingApp {
   }
 
   renderLoop(time) {
+    if (this.stopped) return;
     const dt = (time - this.lastTime) * 0.001;
     this.lastTime = time;
 

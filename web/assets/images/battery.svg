@@ -16,5 +16,5 @@
   <text x="345" y="119" fill="#34d399" font-size="11" font-family="sans-serif">➔ 供给单片机</text>
   <!-- 警示 -->
   <text x="200" y="195" fill="#fbbf24" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">⚠️ 严禁将未稳压的动力电池直接接到 STM32 芯片引脚！</text>
-  <text x="200" y="218" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">动力回路与微控制器控制电路必须电压匹配与供电隔离</text>
+  <text x="200" y="218" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">电压须匹配；分色示意不代表电气隔离</text>
 </svg>

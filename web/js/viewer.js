@@ -292,6 +292,7 @@ export class SceneViewer {
     this.clearComparisonHighlight();
     this.comparisonKind = null;
     this.currentStep = step;
+    if (this.instructionMarker) this.instructionMarker.visible = false;
     this.isComparison = Boolean(step.isComparisonStep);
     if (this.heroRobotModel) this.heroRobotModel.visible = this.isComparison;
     this.trajectoryLine.visible = !this.isComparison;
@@ -342,7 +343,7 @@ export class SceneViewer {
     if (this.isComparison) {
       this.carRoot.position.set(-0.38, 0, 0);
       this.carRoot.rotation.y = 0;
-      this.smoothMoveCamera([1.0, 0.8, 1.25], [0, 0.15, 0]);
+      this.smoothMoveCamera([0.72, 0.55, 0.95], [0, 0.15, 0]);
     } else if (step.focusCamera) {
       this.smoothMoveCamera(step.focusCamera.pos, step.focusCamera.target);
     }
@@ -413,6 +414,18 @@ export class SceneViewer {
     return result;
   }
 
+  /** 分步指令/执行传播标记；颜色区分逻辑信号与电机功率输出。 */
+  setInstructionStage(stage) {
+    if (!this.instructionMarker) {
+      this.instructionMarker = new THREE.Mesh(new THREE.SphereGeometry(0.005, 12, 8), new THREE.MeshBasicMaterial({color:0x00e5ff}));
+      this.carRoot.add(this.instructionMarker);
+    }
+    this.instructionStage = stage;
+    this.instructionProgress = 0;
+    this.instructionMarker.visible = true;
+    this.instructionMarker.material.color.setHex(stage === 2 ? 0xff8030 : 0x00e5ff);
+  }
+
   /** 平滑运镜过渡 */
   smoothMoveCamera(targetPos, targetLookAt) {
     this.targetCameraPos = new THREE.Vector3(...targetPos);
@@ -427,6 +440,14 @@ export class SceneViewer {
     const cameraAlpha = 1 - Math.pow(0.92, dt * 60);
     const targetAlpha = 1 - Math.pow(0.9, dt * 60);
 
+    if (this.instructionMarker?.visible) {
+      this.instructionProgress = (this.instructionProgress + dt * 0.65) % 1;
+      const source = new THREE.Vector3(.015,.085,.038);
+      const driver = new THREE.Vector3(0,.085,-.035);
+      const motor = new THREE.Vector3(-.065,.035,0);
+      this.instructionMarker.position.copy(this.instructionStage === 2 ? driver : source)
+        .lerp(this.instructionStage === 0 ? source : this.instructionStage === 1 ? driver : motor, this.instructionProgress);
+    }
     // 1. 同步小车空间位姿 (X, Z 与 Yaw)
     if (this.carRoot && kinematicsState) {
       this.carRoot.position.set(this.isComparison ? -0.38 : kinematicsState.x, 0,

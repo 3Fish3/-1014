@@ -16,5 +16,5 @@
   <circle cx="200" cy="160" r="8" fill="#e2e8f0"/>
   <text x="200" y="200" fill="#c084fc" font-size="11" text-anchor="middle" font-family="sans-serif">后万向支撑轮</text>
   <!-- 地面接触提示 -->
-  <text x="200" y="225" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">双轮驱动提供前进动力 · 万向轮保持车身三点水平平衡</text>
+  <text x="200" y="225" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">双轮提供前进动力 · 辅助轮提供支撑</text>
 </svg>

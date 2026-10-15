@@ -62,8 +62,13 @@ def create_diff_car():
         so.apply_translation([sx, 0.02, sz])
         standoffs.append(so)
 
-    frame_upper = set_color(trimesh.creation.box(extents=[0.14, 0.004, 0.16]), COLOR_FRAME)
-    frame_upper.apply_translation([0, 0.038, 0])
+    # 教学开窗上框，避免实心上板遮住电池；不是结构强度设计。
+    rails = []
+    for x, z, extent in [(-.066, 0, [.008,.004,.16]), (.066,0,[.008,.004,.16]), (0,-.076,[.14,.004,.008]), (0,.076,[.14,.004,.008])]:
+        rail = set_color(trimesh.creation.box(extents=extent), COLOR_FRAME)
+        rail.apply_translation([x,.038,z])
+        rails.append(rail)
+    frame_upper = trimesh.util.concatenate(rails)
 
     frame_mesh = trimesh.util.concatenate([frame_lower, frame_upper] + standoffs)
     scene.add_geometry(frame_mesh, node_name="Node_Frame")

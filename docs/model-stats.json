@@ -1,0 +1,29 @@
+{
+  "整车5.glb": {
+    "bytes": 216455776,
+    "sha256": "a3e8496ed1ff6b3bab51f02479b30a2719d13cc02994e844488c2c89b9a0e160",
+    "uniqueMeshTriangles": 4320597,
+    "nodes": 574,
+    "meshes": 545,
+    "embeddedImages": 32,
+    "geometryBufferViewBytes": 186928084
+  },
+  "hero_robot_clean.glb": {
+    "bytes": 6150804,
+    "sha256": "f2eefd1ee718e8c0bebd7490968d5b62b4f99a6b640e57905bb3ef940c374baf",
+    "uniqueMeshTriangles": 213790,
+    "nodes": 574,
+    "meshes": 183,
+    "embeddedImages": 0,
+    "geometryBufferViewBytes": 5937504
+  },
+  "diff_car_teaching.glb": {
+    "bytes": 50048,
+    "sha256": "bf561d777edffc595cffcc40b500aa0a646b56145471129e91ae6b410a5f82e7",
+    "uniqueMeshTriangles": 2448,
+    "nodes": 12,
+    "meshes": 12,
+    "embeddedImages": 0,
+    "geometryBufferViewBytes": 40896
+  }
+}

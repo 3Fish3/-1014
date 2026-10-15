@@ -12,5 +12,5 @@
   <text x="145" y="154" fill="#38bdf8" font-size="12" font-weight="bold" font-family="sans-serif">控制信号路径 (PWM 调速脉冲 / 方向引脚电平)</text>
   <!-- 总结 -->
   <rect x="40" y="185" width="320" height="35" rx="6" fill="#1e293b"/>
-  <text x="200" y="207" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="sans-serif">物理隔离：信息流与电能流各司其职，保证控制稳定</text>
+  <text x="200" y="207" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="sans-serif">信息流与电能流用途不同；本图不是接线指导</text>
 </svg>
