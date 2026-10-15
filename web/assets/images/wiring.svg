@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <rect width="400" height="240" fill="#131926" rx="8"/>
+  <!-- 供电线路图例 -->
+  <line x1="50" y1="60" x2="130" y2="60" stroke="#ef4444" stroke-width="4"/>
+  <line x1="50" y1="75" x2="130" y2="75" stroke="#1e293b" stroke-width="4"/>
+  <text x="145" y="72" fill="#f87171" font-size="12" font-weight="bold" font-family="sans-serif">能量供电路径 (高压动力源 / 大电流)</text>
+  <!-- 稳压供电线路图例 -->
+  <line x1="50" y1="110" x2="130" y2="110" stroke="#f59e0b" stroke-width="3"/>
+  <text x="145" y="114" fill="#fbbf24" font-size="12" font-weight="bold" font-family="sans-serif">稳压 5V / 3.3V 弱电供电路径 (主控决策核心)</text>
+  <!-- 信号线路图例 -->
+  <line x1="50" y1="150" x2="130" y2="150" stroke="#00e5ff" stroke-width="3" stroke-dasharray="6,3"/>
+  <text x="145" y="154" fill="#38bdf8" font-size="12" font-weight="bold" font-family="sans-serif">控制信号路径 (PWM 调速脉冲 / 方向引脚电平)</text>
+  <!-- 总结 -->
+  <rect x="40" y="185" width="320" height="35" rx="6" fill="#1e293b"/>
+  <text x="200" y="207" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="sans-serif">物理隔离：信息流与电能流各司其职，保证控制稳定</text>
+</svg>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoboMaster 电控三维教学系统｜第二章：从零制造一台能移动的机器人</title>
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- 100% 离线本地 Three.js 模块映射 -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/three.module.js",
+      "three/addons/": "./vendor/three/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- 1. 左侧教学手册卡片区 -->
+    <aside class="handbook-sidebar">
+      <div class="handbook-header">
+        <span class="course-tag">RoboMaster 电控基础 · 第二章</span>
+        <span class="step-badge" id="step-badge">第 1 步 / 共 10 步</span>
+      </div>
+
+      <div class="handbook-body">
+        <div class="step-meta">
+          <span class="step-duration" id="step-duration">⏱️ 预计时长: 0:00–0:45</span>
+        </div>
+
+        <h1 class="step-title" id="step-title">01 任务提出：怎样让它动起来？</h1>
+
+        <div class="key-concept-box" id="key-concept">
+          💡 核心认知: 目标先于器件
+        </div>
+
+        <div class="teacher-speech-box" id="teacher-lines">
+          🗣️ 讲师参考: "先造一台最简单的移动机器人，看看最少需要哪些功能模块。"
+        </div>
+
+        <div class="diagram-container">
+          <img id="diagram-img" src="./assets/images/frame.svg" alt="教学器件示意图">
+          <span class="diagram-badge" id="diagram-badge">车架承载结构</span>
+        </div>
+
+        <figure class="photo-card">
+          <img id="hardware-photo" src="./assets/images/alphabot-car.jpg" alt="双轮差速车实物参考照片">
+          <figcaption id="photo-caption">Waveshare AlphaBot 官方器件参考；与本模型非同款。版权归原厂，仅本地教学引用。</figcaption>
+        </figure>
+        <ul class="details-list" id="step-details">
+          <li>底盘车架是所有机械机构与电气元件的物理基础。</li>
+          <li>承载电机、电池、主控与传感器，承受地面颠簸反作用力。</li>
+          <li>光有车架只是死重，无法产生任何自主移动。</li>
+        </ul>
+
+        <button class="sentinel-code-btn" id="btn-toggle-code">
+          <span>🔍 查看哨兵实车底盘驱动源码 (C++20 参考)</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- 2. 中央 3D 画布区域与浮动 HUD -->
+    <main class="viewport-area">
+      <!-- 3D 渲染容器 -->
+      <div id="canvas-container"></div>
+
+      <!-- 顶部浮动工具栏 -->
+      <header class="top-hud">
+        <div class="hud-group">
+          <button class="hud-btn" id="btn-cam-mode">🎥 视角: 固定观察</button>
+          <button class="hud-btn" id="btn-reset-car">↺ 重置小车位置</button>
+        </div>
+
+        <nav class="step-dots" id="step-dots">
+          <!-- 动态生成 10 步导航点 -->
+        </nav>
+
+        <div class="hud-group">
+          <a class="hud-btn" href="./viewer_full.html" target="_blank">🔍 独立整车全貌查看器</a>
+          <button class="hud-btn" id="btn-fullscreen">⛶ 全屏演示</button>
+        </div>
+      </header>
+
+      <div class="scene-label">教学示意 · 运动学演示，非实车物理仿真</div>
+      <!-- 底部浮动控制台 -->
+      <footer class="bottom-controls">
+        <!-- 预设动作按钮面板 (仅在运动步骤显示) -->
+        <div class="preset-panel" style="display: none;">
+          <div class="preset-title">⚡ 预设动作直觉演练 (点击观察轮速方向与车身转向)</div>
+          <div class="preset-actions" id="preset-controls"></div>
+        </div>
+
+        <!-- 左右轮独立滑块 (无数值UI，仅在运动步骤显示) -->
+        <div class="slider-panel" style="display: none;">
+          <div class="slider-title">🎛️ 双轮差速自由调节 (无数值干扰，专注直觉探索)</div>
+          <div class="sliders-grid" id="slider-controls">
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span>左驱动轮</span>
+                <span class="speed-text" id="text-left-speed">左轮: 【停止】</span>
+              </div>
+              <input type="range" class="wheel-slider" aria-label="左轮方向与快慢" id="slider-left" min="-1" max="1" step="0.05" value="0">
+              <div class="slider-ticks">
+                <span>◀ 全速倒转</span>
+                <span>停止</span>
+                <span>全速正转 ▶</span>
+              </div>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span>右驱动轮</span>
+                <span class="speed-text" id="text-right-speed">右轮: 【停止】</span>
+              </div>
+              <input type="range" class="wheel-slider" aria-label="右轮方向与快慢" id="slider-right" min="-1" max="1" step="0.05" value="0">
+              <div class="slider-ticks">
+                <span>◀ 全速倒转</span>
+                <span>停止</span>
+                <span>全速正转 ▶</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="chain-panel" class="preset-panel" hidden>
+          <button id="btn-chain" class="hud-btn">推进指令链（点击三次）</button>
+          <span id="chain-status">主控 → 驱动器 → 电机</span>
+          <p>青色：指令示意；橙红色：供电与电机功率路径。两者不等同电气隔离。</p>
+        </div>
+        <!-- 主步骤控制栏 -->
+        <div class="navigation-bar">
+          <button class="nav-btn" id="btn-prev" disabled>◂ 上一步 (←)</button>
+          <button class="nav-btn" id="btn-pause">暂停演示</button>
+          <button class="nav-btn" id="btn-replay">↻ 重播本步骤 (R)</button>
+          <button class="nav-btn btn-primary" id="btn-next">下一步 ➔ (Space/→)</button>
+        </div>
+      </footer>
+    </main>
+
+    <!-- 3. 哨兵实车代码透视抽屉 -->
+    <aside class="code-drawer" id="code-drawer">
+      <div class="code-drawer-header">
+        <span class="code-drawer-title">哨兵实车底盘固件代码透视 (C++20)</span>
+        <button class="btn-close" id="btn-close-code">&times;</button>
+      </div>
+
+      <div class="code-disclaimer">
+        ⚠️ <strong>工程事实声明</strong>：以下展示的代码直接提取自虎师战队<strong>哨兵底盘固件交接快照</strong>。哨兵实车底盘采用<strong>四全向轮运动学抽象与 DJI CAN 总线驱动</strong>，并非本章教学小车的双轮差速算法，供新队员建立工业级真实工程认知。
+      </div>
+
+      <div class="code-tabs">
+        <button class="code-tab active" data-file="omni_kinematics.hpp.txt">omni_kinematics.hpp</button>
+        <button class="code-tab" data-file="omni_kinematics.cpp.txt">omni_kinematics.cpp</button>
+        <button class="code-tab" data-file="dji.hpp.txt">dji.hpp</button>
+        <button class="code-tab" data-file="dji.cpp.txt">dji.cpp</button>
+      </div>
+
+      <div class="code-body">
+        <pre><code id="code-content">// 正在加载实车代码...</code></pre>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 引入主应用逻辑 -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

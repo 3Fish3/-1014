@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <rect width="400" height="240" fill="#131926" rx="8"/>
+  <!-- 左驱动轮 -->
+  <rect x="40" y="50" width="40" height="110" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <rect x="48" y="75" width="24" height="60" rx="4" fill="#334155"/>
+  <text x="60" y="180" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">左驱动轮</text>
+  <!-- 右驱动轮 -->
+  <rect x="320" y="50" width="40" height="110" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <rect x="328" y="75" width="24" height="60" rx="4" fill="#334155"/>
+  <text x="340" y="180" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">右驱动轮</text>
+  <!-- 前后万向轮 -->
+  <circle cx="200" cy="50" r="22" fill="#334155" stroke="#a855f7" stroke-width="2"/>
+  <circle cx="200" cy="50" r="8" fill="#e2e8f0"/>
+  <text x="200" y="25" fill="#c084fc" font-size="11" text-anchor="middle" font-family="sans-serif">前万向支撑轮</text>
+  <circle cx="200" cy="160" r="22" fill="#334155" stroke="#a855f7" stroke-width="2"/>
+  <circle cx="200" cy="160" r="8" fill="#e2e8f0"/>
+  <text x="200" y="200" fill="#c084fc" font-size="11" text-anchor="middle" font-family="sans-serif">后万向支撑轮</text>
+  <!-- 地面接触提示 -->
+  <text x="200" y="225" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">双轮驱动提供前进动力 · 万向轮保持车身三点水平平衡</text>
+</svg>

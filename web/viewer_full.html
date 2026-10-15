@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>整车模型观察</title>
+<style>body{margin:0;background:#0e131d;color:#eee;font:14px system-ui}#canvas{height:100vh}header,aside{position:fixed;background:#111c2ee8;padding:14px;border:1px solid #334155;border-radius:10px;z-index:2}header{top:16px;left:16px;right:16px;display:flex;gap:12px;align-items:center}aside{bottom:20px;left:20px;max-width:400px}button,a{background:#16364d;border:1px solid #38bdf8;color:white;padding:8px;cursor:pointer;text-decoration:none}#status{color:#67e8f9}</style>
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script></head>
+<body><header><strong>用户整车 · 三维观察</strong><button id="rotate">自动旋转</button><button id="wire">切换线框</button><button id="reset">复位视角</button><a href="./index.html">返回课程</a><span id="status">正在加载整车…</span></header>
+<aside>原始 CAD 经有损减面后用于网页观察。支持拖动旋转、滚轮缩放。<br>电机／轮组节点来自 CAD 名称；实际电调、主控与供电板型号待核对，不能仅凭模型推断。<br>文件体积不等于浏览器总内存，性能记录见交付文档。</aside><div id="canvas"></div>
+<script type="module">
+import * as THREE from 'three';
+import { SceneViewer } from './js/viewer.js';
+const viewer=new SceneViewer(document.querySelector('#canvas'));
+window.viewer=viewer;
+try {
+ const robot=await viewer.loadHeroRobot('./models/hero_robot_clean.glb');
+ robot.visible=true;
+ // 基于实际世界包围盒重新居中，无原点与单位假设。
+ robot.position.set(0,0,0);robot.scale.setScalar(1);robot.updateMatrixWorld(true);
+ const bounds=new THREE.Box3().setFromObject(robot);const size=bounds.getSize(new THREE.Vector3());
+ const scale=1.1/Math.max(size.x,size.y,size.z);robot.scale.setScalar(scale);
+ const center=bounds.getCenter(new THREE.Vector3());robot.position.set(-center.x*scale,-bounds.min.y*scale,-center.z*scale);
+ viewer.camera.position.set(1.7,1.25,1.7);viewer.controls.target.set(0,.5,0);
+ document.querySelector('#status').textContent='整车已加载 · 本地资源';
+ document.querySelector('#wire').onclick=()=>robot.traverse(o=>{if(o.isMesh)for(const m of [].concat(o.material))m.wireframe=!m.wireframe;});
+} catch(e) {document.querySelector('#status').textContent='加载失败：'+e.message;console.error(e);}
+document.querySelector('#rotate').onclick=()=>{viewer.controls.autoRotate=!viewer.controls.autoRotate;};
+document.querySelector('#reset').onclick=()=>{viewer.camera.position.set(1.7,1.25,1.7);viewer.controls.target.set(0,.5,0);};
+function frame(){if(!document.hidden)viewer.render(null,0);requestAnimationFrame(frame);}frame();
+window.addEventListener('pagehide',()=>viewer.dispose(),{once:true});
+</script></body></html>

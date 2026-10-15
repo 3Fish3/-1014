@@ -1,0 +1,158 @@
+{
+  "scope": "电机与其配套电调厂商原件 (GM6020 / C620 / M3508 / M2006 / C610 / 达妙 DM-J4310-2EC)",
+  "policy": "本地资料, 不入库; 仅在此登记文件名/版本/SHA256, 原件不提交版本控制",
+  "fetched_at": "2026-09-24 12:52:40 EDT",
+  "fetched_via": "HTTP 代理 http://127.0.0.1:7897",
+  "files": [
+    {
+      "filename": "RoboMaster GM6020直流无刷电机使用说明20231013.pdf",
+      "bytes": 1760488,
+      "pages": 13,
+      "sha256": "8843f783a3a476dc0eb20347995a604e156a6b00d4e41551e0aba0d7e02262a9",
+      "url": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20GM6020%E7%9B%B4%E6%B5%81%E6%97%A0%E5%88%B7%E7%94%B5%E6%9C%BA%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E20231013.pdf",
+      "device": "GM6020",
+      "kind": "user_guide",
+      "lang": "zh-CN",
+      "version": "20231013",
+      "auth": "DJI 官方",
+      "note": "最新中文版; 含 CAN 0x1FF/0x2FF 控制、0x205-0x20B 反馈、拨码 ID/终端电阻、故障码; GM6020 内置 FOC 驱动器, 不外接 C620"
+    },
+    {
+      "filename": "RoboMaster GM6020 Brushless DC Motor User Guide.pdf",
+      "bytes": 1592864,
+      "pages": 13,
+      "sha256": "158210e0c958d1f13d64743c4cf3c34b72dece752f5ea42094c54ed1ac0f9960",
+      "url": "https://rm-static.djicdn.com/tem/3724/RoboMaster%20GM6020%20Brushless%20DC%20Motor%20User%20Guide.pdf",
+      "device": "GM6020",
+      "kind": "user_guide",
+      "lang": "en",
+      "version": "V1.0 (2018-12-06)",
+      "auth": "DJI 官方",
+      "note": "英文版; 2023 版无对应英文更新(已探测 404)"
+    },
+    {
+      "filename": "RoboMaster C620无刷电机调速器使用说明（中英日）V1.01.pdf",
+      "bytes": 3046349,
+      "pages": 57,
+      "sha256": "f422c7a604bc5003fde4ddd3bc1329501a39bb03120020b5ac95587f0a70f71b",
+      "url": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20C620%E6%97%A0%E5%88%B7%E7%94%B5%E6%9C%BA%E8%B0%83%E9%80%9F%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%EF%BC%88%E4%B8%AD%E8%8B%B1%E6%97%A5%EF%BC%89V1.01.pdf",
+      "device": "C620",
+      "kind": "user_guide",
+      "lang": "zh/en/ja",
+      "version": "V1.01",
+      "auth": "DJI 官方",
+      "note": "配套 M3508 P19; CAN 位速率 1 Mbps"
+    },
+    {
+      "filename": "RoboMaster M3508直流无刷减速电机使用说明V1.0（中英日）.pdf",
+      "bytes": 1485837,
+      "pages": 21,
+      "sha256": "ca85dbade86be2c8861a14ea7318f1080c651fe427a395a23a766a075797a4de",
+      "url": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20M3508%E7%9B%B4%E6%B5%81%E6%97%A0%E5%88%B7%E5%87%8F%E9%80%9F%E7%94%B5%E6%9C%BA%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8EV1.0%EF%BC%88%E4%B8%AD%E8%8B%B1%E6%97%A5%EF%BC%89.pdf",
+      "device": "M3508 P19",
+      "kind": "user_guide",
+      "lang": "zh/en/ja",
+      "version": "V1.0",
+      "auth": "DJI 官方",
+      "note": "与 /tem/17348/...M3508 P19 Brushless DC Gear Motor V1.0.pdf 字节相同, 只保留本名"
+    },
+    {
+      "filename": "RoboMaster M3508附件包使用说明V1.0（中英日）.pdf",
+      "bytes": 2243308,
+      "pages": 20,
+      "sha256": "e9b8cb3217056904c1ec4cab2e9d92f0d7ee16edcafe9aed2db9537ba34aba94",
+      "url": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20M3508%E9%99%84%E4%BB%B6%E5%8C%85%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8EV1.0%EF%BC%88%E4%B8%AD%E8%8B%B1%E6%97%A5%EF%BC%89.pdf",
+      "device": "M3508 P19",
+      "kind": "accessory_guide",
+      "lang": "zh/en/ja",
+      "version": "V1.0",
+      "auth": "DJI 官方"
+    },
+    {
+      "filename": "RoboMaster M3508直流无刷减速电机保养手册.pdf",
+      "bytes": 362294,
+      "pages": 6,
+      "sha256": "618ce60dfd639d549ae7d76826e1cfd0cb4469bd32311fdf9126c2dfd9745c26",
+      "url": "https://rm-static.djicdn.com/tem/3724/RoboMaster%20M3508%E7%9B%B4%E6%B5%81%E6%97%A0%E5%88%B7%E5%87%8F%E9%80%9F%E7%94%B5%E6%9C%BA%E4%BF%9D%E5%85%BB%E6%89%8B%E5%86%8C.pdf",
+      "device": "M3508 P19",
+      "kind": "maintenance",
+      "lang": "zh-CN",
+      "auth": "DJI 官方"
+    },
+    {
+      "filename": "RM M2006 P36直流无刷减速电机使用说明.pdf",
+      "bytes": 723790,
+      "pages": 10,
+      "sha256": "9f95503b6b2d48cfb7ab70258427be04287f5865bc7e41fa0ebe32480679d35f",
+      "url": "https://rm-static.djicdn.com/tem/17348/RM%20M2006%20P36%E7%9B%B4%E6%B5%81%E6%97%A0%E5%88%B7%E5%87%8F%E9%80%9F%E7%94%B5%E6%9C%BA%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf",
+      "device": "M2006 P36",
+      "kind": "user_guide",
+      "lang": "zh-CN",
+      "auth": "DJI 官方",
+      "note": "配套 C610 拨弹"
+    },
+    {
+      "filename": "RM M2006 P36直流无刷减速电机使用说明 发布版.pdf",
+      "bytes": 719754,
+      "pages": 10,
+      "sha256": "476a1c866246d5b5fd5afe2164a3362c5bd291c299238758fee2cfc7d2a159d5",
+      "url": "https://cdn-hz.robomaster.com/tem/RM%20M2006%20P36%E7%9B%B4%E6%B5%81%E6%97%A0%E5%88%B7%E5%87%8F%E9%80%9F%E7%94%B5%E6%9C%BA%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%20%E5%8F%91%E5%B8%83%E7%89%88.pdf",
+      "device": "M2006 P36",
+      "kind": "user_guide",
+      "lang": "zh-CN",
+      "auth": "DJI 官方 (cdn-hz 发布版)",
+      "note": "与 rm-static 同名版字节不同, 两版并存"
+    },
+    {
+      "filename": "RM C610无刷电机调速器使用说明 发布版.pdf",
+      "bytes": 761165,
+      "pages": 10,
+      "sha256": "3a59b2679d445a13cfe633c076bc8a9e7da98bf7595e67d66cacdb761e5f8574",
+      "url": "https://cdn-hz.robomaster.com/tem/RM%20C610%E6%97%A0%E5%88%B7%E7%94%B5%E6%9C%BA%E8%B0%83%E9%80%9F%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%20%E5%8F%91%E5%B8%83%E7%89%88.pdf",
+      "device": "C610",
+      "kind": "user_guide",
+      "lang": "zh-CN",
+      "auth": "DJI 官方 (cdn-hz 发布版)",
+      "note": "配套 M2006"
+    },
+    {
+      "filename": "RoboMaster C610 Brushless DC Motor Speed Controller User Guide.pdf",
+      "bytes": 730318,
+      "pages": 10,
+      "sha256": "aeb97cd57490c94b4fa56208b9a2b13ac16eb958661582ac0cab63b0331fa110",
+      "url": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20C610%20Brushless%20DC%20Motor%20Speed%20Controller%20User%20Guide.pdf",
+      "device": "C610",
+      "kind": "user_guide",
+      "lang": "en",
+      "auth": "DJI 官方"
+    },
+    {
+      "filename": "DM-J4310-2EC V1.1减速电机说明书V1.0（达妙官方）.pdf",
+      "bytes": 555223,
+      "pages": 9,
+      "sha256": "aad2c3ae95932393c87b4d149a4009c8e93af727df8d787472de807e2703d68e",
+      "url": "https://damiao.enactic.ai/assets/files/dm-j4310-2ec-v1.1-zh-5d089e0b013d8e2fc203c5b670008a66.pdf",
+      "device": "DM-J4310-2EC V1.1",
+      "kind": "user_guide",
+      "lang": "zh-CN",
+      "auth": "达妙 DAMIAO 官方",
+      "note": "哨兵 pitch 关节用; 项目文档引用过的英文版 DM_J4310_2EC_V1.1_Manual_V1.2_EN_20260908.pdf 未取得官方直链"
+    },
+    {
+      "filename": "调试助手使用说明书（达妙驱动控制协议）V1.4.pdf",
+      "bytes": 7183838,
+      "pages": 40,
+      "sha256": "58011c48d3737a3a5ce8d791738d5afb9522c2a96d3adde336555e0667b1bfb1",
+      "url": "https://gitee.com/kit-miao/damiao-document/raw/master/%E8%B0%83%E8%AF%95%E5%8A%A9%E6%89%8B%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6%EF%BC%88%E8%BE%BE%E5%A6%99%E9%A9%B1%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE%EF%BC%89V1.4.pdf",
+      "device": "达妙驱动器 / 关节电机 (DM-J4310-2EC等)",
+      "kind": "user_guide_and_protocol",
+      "lang": "zh-CN",
+      "version": "V1.4 (2024-03-06)",
+      "auth": "达妙 DAMIAO 官方",
+      "note": "原论坛帖子 tid=364《调试助手使用说明书(达妙驱动控制协议) V1.3》官方升级发布版; 包含上位机调试流程、MIT/位置速度/速度控制协议与 CAN 报文定义"
+    }
+  ],
+  "pending": [
+    "DM-J4310-2EC 英文说明书(项目引用的 V1.2 EN 版)"
+  ]
+}

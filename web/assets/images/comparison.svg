@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <rect width="400" height="240" fill="#131926" rx="8"/>
+  <line x1="200" y1="20" x2="200" y2="220" stroke="#334155" stroke-width="2" stroke-dasharray="4,4"/>
+  <!-- 教学小车 -->
+  <text x="100" y="35" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">简化双轮差速教学小车</text>
+  <text x="100" y="65" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">【车架】 亚克力 / 铝合金底板</text>
+  <text x="100" y="95" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">【驱动】 直流有刷减速电机</text>
+  <text x="100" y="125" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">【轮组】 左右橡胶轮 + 万向轮</text>
+  <text x="100" y="155" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">【电调】 双 H 桥功率驱动板</text>
+  <text x="100" y="185" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">【主控】 STM32 单板开发板</text>
+  <!-- 英雄机器人 -->
+  <text x="300" y="35" fill="#f59e0b" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">RoboMaster 英雄机器人</text>
+  <text x="300" y="65" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【车架】 航空铝 CNC 镂空 + 装甲板</text>
+  <text x="300" y="95" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【驱动】 4 颗 DJI M3508 无刷电机</text>
+  <text x="300" y="125" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【轮组】 4 颗 152mm 麦克纳姆全向轮</text>
+  <text x="300" y="155" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【电调】 RoboMaster C620 高性能电调</text>
+  <text x="300" y="185" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">【主控】 MC02 A板主控 + CAN 总线广播</text>
+  <!-- 共同结论 -->
+  <text x="200" y="222" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">机械结构虽然不同，但解决【承载、动力、供电、决策】的电控法则完全共通！</text>
+</svg>

@@ -1,0 +1,15 @@
+# Python & Virtualenv
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Build & Temporary
+.tmp/
+*.log
+/tmp/
+
+# Cache
+.ruff_cache/
+.pytest_cache/
+node_modules/
