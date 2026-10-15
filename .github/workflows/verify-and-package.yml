@@ -48,7 +48,7 @@ jobs:
           OUTPUT_DIR: .tmp/ci/models
         run: node scripts/validate_models.mjs
 
-      - name: Verify V1 and V2 P0 in a browser
+      - name: Verify V1 and V2 in a browser
         run: |
           python3 -m http.server 8080 --bind 127.0.0.1 --directory web > .tmp/ci/server.log 2>&1 &
           server_pid=$!
@@ -60,13 +60,16 @@ jobs:
           curl --fail --silent http://127.0.0.1:8080/ > /dev/null
           OUTPUT_DIR=.tmp/ci/v1 node scripts/browser_check.mjs http://127.0.0.1:8080
           OUTPUT_DIR=.tmp/ci/v2-p0 node scripts/ui_v2_check.mjs http://127.0.0.1:8080
+          node scripts/ui_v2_p1_check.mjs http://127.0.0.1:8080
           git diff --exit-code
 
       - name: Package verified commit
         run: |
           mkdir -p .tmp/package
           archive="hushi_ec_teach-${GITHUB_SHA}.zip"
-          git archive --format=zip --prefix=hushi_ec_teach/ --output=".tmp/package/$archive" HEAD
+          git archive --format=zip \
+            --prefix=hushi_ec_teach/ \
+            --output=".tmp/package/$archive" HEAD
           unzip -t ".tmp/package/$archive"
           (cd .tmp/package && sha256sum "$archive" > "$archive.sha256")
 
