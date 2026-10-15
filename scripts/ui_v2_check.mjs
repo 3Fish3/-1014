@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 const executablePath = process.env.BROWSER_PATH || (existsSync('.tmp/browser/chrome-linux/chrome') ? '.tmp/browser/chrome-linux/chrome' : chromium.executablePath());
 const base = process.argv[2] || 'http://127.0.0.1:8080';
-const output = 'docs/ui-v2/p0';
+const output = process.env.OUTPUT_DIR || 'docs/ui-v2/p0';
 mkdirSync(output, { recursive: true });
 const browser = await chromium.launch({ executablePath, args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader'] });
 const report = { environment:'Chromium headless / SwiftShader, not classroom GPU', pages:[], errors:[], external:[], failed:[] };
@@ -30,10 +30,12 @@ async function assertModelAndLabelsFit(page) {
   assert.ok(result.maximum<.99,`模型或箭头越界：${JSON.stringify(result)}`);
   assert.equal(result.labelsFit,true);
 }
+let currentPage;
 try {
   for (const [width,height] of [[1920,1080],[1366,768]]) {
     for (const step of [3,9]) {
       const page = await browser.newPage({ viewport:{width,height} });
+      currentPage = page;
       page.on('pageerror', error => report.errors.push(error.message));
       page.on('response', response => {if(response.status()>=400)report.failed.push(response.url());});
       await page.route('**/*',route=>{
@@ -134,4 +136,10 @@ try {
   report.passed=true;
   writeFileSync(`${output}/browser-results.json`,JSON.stringify(report,null,2));
   console.log('P0通过：四张静态截图、两张运动截图、双分辨率布局及交互回归。');
+} catch (error) {
+  report.passed=false;report.failure=error.stack;
+  writeFileSync(`${output}/browser-results.json`,JSON.stringify(report,null,2));
+  try {if(currentPage&&!currentPage.isClosed())await currentPage.screenshot({path:`${output}/failure.png`});}
+  catch(diagnosticError){console.error('失败截图未能保存：',diagnosticError.message);}
+  throw error;
 } finally {await browser.close();}

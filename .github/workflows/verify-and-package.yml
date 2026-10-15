@@ -1,0 +1,96 @@
+name: Verify and package
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+# No repository writes, deployment, secrets, or automatic merging.
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies and browser
+        run: |
+          mkdir -p .tmp/ci
+          npm ci
+          npx --no-install playwright install --with-deps chromium
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+
+      - name: Test differential kinematics
+        run: npm test
+
+      - name: Validate committed models
+        env:
+          OUTPUT_DIR: .tmp/ci/models
+        run: node scripts/validate_models.mjs
+
+      - name: Verify V1 and V2 P0 in a browser
+        run: |
+          python3 -m http.server 8080 --bind 127.0.0.1 --directory web > .tmp/ci/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8080/ > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/ > /dev/null
+          OUTPUT_DIR=.tmp/ci/v1 node scripts/browser_check.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/v2-p0 node scripts/ui_v2_check.mjs http://127.0.0.1:8080
+          git diff --exit-code
+
+      - name: Package verified commit
+        run: |
+          mkdir -p .tmp/package
+          archive="hushi_ec_teach-${GITHUB_SHA}.zip"
+          git archive --format=zip --prefix=hushi_ec_teach/ --output=".tmp/package/$archive" HEAD
+          unzip -t ".tmp/package/$archive"
+          (cd .tmp/package && sha256sum "$archive" > "$archive.sha256")
+
+      - name: Upload verified source and deliverables
+        # actions/upload-artifact v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: verified-source-${{ github.sha }}
+          path: .tmp/package/
+          # Only this output directory, never the repository root.
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+      - name: Upload this run's validation evidence
+        if: ${{ !cancelled() }}
+        # actions/upload-artifact v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: >-
+            validation-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .tmp/ci/
+          # Fresh CI reports/screenshots/logs only.
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7
