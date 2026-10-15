@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260">
+  <rect width="520" height="260" rx="16" fill="#f8fafc"/>
+  <rect x="60" y="35" width="400" height="190" rx="16" fill="#ffffff" stroke="#ef4444" stroke-width="3"/>
+  <!-- 功率散热片 -->
+  <rect x="200" y="55" width="120" height="75" rx="8" fill="#1e293b"/>
+  <line x1="225" y1="55" x2="225" y2="130" stroke="#475569" stroke-width="3"/>
+  <line x1="245" y1="55" x2="245" y2="130" stroke="#475569" stroke-width="3"/>
+  <line x1="265" y1="55" x2="265" y2="130" stroke="#475569" stroke-width="3"/>
+  <line x1="285" y1="55" x2="285" y2="130" stroke="#475569" stroke-width="3"/>
+  <text x="260" y="100" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">H桥功率电子开关</text>
+  <!-- 电机端子 -->
+  <rect x="80" y="70" width="75" height="40" rx="6" fill="#16a34a"/>
+  <text x="117" y="95" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">左电机端子</text>
+  <rect x="365" y="70" width="75" height="40" rx="6" fill="#16a34a"/>
+  <text x="402" y="95" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="bold" fill="#ffffff">右电机端子</text>
+  <!-- 弱电指令输入与强电动力输入 -->
+  <rect x="180" y="155" width="160" height="36" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="260" y="178" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="bold" fill="#991b1b">动力电源输入 (12V/24V)</text>
+  <text x="260" y="215" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="bold" fill="#dc2626">单片机小信号 PWM / DIR ➔ 驱动器功率放大输出</text>
+</svg>

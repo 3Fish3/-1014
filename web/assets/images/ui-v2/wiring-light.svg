@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260">
+  <rect width="520" height="260" rx="16" fill="#f8fafc"/>
+  <!-- 供电线路图例 -->
+  <line x1="70" y1="55" x2="160" y2="55" stroke="#ea580c" stroke-width="5" stroke-linecap="round"/>
+  <text x="180" y="60" font-family="-apple-system,sans-serif" font-size="16" font-weight="bold" fill="#ea580c">供电能量路径 (动力源大电流 / 电池 ➔ 驱动器 ➔ 电机)</text>
+  <!-- 稳压供电图例 -->
+  <line x1="70" y1="110" x2="160" y2="110" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+  <text x="180" y="115" font-family="-apple-system,sans-serif" font-size="16" font-weight="bold" fill="#059669">5V / 3.3V 弱电稳压路径 (电池 ➔ 稳压板 ➔ 主控芯片)</text>
+  <!-- 控制信号图例 -->
+  <line x1="70" y1="165" x2="160" y2="165" stroke="#2563eb" stroke-width="4" stroke-dasharray="8 6" stroke-linecap="round"/>
+  <text x="180" y="170" font-family="-apple-system,sans-serif" font-size="16" font-weight="bold" fill="#2563eb">控制信号路径 (PWM 调速脉冲 / 方向引脚 ➔ 驱动逻辑端)</text>
+  <rect x="70" y="205" width="380" height="36" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="260" y="228" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="bold" fill="#1e40af">信息流与能量流物理分离，各司其职，互不干扰</text>
+</svg>

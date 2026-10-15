@@ -83,8 +83,7 @@ class TeachingApp {
     // 6. 进入第一步
     const requested = new URLSearchParams(window.location.search).get('step');
     const index = LESSON_STEPS.findIndex(step => String(step.id) === requested);
-    const defaultIndex = this.projection ? 2 : 0;
-    this.goToStep(index >= 0 ? index : defaultIndex);
+    this.goToStep(index >= 0 ? index : 0);
 
     // 7. 启动渲染主循环
     requestAnimationFrame((t) => this.renderLoop(t));
@@ -226,10 +225,6 @@ class TeachingApp {
 
   async goToStep(index) {
     if (index < 0 || index >= LESSON_STEPS.length) return;
-    if (this.projection && index !== 2 && index !== 8) {
-      window.location.assign(`./index.html?step=${index+1}`);
-      return;
-    }
     this.currentStepIndex = index;
     const step = LESSON_STEPS[index];
 
@@ -282,7 +277,6 @@ class TeachingApp {
 
     // 触发 3D 场景部件显隐与运镜
     this.viewer.applyStepState(step);
-    this.projection?.update(step);
 
     // 仅在第 10 步实车对照时按需异步加载真实整车模型
     if (step.isComparisonStep && !this.viewer.heroRobotModel) {
@@ -293,6 +287,8 @@ class TeachingApp {
         console.error(err);
       }
     }
+
+    this.projection?.update(step);
   }
 
   prevStep() {

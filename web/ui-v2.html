@@ -1,61 +1,189 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>电控入门 · 第二章投影版 P0</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoboMaster 电控教学系统 · 第二章 从零制造一台能移动的机器人 (投影版)</title>
   <link rel="stylesheet" href="./css/projection.css">
-  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/"}}</script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/three.module.js",
+      "three/addons/": "./vendor/three/"
+    }
+  }
+  </script>
 </head>
 <body data-ui="v2">
+  <!-- 顶栏：章节、标题与核心快捷入口 -->
   <header class="lecture-header">
-    <div class="course-heading"><span class="chapter-mark">02</span><div><p>RoboMaster · 电控入门</p><h1>从零制造一台能移动的机器人</h1></div></div>
-    <div class="header-actions"><span id="step-badge">03 / 10</span><button id="btn-notes">讲师工具</button><button id="btn-fullscreen">全屏展示</button></div>
+    <div class="course-heading">
+      <span class="chapter-mark">02</span>
+      <div>
+        <p>RoboMaster · 电控入门公开课</p>
+        <h1>从零制造一台能移动的机器人</h1>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span id="step-badge">01 / 10</span>
+      <button id="btn-notes" title="打开讲师参考工具箱">讲师工具</button>
+      <button id="btn-fullscreen" title="切换全屏课堂投影">全屏展示</button>
+    </div>
   </header>
+
+  <!-- 主体工作区：左侧 3D 舞台 + 右侧单知识点卡片 -->
   <main class="lecture-main">
+    <!-- 左侧 3D 演示舞台 -->
     <section class="demonstration" aria-label="三维教学演示台">
-      <div class="stage-toolbar"><span id="stage-topic">装上电机，连接车轮</span><div><button id="btn-cam-mode">固定视角</button><button id="btn-reset-car">归位</button></div></div>
-      <div id="canvas-container" aria-label="可旋转缩放的三维教学小车"></div>
-      <div class="scene-caption"><span class="model-tag">功能示意模型 · 非接线指导</span><div class="legend" aria-label="线路颜色图例"><span class="power">供电</span><span class="communication">指令</span><span class="feedback">反馈关系</span></div></div>
+      <div class="stage-toolbar">
+        <span id="stage-topic">第 1 步：底盘车架结构</span>
+        <div>
+          <button id="btn-cam-mode">固定视角</button>
+          <button id="btn-reset-car">归位</button>
+        </div>
+      </div>
+
+      <!-- WebGL 渲染容器 -->
+      <div id="canvas-container" aria-label="可交互旋转缩放的三维小车模型"></div>
+
+      <!-- 画面底部说明与线路图例 -->
+      <div class="scene-caption">
+        <span class="model-tag">功能示意模型 · 非接线指导</span>
+        <div class="legend" aria-label="线路颜色图例">
+          <span class="power">供电能量通道</span>
+          <span class="communication">控制指令通道</span>
+          <span class="feedback">反馈关系 (闭环预备)</span>
+        </div>
+      </div>
+
+      <!-- 动作演练与双轮差速滑块控制板 (第 8、9 步动态展示) -->
       <div class="motion-controls" id="motion-controls" hidden>
-        <div class="preset-panel"><div class="preset-title">先试一个动作</div><div id="preset-controls" class="preset-actions"></div></div>
-        <div class="slider-panel"><div id="slider-controls" class="sliders-grid">
-          <div class="slider-group"><label for="slider-left">左轮 <span id="text-left-speed">停止</span></label><input id="slider-left" type="range" aria-label="左轮方向与快慢" min="-1" max="1" step="0.05" value="0"><div class="slider-ticks"><span>反转</span><span>停止</span><span>正转</span></div></div>
-          <div class="slider-group"><label for="slider-right">右轮 <span id="text-right-speed">停止</span></label><input id="slider-right" type="range" aria-label="右轮方向与快慢" min="-1" max="1" step="0.05" value="0"><div class="slider-ticks"><span>反转</span><span>停止</span><span>正转</span></div></div>
-        </div></div>
+        <div class="preset-panel">
+          <div class="preset-title">⚡ 预设动作直觉演练 (先看两轮方向与快慢，再看车身轨迹)</div>
+          <div id="preset-controls" class="preset-actions"></div>
+        </div>
+
+        <div class="slider-panel">
+          <div id="slider-controls" class="sliders-grid">
+            <div class="slider-group">
+              <label for="slider-left">左驱动轮 <span id="text-left-speed">停止</span></label>
+              <input id="slider-left" type="range" aria-label="左轮方向与快慢" min="-1" max="1" step="0.05" value="0">
+              <div class="slider-ticks">
+                <span>◀ 全速倒转</span>
+                <span>停止</span>
+                <span>全速正转 ▶</span>
+              </div>
+            </div>
+
+            <div class="slider-group">
+              <label for="slider-right">右驱动轮 <span id="text-right-speed">停止</span></label>
+              <input id="slider-right" type="range" aria-label="右轮方向与快慢" min="-1" max="1" step="0.05" value="0">
+              <div class="slider-ticks">
+                <span>◀ 全速倒转</span>
+                <span>停止</span>
+                <span>全速正转 ▶</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <aside class="knowledge-card" aria-label="当前知识点">
+
+    <!-- 右侧单知识点卡片 -->
+    <aside class="knowledge-card" aria-label="当前核心知识点卡片">
       <p class="card-eyebrow" id="card-category">认识一个部件</p>
-      <h2 id="step-title">驱动电机</h2>
-      <p id="key-concept" class="core-question">轮子自己不会转，动力从哪来？</p>
-      <figure class="component-photo"><img id="hardware-photo" alt="驱动电机实物参考"><figcaption id="photo-caption"></figcaption></figure>
+      <h2 id="step-title">任务提出：怎样让它动起来？</h2>
+      <p id="key-concept" class="core-question">如果只造一台能前进、后退、转弯的小车，最少需要哪些部分？</p>
+
+      <figure class="component-photo">
+        <img id="hardware-photo" src="./assets/images/ui-v2/team-frame-chassis.jpg" alt="部件实物或结构原理图">
+        <figcaption id="photo-caption">实物参考：战队机器人机械底盘。承载各个功能部件的基础骨架。</figcaption>
+      </figure>
+
       <ul id="step-details" class="function-lines"></ul>
       <ul id="keywords" class="keywords" aria-label="知识关键词"></ul>
+
       <p id="exploration-hint" class="exploration-hint" hidden></p>
     </aside>
   </main>
+
+  <!-- 底部控制栏 -->
   <footer class="lecture-footer">
-    <button id="btn-prev">上一页</button>
-    <div class="section-status"><span>第二章 · 搭建移动小车</span><strong id="section-name">驱动电机</strong></div>
-    <div class="footer-actions"><button id="btn-pause">暂停演示</button><button id="btn-replay">重播</button><button id="btn-next" class="primary">下一步</button></div>
+    <button id="btn-prev">◂ 上一页</button>
+    <div class="section-status">
+      <span>第二章 · 搭建移动机器人</span>
+      <strong id="section-name">任务提出</strong>
+    </div>
+
+    <!-- 中间拓展操作区：第 7 步指令链推进、第 10 步实车对比 -->
+    <div id="chain-panel" class="chain-panel-footer" hidden>
+      <button id="btn-chain" class="hud-btn-active">推进指令链 (点击查看)</button>
+      <span id="chain-status">主控发出指令 ➔ 驱动器接收 ➔ 电机带动车轮</span>
+    </div>
+
+    <div id="compare-panel" class="compare-panel-footer" hidden>
+      <span style="font-size: 13px; font-weight: bold; color: #1e293b; margin-right: 6px;">实车系统对照:</span>
+      <button class="compare-btn compare" data-kind="frame">承载车架</button>
+      <button class="compare-btn compare" data-kind="wheel">动力轮组</button>
+      <button class="compare-btn compare" data-kind="motor">驱动电机</button>
+      <button class="compare-btn compare" data-kind="power">电源管理</button>
+      <button class="compare-btn compare" data-kind="control">电调与主控</button>
+      <span id="compare-status" style="font-size: 12px; color: #64748b; margin-left: 8px;"></span>
+    </div>
+
+    <div class="footer-actions">
+      <button id="btn-pause">暂停演示</button>
+      <button id="btn-replay">↺ 重播本页</button>
+      <button id="btn-next" class="primary">下一步 ➔</button>
+    </div>
   </footer>
+
+  <!-- 讲师辅助备忘抽屉 (对学员投影静默，讲师点击呼出) -->
   <dialog id="teacher-notes" aria-labelledby="notes-title">
-    <div class="notes-header"><h2 id="notes-title">讲师工具 · P0 原型</h2><button id="btn-close-notes">关闭</button></div>
-    <p>本轮只评审第3、9步；其余页面返回原版，不改变教学内容。</p>
-    <nav class="preview-links"><a href="?step=3">第3步 · 部件页</a><a href="?step=9">第9步 · 运动页</a><a href="./index.html">V1 完整课程</a></nav>
-    <p id="teacher-lines"></p><p id="step-duration"></p>
-    <div class="notes-diagram"><img id="diagram-img" alt="讲师参考示意图"><p id="diagram-badge"></p></div>
-    <nav id="step-dots" aria-label="完整课程步骤"></nav>
-    <button id="btn-toggle-code">课后源码参考（非学生主画面）</button>
-    <a href="./viewer_full.html">独立整车观察</a>
-    <div id="chain-panel" hidden><button id="btn-chain">推进指令链</button><span id="chain-status"></span></div>
-    <div id="compare-panel" hidden><span id="compare-status"></span></div>
+    <div class="notes-header">
+      <h2 id="notes-title">讲师工具箱 · 第二章课件参考</h2>
+      <button id="btn-close-notes" aria-label="关闭">&times;</button>
+    </div>
+    <div style="padding: 16px 20px;">
+      <p style="font-size: 13px; color: #64748b; margin-bottom: 12px;">以下内容供讲师口播参考，默认不对学员主投影展示：</p>
+      <div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 12px 14px; border-radius: 4px; margin-bottom: 14px;">
+        <p id="teacher-lines" style="font-size: 14px; color: #1e293b; line-height: 1.6;"></p>
+        <p id="step-duration" style="font-size: 12px; color: #64748b; margin-top: 6px;"></p>
+      </div>
+
+      <h3 style="font-size: 14px; margin-bottom: 8px;">十步全览直达：</h3>
+      <nav id="step-dots" class="step-dots-grid" aria-label="完整课程步骤直达"></nav>
+
+      <div style="margin-top: 18px; display: flex; gap: 12px;">
+        <button id="btn-toggle-code" class="hud-btn" style="flex: 1;">查看哨兵实车 C++ 驱动代码 (课后参考)</button>
+        <a href="./viewer_full.html" target="_blank" class="hud-btn" style="text-decoration: none; text-align: center; line-height: 28px;">打开独立整车查看器</a>
+      </div>
+
+      <div class="notes-diagram" style="margin-top: 14px; display: none;">
+        <img id="diagram-img" alt="讲师参考示意图">
+        <p id="diagram-badge"></p>
+      </div>
+    </div>
   </dialog>
+
+  <!-- 哨兵实车代码参考抽屉 -->
   <aside id="code-drawer" class="code-drawer" aria-label="课后源码参考" hidden>
-    <button id="btn-close-code">关闭源码</button>
-    <p>哨兵四全向轮快照，仅供课后阅读，不是本章双轮差速代码。</p>
-    <nav class="code-tabs"><button class="code-tab active" data-file="omni_kinematics.hpp.txt">运动学接口</button><button class="code-tab" data-file="omni_kinematics.cpp.txt">运动学实现</button><button class="code-tab" data-file="dji.hpp.txt">电机接口</button><button class="code-tab" data-file="dji.cpp.txt">电机实现</button></nav>
-    <pre><code id="code-content">// 正在加载实车代码...</code></pre>
+    <div class="code-drawer-header">
+      <span style="font-weight: bold; color: #2563eb;">哨兵实车底盘固件快照 (C++20 仅作课后阅读)</span>
+      <button id="btn-close-code" class="btn-close">&times;</button>
+    </div>
+    <div style="padding: 8px 16px; background: #fffbeb; font-size: 12px; color: #b45309;">
+      ⚠️ 真实工程提示：以下代码来自虎师哨兵机器人全向轮底盘驱动固件，并非教学小车双轮差速代码。
+    </div>
+    <nav class="code-tabs">
+      <button class="code-tab active" data-file="omni_kinematics.hpp.txt">运动学头文件</button>
+      <button class="code-tab" data-file="omni_kinematics.cpp.txt">运动学实现</button>
+      <button class="code-tab" data-file="dji.hpp.txt">DJI电机驱动头文件</button>
+      <button class="code-tab" data-file="dji.cpp.txt">DJI电机驱动实现</button>
+    </nav>
+    <pre class="code-body"><code id="code-content">// 正在加载实车代码...</code></pre>
   </aside>
+
   <script type="module" src="./js/app.js"></script>
-</body></html>
+</body>
+</html>

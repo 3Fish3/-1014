@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260">
+  <rect width="520" height="260" rx="16" fill="#f8fafc"/>
+  <rect x="100" y="45" width="320" height="170" rx="20" fill="#ffffff" stroke="#2563eb" stroke-width="3" stroke-dasharray="8 6"/>
+  <rect x="130" y="70" width="260" height="120" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <circle cx="150" cy="90" r="8" fill="#f59e0b"/>
+  <circle cx="370" cy="90" r="8" fill="#f59e0b"/>
+  <circle cx="150" cy="170" r="8" fill="#f59e0b"/>
+  <circle cx="370" cy="170" r="8" fill="#f59e0b"/>
+  <text x="260" y="125" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="20" font-weight="bold" fill="#1e293b">车架底板 (机械承载基础)</text>
+  <text x="260" y="152" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" fill="#64748b">承载主控 · 驱动器 · 电池 · 电机</text>
+  <text x="260" y="235" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="600" fill="#d97706">● 黄色圆点：铜柱立柱定位孔</text>
+</svg>

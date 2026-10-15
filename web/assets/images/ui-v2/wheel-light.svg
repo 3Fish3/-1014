@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260">
+  <rect width="520" height="260" rx="16" fill="#f8fafc"/>
+  <!-- 左驱动轮 -->
+  <rect x="60" y="55" width="46" height="140" rx="10" fill="#334155" stroke="#2563eb" stroke-width="3"/>
+  <rect x="70" y="90" width="26" height="70" rx="6" fill="#94a3b8"/>
+  <text x="83" y="222" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="16" font-weight="bold" fill="#1e293b">左驱动轮</text>
+  <!-- 右驱动轮 -->
+  <rect x="414" y="55" width="46" height="140" rx="10" fill="#334155" stroke="#2563eb" stroke-width="3"/>
+  <rect x="424" y="90" width="26" height="70" rx="6" fill="#94a3b8"/>
+  <text x="437" y="222" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="16" font-weight="bold" fill="#1e293b">右驱动轮</text>
+  <!-- 前后万向轮 -->
+  <circle cx="260" cy="65" r="28" fill="#e2e8f0" stroke="#7c3aed" stroke-width="3"/>
+  <circle cx="260" cy="65" r="10" fill="#64748b"/>
+  <text x="260" y="32" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="bold" fill="#6d28d9">前万向支撑轮</text>
+  <circle cx="260" cy="185" r="28" fill="#e2e8f0" stroke="#7c3aed" stroke-width="3"/>
+  <circle cx="260" cy="185" r="10" fill="#64748b"/>
+  <text x="260" y="235" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="bold" fill="#6d28d9">后万向支撑轮</text>
+  <!-- 示意说明 -->
+  <text x="260" y="135" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" fill="#475569">双驱动轮推进 · 万向轮维持水平平衡</text>
+</svg>

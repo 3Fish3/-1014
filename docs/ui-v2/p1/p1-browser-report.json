@@ -1,0 +1,138 @@
+{
+  "environment": "Chromium headless / SwiftShader, 10-step full P1 verification",
+  "resolutions": [
+    {
+      "resolution": "1920x1080",
+      "steps": [
+        {
+          "step": 1,
+          "badge": "01 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6045046942836105
+        },
+        {
+          "step": 2,
+          "badge": "02 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6579877064827118
+        },
+        {
+          "step": 3,
+          "badge": "03 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6649563846718564
+        },
+        {
+          "step": 4,
+          "badge": "04 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6258667663030548
+        },
+        {
+          "step": 5,
+          "badge": "05 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6243422636856139
+        },
+        {
+          "step": 6,
+          "badge": "06 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6237281563934077
+        },
+        {
+          "step": 7,
+          "badge": "07 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6290993477942145
+        },
+        {
+          "step": 8,
+          "badge": "08 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6169335945708347
+        },
+        {
+          "step": 9,
+          "badge": "09 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6169335945708347
+        },
+        {
+          "step": 10,
+          "badge": "10 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.16897845977919868
+        }
+      ]
+    },
+    {
+      "resolution": "1366x768",
+      "steps": [
+        {
+          "step": 1,
+          "badge": "01 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6133006812732559
+        },
+        {
+          "step": 2,
+          "badge": "02 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6547996570856582
+        },
+        {
+          "step": 3,
+          "badge": "03 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6594393513385588
+        },
+        {
+          "step": 4,
+          "badge": "04 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6242981796435357
+        },
+        {
+          "step": 5,
+          "badge": "05 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6231117921327383
+        },
+        {
+          "step": 6,
+          "badge": "06 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6235074218474919
+        },
+        {
+          "step": 7,
+          "badge": "07 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6230204843414989
+        },
+        {
+          "step": 8,
+          "badge": "08 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6169335945708347
+        },
+        {
+          "step": 9,
+          "badge": "09 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.6169335945708347
+        },
+        {
+          "step": 10,
+          "badge": "10 / 10",
+          "photoLoaded": true,
+          "modelHeightFraction": 0.18009164016607282
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "failed": [],
+  "passed": true
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260">
+  <rect width="520" height="260" rx="16" fill="#f8fafc"/>
+  <line x1="260" y1="20" x2="260" y2="220" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6"/>
+  <!-- 教学小车 -->
+  <text x="130" y="38" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="16" font-weight="bold" fill="#2563eb">简化差速教学小车</text>
+  <text x="130" y="70" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#475569">【车架】 亚克力 / 铝板底板</text>
+  <text x="130" y="100" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#475569">【动力】 直流减速电机</text>
+  <text x="130" y="130" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#475569">【驱动】 双 H 桥功率驱动板</text>
+  <text x="130" y="160" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#475569">【供电】 动力电池 + 稳压模块</text>
+  <text x="130" y="190" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#475569">【主控】 STM32 单板控制器</text>
+  <!-- 英雄实车 -->
+  <text x="390" y="38" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="16" font-weight="bold" fill="#ea580c">RoboMaster 英雄机器人</text>
+  <text x="390" y="70" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#1e293b">【车架】 航空铝 CNC 镂空底盘</text>
+  <text x="390" y="100" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#1e293b">【动力】 4× 大疆 M3508 减速电机</text>
+  <text x="390" y="130" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#1e293b">【驱动】 C620 高性能电调组</text>
+  <text x="390" y="160" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#1e293b">【供电】 智能动力电池 + PMU 模块</text>
+  <text x="390" y="190" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#1e293b">【主控】 A板 / CAN 总线高速通信</text>
+  <text x="260" y="245" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="bold" fill="#0f766e">结构千变万化，但【承载、驱动、供电、决策】四大电控法则完全相通！</text>
+</svg>

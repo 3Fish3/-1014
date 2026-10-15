@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260">
+  <rect width="520" height="260" rx="16" fill="#f8fafc"/>
+  <!-- 车身 -->
+  <rect x="200" y="80" width="120" height="120" rx="16" fill="#ffffff" stroke="#2563eb" stroke-width="3"/>
+  <!-- 左轮 -->
+  <rect x="175" y="100" width="22" height="70" rx="6" fill="#475569"/>
+  <line x1="186" y1="90" x2="186" y2="40" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+  <polygon points="186,30 178,45 194,45" fill="#2563eb"/>
+  <text x="150" y="65" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="bold" fill="#2563eb">左轮慢</text>
+  <!-- 右轮 -->
+  <rect x="323" y="100" width="22" height="70" rx="6" fill="#475569"/>
+  <line x1="334" y1="90" x2="334" y2="20" stroke="#ea580c" stroke-width="6" stroke-linecap="round"/>
+  <polygon points="334,10 324,30 344,30" fill="#ea580c"/>
+  <text x="375" y="55" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="bold" fill="#ea580c">右轮快</text>
+  <!-- 转向圆弧 -->
+  <path d="M 260 70 A 70 70 0 0 0 200 35" fill="none" stroke="#7c3aed" stroke-width="4" stroke-dasharray="6 4"/>
+  <polygon points="190,38 205,30 202,46" fill="#7c3aed"/>
+  <text x="260" y="235" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="bold" fill="#7c3aed">右轮速度 &gt; 左轮速度 ➔ 产生向左的偏航转矩与圆弧运动轨迹</text>
+</svg>
