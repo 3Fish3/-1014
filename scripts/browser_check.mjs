@@ -82,7 +82,12 @@ try{
  await page.waitForTimeout(800);await page.screenshot({path:`${output}/media/full-robot.png`});
  const full=await page.evaluate(()=>({...viewer.renderer.info.memory,calls:viewer.renderer.info.render.calls,triangles:viewer.renderer.info.render.triangles,programs:viewer.renderer.info.programs.length,heap:performance.memory?.usedJSHeapSize}));
  const frameTiming=await page.evaluate(()=>new Promise(resolve=>{const intervals=[];let previous=performance.now();function tick(t){intervals.push(t-previous);previous=t;if(intervals.length<30)requestAnimationFrame(tick);else{intervals.sort((a,b)=>a-b);resolve({medianMs:intervals[15],p95Ms:intervals[28],samples:30});}}requestAnimationFrame(tick);}));
- const angle=await page.evaluate(()=>viewer.camera.position.x);await page.locator('#rotate').click();await page.waitForTimeout(500);assert.notEqual(await page.evaluate(()=>viewer.camera.position.x),angle);
+ const angle=await page.evaluate(()=>viewer.camera.position.x);
+ await page.locator('#rotate').click();
+ assert.equal(await page.evaluate(()=>viewer.controls.autoRotate),true);
+ // 软件渲染首帧可能超过500ms；等待真实运动，未启动或始终不动仍在10秒内失败。
+ await page.waitForFunction(before=>viewer.camera.position.x!==before,angle,{timeout:10000});
+ assert.notEqual(await page.evaluate(()=>viewer.camera.position.x),angle);
  assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);assert.deepEqual(external,[]);
  writeFileSync(`${output}/browser-results.json`,JSON.stringify({environment:'Chromium headless / SwiftShader software rendering; not target projector GPU',teachingLoadMs,heroLoadMs,frameTiming,geometry,before,after,full,errors,failed,external,passed:true},null,2));
  console.log('浏览器验收通过：十步、方向、暂停、视角保持、代码抽屉、离线、资源往返稳定。');
