@@ -4,7 +4,20 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Build & Temporary
+# Build outputs (keep web/models, docs/pdf and docs/media as deliverables)
+/build/
+/dist/
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.exe
+*.class
+*.tsbuildinfo
+*.egg-info/
+
+# Temporary
 .tmp/
 *.log
 /tmp/
@@ -13,3 +26,10 @@ __pycache__/
 .ruff_cache/
 .pytest_cache/
 node_modules/
+.cache/
+.coverage
+.coverage.*
+/coverage/
+/htmlcov/
+/playwright-report/
+/test-results/
