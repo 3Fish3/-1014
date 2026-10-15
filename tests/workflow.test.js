@@ -43,5 +43,8 @@ test('源码产物只在成功后打包，CI证据隔离且短期保留',()=>{
   const browser=steps.find(step=>step.run?.includes('scripts/browser_check.mjs'));
   assert.match(browser.run,/OUTPUT_DIR=\.tmp\/ci\/v1/);
   assert.match(browser.run,/OUTPUT_DIR=\.tmp\/ci\/v2-p0/);
+  assert.match(browser.run,/OUTPUT_DIR=\.tmp\/ci\/v2-p1/);
+  assert.match(browser.run,/OUTPUT_DIR=\.tmp\/ci\/model-editor/);
+  assert.ok(browser.run.includes('scripts/model_repair_check.mjs'));
   assert.ok(browser.run.includes('git diff --exit-code'));
 });

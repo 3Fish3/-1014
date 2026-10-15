@@ -64,6 +64,8 @@ jobs:
             node scripts/ui_v2_check.mjs http://127.0.0.1:8080
           OUTPUT_DIR=.tmp/ci/v2-p1 \
             node scripts/ui_v2_p1_check.mjs http://127.0.0.1:8080
+          OUTPUT_DIR=.tmp/ci/model-editor \
+            node scripts/model_repair_check.mjs http://127.0.0.1:8080
           git diff --exit-code
 
       - name: Package verified commit
