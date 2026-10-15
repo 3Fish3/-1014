@@ -1,0 +1,301 @@
+{
+  "environment": "Chromium headless / SwiftShader, not classroom GPU",
+  "pages": [
+    {
+      "step": 3,
+      "width": 1920,
+      "height": 1080,
+      "loadMs": 720.6261180000001,
+      "frameTiming": {
+        "samples": 30,
+        "medianMs": 33.40000000000009,
+        "p95Ms": 66.69999999999982,
+        "devicePixelRatio": 1
+      },
+      "metrics": {
+        "range": {
+          "minX": -0.523052749776421,
+          "maxX": 0.6209609737879721,
+          "minY": -0.7978708820589024,
+          "maxY": 0.5068580008830249
+        },
+        "modelHeightFraction": 0.6523644414709637,
+        "canvas": {
+          "x": 40,
+          "y": 163,
+          "width": 1265.59375,
+          "height": 745,
+          "bottom": 908,
+          "right": 1305.59375
+        },
+        "controls": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "right": 0
+        },
+        "footer": {
+          "x": 0,
+          "y": 992,
+          "width": 1920,
+          "height": 88,
+          "bottom": 1080,
+          "right": 1920
+        },
+        "card": {
+          "x": 1337.59375,
+          "y": 116,
+          "width": 542.40625,
+          "height": 848,
+          "bottom": 964,
+          "right": 1880
+        },
+        "cardScrollHeight": 846,
+        "cardClientHeight": 846,
+        "overflow": false,
+        "photoLoaded": true,
+        "photo": {
+          "x": 1368.59375,
+          "y": 318.1875,
+          "width": 480.40625,
+          "height": 340,
+          "bottom": 658.1875,
+          "right": 1849
+        },
+        "bodyFont": 24,
+        "notesVisible": false,
+        "codeVisible": false,
+        "memory": {
+          "geometries": 7,
+          "textures": 0
+        }
+      },
+      "interactionsPassed": true
+    },
+    {
+      "step": 9,
+      "width": 1920,
+      "height": 1080,
+      "loadMs": 739.0522570000003,
+      "frameTiming": {
+        "samples": 30,
+        "medianMs": 33.30000000000018,
+        "p95Ms": 50,
+        "devicePixelRatio": 1
+      },
+      "metrics": {
+        "range": {
+          "minX": -0.35790968041367316,
+          "maxX": 0.3863519653579515,
+          "minY": -0.7985240165482178,
+          "maxY": 0.42217226548022
+        },
+        "modelHeightFraction": 0.6103481410142189,
+        "canvas": {
+          "x": 40,
+          "y": 163,
+          "width": 1265.59375,
+          "height": 504,
+          "bottom": 667,
+          "right": 1305.59375
+        },
+        "controls": {
+          "x": 40,
+          "y": 723,
+          "width": 1265.59375,
+          "height": 241,
+          "bottom": 964,
+          "right": 1305.59375
+        },
+        "footer": {
+          "x": 0,
+          "y": 992,
+          "width": 1920,
+          "height": 88,
+          "bottom": 1080,
+          "right": 1920
+        },
+        "card": {
+          "x": 1337.59375,
+          "y": 116,
+          "width": 542.40625,
+          "height": 848,
+          "bottom": 964,
+          "right": 1880
+        },
+        "cardScrollHeight": 846,
+        "cardClientHeight": 846,
+        "overflow": false,
+        "photoLoaded": true,
+        "photo": {
+          "x": 1368.59375,
+          "y": 318.1875,
+          "width": 480.40625,
+          "height": 340,
+          "bottom": 658.1875,
+          "right": 1849
+        },
+        "bodyFont": 24,
+        "notesVisible": false,
+        "codeVisible": false,
+        "memory": {
+          "geometries": 17,
+          "textures": 0
+        }
+      },
+      "interactionsPassed": true
+    },
+    {
+      "step": 3,
+      "width": 1366,
+      "height": 768,
+      "loadMs": 331.59477100000004,
+      "frameTiming": {
+        "samples": 30,
+        "medianMs": 16.700000000000045,
+        "p95Ms": 33.399999999999636,
+        "devicePixelRatio": 1
+      },
+      "metrics": {
+        "range": {
+          "minX": -0.4820366191693567,
+          "maxX": 0.5725254946734036,
+          "minY": -0.7982868787172752,
+          "maxY": 0.5070403891592994
+        },
+        "modelHeightFraction": 0.6526636339382873,
+        "canvas": {
+          "x": 24,
+          "y": 138,
+          "width": 907.1875,
+          "height": 492,
+          "bottom": 630,
+          "right": 931.1875
+        },
+        "controls": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "right": 0
+        },
+        "footer": {
+          "x": 0,
+          "y": 692,
+          "width": 1366,
+          "height": 76,
+          "bottom": 768,
+          "right": 1366
+        },
+        "card": {
+          "x": 953.1875,
+          "y": 94,
+          "width": 388.8125,
+          "height": 580,
+          "bottom": 674,
+          "right": 1342
+        },
+        "cardScrollHeight": 578,
+        "cardClientHeight": 578,
+        "overflow": false,
+        "photoLoaded": true,
+        "photo": {
+          "x": 976.1875,
+          "y": 262.390625,
+          "width": 342.8125,
+          "height": 179.421875,
+          "bottom": 441.8125,
+          "right": 1319
+        },
+        "bodyFont": 22,
+        "notesVisible": false,
+        "codeVisible": false,
+        "memory": {
+          "geometries": 7,
+          "textures": 0
+        }
+      },
+      "interactionsPassed": true
+    },
+    {
+      "step": 9,
+      "width": 1366,
+      "height": 768,
+      "loadMs": 489.98131099999955,
+      "frameTiming": {
+        "samples": 30,
+        "medianMs": 16.699999999999818,
+        "p95Ms": 16.700000000000273,
+        "devicePixelRatio": 1
+      },
+      "metrics": {
+        "range": {
+          "minX": -0.2834884440363774,
+          "maxX": 0.30601663912284016,
+          "minY": -0.7985240165482178,
+          "maxY": 0.42217226548022
+        },
+        "modelHeightFraction": 0.6103481410142189,
+        "canvas": {
+          "x": 24,
+          "y": 138,
+          "width": 907.1875,
+          "height": 286,
+          "bottom": 424,
+          "right": 931.1875
+        },
+        "controls": {
+          "x": 24,
+          "y": 468,
+          "width": 907.1875,
+          "height": 206,
+          "bottom": 674,
+          "right": 931.1875
+        },
+        "footer": {
+          "x": 0,
+          "y": 692,
+          "width": 1366,
+          "height": 76,
+          "bottom": 768,
+          "right": 1366
+        },
+        "card": {
+          "x": 953.1875,
+          "y": 94,
+          "width": 388.8125,
+          "height": 580,
+          "bottom": 674,
+          "right": 1342
+        },
+        "cardScrollHeight": 578,
+        "cardClientHeight": 578,
+        "overflow": false,
+        "photoLoaded": true,
+        "photo": {
+          "x": 976.1875,
+          "y": 262.390625,
+          "width": 342.8125,
+          "height": 203.421875,
+          "bottom": 465.8125,
+          "right": 1319
+        },
+        "bodyFont": 22,
+        "notesVisible": false,
+        "codeVisible": false,
+        "memory": {
+          "geometries": 17,
+          "textures": 0
+        }
+      },
+      "interactionsPassed": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "failed": [],
+  "passed": true
+}

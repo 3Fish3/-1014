@@ -494,8 +494,8 @@ export class SceneViewer {
 
     // 5. 跟随视角逻辑
     if (this.cameraMode === 'FOLLOW' && kinematicsState && !this.isComparison) {
-      const offsetDist = 0.55;
-      const offsetHeight = 0.38;
+      const offsetDist = this.followOffsetDistance ?? 0.55;
+      const offsetHeight = this.followOffsetHeight ?? 0.38;
       // 保持相机在车身后上方
       const carYaw = kinematicsState.yaw;
       const camX = kinematicsState.x - Math.sin(carYaw) * offsetDist;

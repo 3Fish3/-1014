@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>电控入门 · 第二章投影版 P0</title>
+  <link rel="stylesheet" href="./css/projection.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/"}}</script>
+</head>
+<body data-ui="v2">
+  <header class="lecture-header">
+    <div class="course-heading"><span class="chapter-mark">02</span><div><p>RoboMaster · 电控入门</p><h1>从零制造一台能移动的机器人</h1></div></div>
+    <div class="header-actions"><span id="step-badge">03 / 10</span><button id="btn-notes">讲师工具</button><button id="btn-fullscreen">全屏展示</button></div>
+  </header>
+  <main class="lecture-main">
+    <section class="demonstration" aria-label="三维教学演示台">
+      <div class="stage-toolbar"><span id="stage-topic">装上电机，连接车轮</span><div><button id="btn-cam-mode">固定视角</button><button id="btn-reset-car">归位</button></div></div>
+      <div id="canvas-container" aria-label="可旋转缩放的三维教学小车"></div>
+      <div class="scene-caption"><span class="model-tag">功能示意模型 · 非接线指导</span><div class="legend" aria-label="线路颜色图例"><span class="power">供电</span><span class="communication">指令</span><span class="feedback">反馈关系</span></div></div>
+      <div class="motion-controls" id="motion-controls" hidden>
+        <div class="preset-panel"><div class="preset-title">先试一个动作</div><div id="preset-controls" class="preset-actions"></div></div>
+        <div class="slider-panel"><div id="slider-controls" class="sliders-grid">
+          <div class="slider-group"><label for="slider-left">左轮 <span id="text-left-speed">停止</span></label><input id="slider-left" type="range" aria-label="左轮方向与快慢" min="-1" max="1" step="0.05" value="0"><div class="slider-ticks"><span>反转</span><span>停止</span><span>正转</span></div></div>
+          <div class="slider-group"><label for="slider-right">右轮 <span id="text-right-speed">停止</span></label><input id="slider-right" type="range" aria-label="右轮方向与快慢" min="-1" max="1" step="0.05" value="0"><div class="slider-ticks"><span>反转</span><span>停止</span><span>正转</span></div></div>
+        </div></div>
+      </div>
+    </section>
+    <aside class="knowledge-card" aria-label="当前知识点">
+      <p class="card-eyebrow" id="card-category">认识一个部件</p>
+      <h2 id="step-title">驱动电机</h2>
+      <p id="key-concept" class="core-question">轮子自己不会转，动力从哪来？</p>
+      <figure class="component-photo"><img id="hardware-photo" alt="驱动电机实物参考"><figcaption id="photo-caption"></figcaption></figure>
+      <ul id="step-details" class="function-lines"></ul>
+      <ul id="keywords" class="keywords" aria-label="知识关键词"></ul>
+      <p id="exploration-hint" class="exploration-hint" hidden></p>
+    </aside>
+  </main>
+  <footer class="lecture-footer">
+    <button id="btn-prev">上一页</button>
+    <div class="section-status"><span>第二章 · 搭建移动小车</span><strong id="section-name">驱动电机</strong></div>
+    <div class="footer-actions"><button id="btn-pause">暂停演示</button><button id="btn-replay">重播</button><button id="btn-next" class="primary">下一步</button></div>
+  </footer>
+  <dialog id="teacher-notes" aria-labelledby="notes-title">
+    <div class="notes-header"><h2 id="notes-title">讲师工具 · P0 原型</h2><button id="btn-close-notes">关闭</button></div>
+    <p>本轮只评审第3、9步；其余页面返回原版，不改变教学内容。</p>
+    <nav class="preview-links"><a href="?step=3">第3步 · 部件页</a><a href="?step=9">第9步 · 运动页</a><a href="./index.html">V1 完整课程</a></nav>
+    <p id="teacher-lines"></p><p id="step-duration"></p>
+    <div class="notes-diagram"><img id="diagram-img" alt="讲师参考示意图"><p id="diagram-badge"></p></div>
+    <nav id="step-dots" aria-label="完整课程步骤"></nav>
+    <button id="btn-toggle-code">课后源码参考（非学生主画面）</button>
+    <a href="./viewer_full.html">独立整车观察</a>
+    <div id="chain-panel" hidden><button id="btn-chain">推进指令链</button><span id="chain-status"></span></div>
+    <div id="compare-panel" hidden><span id="compare-status"></span></div>
+  </dialog>
+  <aside id="code-drawer" class="code-drawer" aria-label="课后源码参考" hidden>
+    <button id="btn-close-code">关闭源码</button>
+    <p>哨兵四全向轮快照，仅供课后阅读，不是本章双轮差速代码。</p>
+    <nav class="code-tabs"><button class="code-tab active" data-file="omni_kinematics.hpp.txt">运动学接口</button><button class="code-tab" data-file="omni_kinematics.cpp.txt">运动学实现</button><button class="code-tab" data-file="dji.hpp.txt">电机接口</button><button class="code-tab" data-file="dji.cpp.txt">电机实现</button></nav>
+    <pre><code id="code-content">// 正在加载实车代码...</code></pre>
+  </aside>
+  <script type="module" src="./js/app.js"></script>
+</body></html>

@@ -6,6 +6,7 @@
 import { LESSON_STEPS, PRESET_ACTIONS } from './lesson.js';
 import { DifferentialKinematics } from './kinematics.js';
 import { SceneViewer } from './viewer.js';
+import { ProjectionPresentation } from './projection.js';
 
 class TeachingApp {
   constructor() {
@@ -47,12 +48,14 @@ class TeachingApp {
       codeTabs: document.querySelectorAll('.code-tab')
     };
 
+    this.projection = document.body.dataset.ui === 'v2' ? new ProjectionPresentation(this) : null;
     this.init();
   }
 
   async init() {
     // 1. 初始化 3D 渲染查看器
     this.viewer = new SceneViewer(this.dom.canvasContainer);
+    this.projection?.attachViewer(this.viewer);
     window.addEventListener('pagehide', () => {
       this.viewer.dispose();
       this.stopped = true;
@@ -61,6 +64,7 @@ class TeachingApp {
     // 2. 加载小车 3D 模型
     try {
       await this.viewer.loadDiffCar('./models/diff_car_teaching.glb');
+      this.projection?.afterModelLoaded();
     } catch (err) {
       this.dom.canvasContainer.textContent = `教学模型加载失败，请检查本地模型文件：${err.message}`;
       console.error('加载小车模型失败:', err);
@@ -77,7 +81,10 @@ class TeachingApp {
     this.bindEvents();
 
     // 6. 进入第一步
-    this.goToStep(0);
+    const requested = new URLSearchParams(window.location.search).get('step');
+    const index = LESSON_STEPS.findIndex(step => String(step.id) === requested);
+    const defaultIndex = this.projection ? 2 : 0;
+    this.goToStep(index >= 0 ? index : defaultIndex);
 
     // 7. 启动渲染主循环
     requestAnimationFrame((t) => this.renderLoop(t));
@@ -152,7 +159,9 @@ class TeachingApp {
     this.dom.btnCamMode.addEventListener('click', () => {
       const isFixed = this.viewer.cameraMode === 'FIXED';
       this.viewer.cameraMode = isFixed ? 'FOLLOW' : 'FIXED';
-      this.dom.btnCamMode.textContent = isFixed ? '🎥 视角: 跟随小车' : '🎥 视角: 固定观察';
+      if (this.projection && isFixed) this.viewer.isTransitioningCamera = false;
+      if (this.projection) this.dom.btnCamMode.textContent = isFixed ? '跟随视角' : '固定视角';
+      else this.dom.btnCamMode.textContent = isFixed ? '🎥 视角: 跟随小车' : '🎥 视角: 固定观察';
       this.dom.btnCamMode.classList.toggle('active', !isFixed);
     });
 
@@ -160,6 +169,7 @@ class TeachingApp {
     this.dom.btnResetCar.addEventListener('click', () => {
       this.kinematics.resetPose();
       this.updateSliderUI(0, 0);
+      this.projection?.resetView();
     });
 
     // 全屏展示
@@ -188,6 +198,7 @@ class TeachingApp {
     // 键盘快捷键 (左右箭头切换步骤，空格下一步，R键重播)
     window.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (this.projection && e.target.closest('dialog[open],button,a,select')) return;
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
         this.nextStep();
@@ -215,6 +226,10 @@ class TeachingApp {
 
   async goToStep(index) {
     if (index < 0 || index >= LESSON_STEPS.length) return;
+    if (this.projection && index !== 2 && index !== 8) {
+      window.location.assign(`./index.html?step=${index+1}`);
+      return;
+    }
     this.currentStepIndex = index;
     const step = LESSON_STEPS[index];
 
@@ -267,8 +282,9 @@ class TeachingApp {
 
     // 触发 3D 场景部件显隐与运镜
     this.viewer.applyStepState(step);
+    this.projection?.update(step);
 
-    // 仅在第 10 步实车对照时按需异步加载 33MB 真实整车模型
+    // 仅在第 10 步实车对照时按需异步加载真实整车模型
     if (step.isComparisonStep && !this.viewer.heroRobotModel) {
       try {
         await this.viewer.loadHeroRobot('./models/hero_robot_clean.glb');
@@ -312,8 +328,14 @@ class TeachingApp {
       if (val < -0.6) return '【快速反转 ⤹】';
       return '【慢速反转 ⤹】';
     };
-    this.dom.textLeftSpeed.textContent = `左轮: ${describeSpeed(left)}`;
-    this.dom.textRightSpeed.textContent = `右轮: ${describeSpeed(right)}`;
+    const display = (side, value) => {
+      const description = describeSpeed(value);
+      return this.projection ? description.replace(/[【】⤸⤹]/g, '').trim() : `${side}轮: ${description}`;
+    };
+    this.dom.textLeftSpeed.textContent = display('左', left);
+    this.dom.textRightSpeed.textContent = display('右', right);
+    this.dom.sliderLeft.setAttribute('aria-valuetext', this.dom.textLeftSpeed.textContent);
+    this.dom.sliderRight.setAttribute('aria-valuetext', this.dom.textRightSpeed.textContent);
   }
 
   async openCodeDrawer() {
