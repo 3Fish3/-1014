@@ -1,11 +1,10 @@
 # Handoff — 第一章英雄机器人结构导览与当前交付状态
 
-- **生成时间**：2026-10-15（更新于 2026-10-16 文档审查）
+- **生成时间**：2026-10-15（2026-10-16 文档审查后更新）
+- **最近一次状态核验**：2026-10-16 12:59:56 UTC（本地 `main` @ `a41ee8b`；远端 `origin/main` @ `a41ee8b`，一致）
 - **项目路径**：`/home/kekeyuyu/projects/hushi_ec_teach`
-- **交付主分支**：`main`（`f6110b0`，当前唯一的本地与远端分支）
-- **本次工作分支**：`docs/review-fix-main-merge`（文档审查修复专用，基于 `main`，尚未合并或推送）
-- **最新提交**：`f6110b0` (`merge(仓库): 合并远端初始占位提交，保留完整项目交付历史`)
-- **远端关联**：`origin/main`（GitHub Actions Run `#38845036849` 成功）；`origin/feat/*` 阶段分支已全部删除，远端仅保留 `main`（2026-10-16 实测）
+- **交付主分支**：`main` @ `a41ee8b`（远端仅存此一个分支）
+- **文档审查修复落地状态**：**已完成**——修复提交 `a41ee8b` 基于基线 `f6110b0`，已快进合入 `main` 并推送到 `origin/main`，云端 CI 全绿。**接手 agent 无需重复合并或推送**（详见第 3 节）。
 
 ---
 
@@ -45,24 +44,26 @@
 
 ---
 
-## 3. 当前基线与实际运行状态 (Current Baseline & Environment)
+## 3. 当前交付状态（核验快照，非实时状态）
 
-### Git 基线与工作区状态
-- **当前所在分支**：`docs/review-fix-main-merge`（本次文档审查修复分支）；交付主分支为 `main`
-- **最新基线与交付提交 SHA**：`f6110b0758692b24b95ef62331a88a15e66a6aff`（`main` 基线）
-- **工作区状态**：本次文档修复已提交于本分支，待推送前工作区干净，无未跟踪或未提交改动。
-- **远端 CI 状态**：
-  - 运行链接：[GitHub Actions Run #38845036849](https://github.com/3Fish3/-1014/actions/runs/38845036849)
-  - 检查时间：2026-10-16 03:28:21 UTC
-  - 运行结果：`completed` / `success`（持续 7m 39s，全步骤通过）
+> **核验时间：2026-10-16 12:59:56 UTC**。以下全部为当时的实测结果，不得当作长期实时状态；接手前请重新执行对应命令核验。
 
-### 本地服务实际状态（经核实）
-- **当前生产教学服务**：
-  - 访问地址：`http://127.0.0.1:8080/hero-tour.html`（或 `ui-v2.html`）
-  - 监听进程：PID 388093，正在监听工程主目录 `web/`，供第一章导览与第二章课件教学使用。
-- **历史临时开发端口**：
-  - 访问地址：`http://127.0.0.1:8091/`
-  - 监听进程：PID 1291477，为第一章开发初期在临时目录 `.tmp/ch01-dev/web` 启动的辅助端口；该目录已清理，此端口非当前教学入口，若进程终止或重启后无法访问属正常状态。
+### Git 与远端（`git rev-parse main origin/main`、`git ls-remote --heads origin`）
+- 本地 `main` = 远端 `origin/main` = `a41ee8b65d010ee19e70035c0a7887e1613c812b`（一致）。
+- 远端仅存 `refs/heads/main`，所有 `feat/*` 阶段分支均不存在。
+- 工作区：`git status --short --branch` → `## main`，无未跟踪或未提交改动。
+
+### 文档审查修复的落地情况（已结束，勿重放）
+- 基线 `f6110b0` → 修复提交 `a41ee8b`（11 文件，+64/−44），先提交在独立分支 `docs/review-fix-main-merge` 上（当时状态为「已提交、未合并、未推送」，**属历史**），随后以 `git merge --ff-only` 快进合入 `main` 并推送到 `origin/main`。
+- 该修复分支为已并入的遗留本地引用，已于本次核验后清理；如确需取回，可执行 `git branch docs/review-fix-main-merge a41ee8b`。
+
+### 远端 CI（核验时间同上）
+- 当前：`main` @ `a41ee8b` → Run [#38899449275](https://github.com/3Fish3/-1014/actions/runs/38899449275) `completed` / `success`（13 步全过，12:17:08Z → 12:28:29Z）。
+- 历史（**不代表当前提交**）：`main` @ `f6110b0` → Run [#38845036849](https://github.com/3Fish3/-1014/actions/runs/38845036849) `success`；`feat/ch01-hero-tour` @ `b71f584` → Run `#38794849779` `success`。
+
+### 本地服务（核验时间同上）
+- **在运行**：`127.0.0.1:8080`，PID **388093**（`python3 -m http.server 8080 --bind 127.0.0.1 --directory /home/kekeyuyu/projects/hushi_ec_teach/web`），为当前教学入口。
+- **已不存在**：`127.0.0.1:8091` 与 PID 1291477 在本次核验时已消失。该端口属第一章开发期临时目录的辅助服务，从未登记为教学入口；若后续重新需要，用 `bash scripts/run_server.sh 8080` 即可，无需恢复临时目录。
 
 ---
 
@@ -74,6 +75,7 @@
 - **快照 3（提交 `cb8193a`，2026-10-16）**：Advisor 审查后统一全站模型口径、扩充全套 25 个脚本手册、修正 V1 历史说明并写入任务收尾规范，成功推送至 `origin/feat/ch01-hero-tour`。
 - **快照 4（提交 `f6110b0`，2026-10-16）**：主分支合并。本地 `main` 合并 `cb8193a` 并与远端初始占位提交 `f875422` 执行无损合并，成功推送到 `origin/main`。
 - **快照 5（2026-10-16 分支治理）**：经鱼鱼确认各阶段测试均已通过，六个 `feat/*` 阶段分支（`v1-validation`、`ui-v2-p0`、`ui-v2-p1`、`model-assembly-editor`、`hero-assembly-finalize`、`ch01-hero-tour`）在 `git branch --merged main` 全量命中、确认均为 `main` 祖先后被删除；远端 `git ls-remote --heads origin` 实测仅剩 `refs/heads/main`。
+- **快照 6（2026-10-16 文档审查修复落地）**：基线 `f6110b0`。修复提交 `a41ee8b`（11 文件，+64/−44）先在独立分支 `docs/review-fix-main-merge` 上完成，当时处于「已提交、未合并、未推送」状态；随后以 `git merge --ff-only` 快进合入 `main` 并推送到 `origin/main`，`main` 上 CI Run [#38899449275](https://github.com/3Fish3/-1014/actions/runs/38899449275) 全绿通过。该修复分支为已并入的冗余引用，已清理。
 
 > **历史分支名说明**：上述快照中的 `feat/*` 分支名记录的是当时的开发分支状态，在快照 5 之后均已不存在，仅作历史阶段标记，不可再作为检出目标。
 
