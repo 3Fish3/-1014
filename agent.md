@@ -57,6 +57,6 @@
 > 最后交付的产品里面还需要有：讲解文档，设计思路与流程，pdf，相关的视频与照片，web端的3d模型，脚本的使用说明。请尽量调用exa去搜集信息，尽量调用advisor给出修改意见再进行下一步。资料优先搜集哨兵代码库（最好可以使用那边的代码进行演示）与下载目录。
 
 项目级文件只维护上述工程上下文，不复制或覆盖全局行为规则。
-- 历史检查点：`main` → `feat/v1-validation` (V1 交付) → `feat/ui-v2-p0`/`p1` (V2 重构) → `feat/model-assembly-editor` (工作台) → `feat/hero-assembly-finalize` (STEP 对齐设为默认)。
-- **当前交付分支**：`feat/ch01-hero-tour`（新增第一章六场景结构导览与文档归档，提交 `b71f584` 与 `a8747b6`），不擅自合并或推送。
+- 历史检查点：`main` → `feat/v1-validation` (V1 交付) → `feat/ui-v2-p0`/`p1` (V2 重构) → `feat/model-assembly-editor` (工作台) → `feat/hero-assembly-finalize` (STEP 对齐设为默认) → `feat/ch01-hero-tour` (第一章导览与文档归档)。
+- **当前交付分支**：`main`，也是当前唯一的本地与远端分支。上述 `feat/*` 阶段分支均已在阶段测试通过并合入 `main` 后，从本地与远端一并删除，仅作为历史阶段名称保留，仓库内已不再存在；后续任务仍不擅自合并或推送。
 

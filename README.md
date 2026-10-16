@@ -100,5 +100,7 @@ bash scripts/run_server.sh 8080
    - 实车电调、主控板型、供电管理模块的具体型号与空间物理位置，以及真实电池电芯实拍，待硬件开箱实测后补齐。
    - 课件仿真视频由无头浏览器步长录制，非实车运行录像；参考照片不冒充模型同款。
 
-首次开发环境准备与全套脚本命令详见 [脚本使用说明](docs/脚本使用说明.md)。当前交付分支为 `feat/ch01-hero-tour`。
+首次开发环境准备与全套脚本命令详见 [脚本使用说明](docs/脚本使用说明.md)。当前交付分支为 `main`。
+
+> **分支治理说明（2026-10-16 实际查询）**：`feat/v1-validation`、`feat/ui-v2-p0`、`feat/ui-v2-p1`、`feat/model-assembly-editor`、`feat/hero-assembly-finalize`、`feat/ch01-hero-tour` 六个阶段分支均已在各自阶段测试通过并合入 `main`，之后从本地与远端 `origin` 一并删除；远端现仅保留 `main`。上述分支名仅作为历史阶段标记保留在文档中，仓库内已不存在对应分支引用。
 
