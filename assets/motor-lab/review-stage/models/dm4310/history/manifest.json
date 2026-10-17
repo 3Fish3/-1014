@@ -1,0 +1,129 @@
+{
+  "id": "damiao_dm_j4310_2ec_v1_1",
+  "name": "DAMIAO DM-J4310-2EC V1.1 motor",
+  "provenance": {
+    "sourceUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/damiao_dm_j4310_2ec_v1_1.step",
+    "apiUrl": "https://api.step.parts/v1/parts/damiao_dm_j4310_2ec_v1_1",
+    "sourceSha256": "89d6b025a8411a2da3c57a8df1346cff31f5503d88f2221ed44d263150078b2f",
+    "sourceByteSize": 10376661,
+    "license": "unknown (upstream repository earthtojake/step.parts MIT, original manufacturer DAMIAO terms uncertified; private review only)"
+  },
+  "status": "halted_source_geometry_fault",
+  "unitContext": {
+    "stepHeaderLengthUnit": "SI_UNIT($,.METRE.)",
+    "actualCoordinates": "millimetres (57.0 x 46.0 x 57.0 mm envelope)",
+    "unitDiscrepancy": "STEP header lacks SI_UNIT(.MILLI.,.METRE.) declaration but coordinates are raw mm"
+  },
+  "geometryAudit": {
+    "totalObjects": 19,
+    "partFeatureObjects": 10,
+    "appPartContainers": 1,
+    "totalFaces": 2847,
+    "parts": [
+      {
+        "name": "Part__Feature",
+        "label": "4310__3D_20240814_1",
+        "faces": 391,
+        "solids": 1,
+        "shells": 1,
+        "isValid": true,
+        "dimensionsMm": [57.0, 39.5, 57.0],
+        "volumeMm3": 87745.6
+      },
+      {
+        "name": "Part__Feature001",
+        "label": "4310__3D_20240814_001",
+        "faces": 591,
+        "solids": 1,
+        "shells": 1,
+        "isValid": true,
+        "dimensionsMm": [57.0, 6.5, 57.0],
+        "volumeMm3": 5259.31
+      },
+      {
+        "name": "Part__Feature002",
+        "label": "4310__3D_20240814_002",
+        "faces": 921,
+        "solids": 1,
+        "shells": 1,
+        "isValid": false,
+        "error": "Self-intersecting wire / Unorientable shape",
+        "dimensionsMm": [49.13, 7.8, 53.2],
+        "volumeMm3": 3688.51
+      },
+      {
+        "name": "Part__Feature003",
+        "label": "4310__3D_20240814_003",
+        "faces": 416,
+        "solids": 1,
+        "shells": 1,
+        "isValid": false,
+        "error": "Self-intersecting wire / Unorientable shape",
+        "dimensionsMm": [57.0, 6.0, 57.0],
+        "volumeMm3": 5768.28
+      },
+      {
+        "name": "Part__Feature004",
+        "label": "4310__3D_20240814_004",
+        "faces": 88,
+        "solids": 1,
+        "shells": 1,
+        "isValid": true,
+        "dimensionsMm": [3.5, 10.2, 3.5],
+        "volumeMm3": 35.43
+      },
+      {
+        "name": "Part__Feature005",
+        "label": "4310__3D_20240814_005",
+        "faces": 88,
+        "solids": 1,
+        "shells": 1,
+        "isValid": true,
+        "dimensionsMm": [3.5, 10.2, 3.5],
+        "volumeMm3": 35.43
+      },
+      {
+        "name": "Part__Feature006",
+        "label": "4310__3D_20240814_006",
+        "faces": 88,
+        "solids": 1,
+        "shells": 1,
+        "isValid": true,
+        "dimensionsMm": [3.5, 10.2, 3.5],
+        "volumeMm3": 35.43
+      },
+      {
+        "name": "Part__Feature007",
+        "label": "4310__3D_20240814_007",
+        "faces": 88,
+        "solids": 1,
+        "shells": 1,
+        "isValid": true,
+        "dimensionsMm": [3.5, 10.2, 3.5],
+        "volumeMm3": 35.43
+      },
+      {
+        "name": "Part__Feature008",
+        "label": "4310__3D_20240814_008",
+        "faces": 88,
+        "solids": 1,
+        "shells": 1,
+        "isValid": true,
+        "dimensionsMm": [3.5, 10.2, 3.5],
+        "volumeMm3": 35.43
+      },
+      {
+        "name": "Part__Feature009",
+        "label": "4310__3D_20240814_009",
+        "faces": 88,
+        "solids": 1,
+        "shells": 1,
+        "isValid": true,
+        "dimensionsMm": [3.5, 10.2, 3.5],
+        "volumeMm3": 35.43
+      }
+    ]
+  },
+  "haltReason": "Source STEP contains 2 invalid BRep shapes (4310__3D_20240814_002 and 4310__3D_20240814_003) failing OpenCASCADE BRepCheck with 'Self-intersecting wire' and 'Unorientable shape'. Under project rule, deleting invalid parts or weakening isValid validation is strictly prohibited. State preserved as required.",
+  "reviewNotes": "Upstream preview GLB on Vercel blob exists as reference only and was not generated from this verified pipeline."
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "device": "center-board2",
+    "file": "high.glb",
+    "sha256": "0c9e2f4d766ccfb1564805b298ca25fc1edc78114712e7c4474ee33c10c631f7",
+    "bytes": 12039488,
+    "triangles": 362700,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "center-board2",
+    "file": "web.glb",
+    "sha256": "a0195cbbd73017d05051a4fb21d9da17acbd8612ce7592d28650eaf4ff34dddd",
+    "bytes": 10637312,
+    "triangles": 318002,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "c620",
+    "file": "high.glb",
+    "sha256": "bdff91f1cfaa7951df6cc5fe48cf2c855db3f819730c35d453aaabf0f5d3102a",
+    "bytes": 12385376,
+    "triangles": 455808,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "c620",
+    "file": "web.glb",
+    "sha256": "0f8494e63a8201315c83de57ecfa012a52b85a05f5bcb06ef811a44e42e051b3",
+    "bytes": 8573632,
+    "triangles": 308995,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "gm6020",
+    "file": "high.glb",
+    "sha256": "60c05facbf72748ded0470f8bdb9e568b31b9f3524b950382f4c25daaf7cd402",
+    "bytes": 3473296,
+    "triangles": 103666,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "gm6020",
+    "file": "web.glb",
+    "sha256": "be54e8fd2c39b8e710021af33440879972daa397b21f14d490c8d35bdd7f9800",
+    "bytes": 3294848,
+    "triangles": 98562,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "m2006",
+    "file": "high.glb",
+    "sha256": "68b72f0df938c0848cf8f88ad37042625ef02190053ffcbd8eb9117d5d38ca3c",
+    "bytes": 7354808,
+    "triangles": 221927,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "m2006",
+    "file": "web.glb",
+    "sha256": "995cabb23ae9cc381c6f7913981bf7158de894c2e8e1d6adda641e6ee812fe1c",
+    "bytes": 6558924,
+    "triangles": 200942,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "c610",
+    "file": "high.glb",
+    "sha256": "60763630da5598d703a7dfc65e6cd82357905e195e6c677687e5146b468fd9b0",
+    "bytes": 3740128,
+    "triangles": 103542,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "c610",
+    "file": "web.glb",
+    "sha256": "e114c65eff137a2f235a9c79e10bc7c92a4054116e6e4d266ad4f91b008985c5",
+    "bytes": 3224200,
+    "triangles": 89438,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "snail2305",
+    "file": "high.glb",
+    "sha256": "b9b41f76265922c927c539b868d0772007161f06c69a46ebac5e4ecdbaa1831b",
+    "bytes": 2012504,
+    "triangles": 62678,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "snail2305",
+    "file": "web.glb",
+    "sha256": "1943f3155041e661e8ffe1eca410f2a50c6143a178ea9bb422ce2854cffcb9a7",
+    "bytes": 1986224,
+    "triangles": 61692,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "c615",
+    "file": "high.glb",
+    "sha256": "5004d18e5200a0e1059834a088c867bbd7ffa2714100649263a370fe482072f3",
+    "bytes": 5812132,
+    "triangles": 214432,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "c615",
+    "file": "web.glb",
+    "sha256": "90d2c5f94c1ea8aeaa46d103968dc63ea2109653bacc9fb169478eef09b2c49f",
+    "bytes": 5225984,
+    "triangles": 192148,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  {
+    "device": "m3508-audit",
+    "file": "review.glb",
+    "sha256": "4b7b8fa2794eb6ce8c0be002a793b3828e02ed615766ddf485c7d0282016f54f",
+    "bytes": 17583620,
+    "triangles": 600662,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  }
+]

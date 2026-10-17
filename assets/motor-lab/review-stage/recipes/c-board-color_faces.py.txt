@@ -1,0 +1,88 @@
+"""Local official STEP review only; no source edits or public redistribution."""
+import sys, json, struct, math, hashlib, time
+from pathlib import Path
+sys.path.append('/usr/lib/freecad/lib')
+import FreeCAD as App, Import
+root=Path(__file__).resolve().parent
+source=root/'c-board-official.stp'
+assert hashlib.sha256(source.read_bytes()).hexdigest()=='237365773a6114ee14a64a92992df8e462d2b4e9e20b708dd40054d7efd74bae'
+doc=App.newDocument('CBoardMesh')
+Import.insert(str(source),doc.Name);doc.recompute()
+parts=[]
+for o in doc.Objects:
+ if o.TypeId!='Part::Feature' or o.Shape.isNull() or not o.Shape.Solids: continue
+ s=o.Shape.copy();s.Placement=o.getGlobalPlacement().multiply(o.Placement.inverse()).multiply(s.Placement)
+ if not s.isValid(): raise ValueError('invalid source solid '+o.Name)
+ parts.append((o.Label,s))
+assert len(parts)==8, len(parts)
+bb=parts[0][1].BoundBox
+for _,s in parts[1:]:bb.add(s.BoundBox)
+center=App.Vector((bb.XMin+bb.XMax)/2,(bb.YMin+bb.YMax)/2,(bb.ZMin+bb.ZMax)/2)
+gltf={'asset':{'version':'2.0','generator':'FreeCAD STEP per-face tessellation; neutral inspection material','extras':{'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'linearDeflectionMm':0.035,'sourceUnits':'mm','outputUnits':'m','license':'unknown; private review only','colorNote':'Neutral review material, not manufacturer texture/colour certification'}},'scene':0,'scenes':[{'nodes':[]}],'nodes':[],'meshes':[],'materials':[{'name':'Neutral CAD review','pbrMetallicRoughness':{'baseColorFactor':[0.42,0.48,0.57,1],'metallicFactor':0.15,'roughnessFactor':0.5},'doubleSided':True}],'buffers':[{'byteLength':0}],'bufferViews':[],'accessors':[]}
+binary=bytearray();summaries=[]
+def add(values,components,component_type,kind,target):
+ while len(binary)%4:binary.append(0)
+ start=len(binary);fmt='f' if component_type==5126 else 'I'
+ binary.extend(struct.pack('<'+fmt*len(values),*values))
+ vi=len(gltf['bufferViews']);gltf['bufferViews'].append({'buffer':0,'byteOffset':start,'byteLength':len(binary)-start,'target':target})
+ a={'bufferView':vi,'componentType':component_type,'count':len(values)//components,'type':kind}
+ if kind=='VEC3' and target==34962:
+  a['min']=[min(values[i::3]) for i in range(3)];a['max']=[max(values[i::3]) for i in range(3)]
+ ai=len(gltf['accessors']);gltf['accessors'].append(a);return ai
+gltf['materials']=[
+ {'name':name,'pbrMetallicRoughness':{'baseColorFactor':color,'metallicFactor':metal,'roughnessFactor':rough},'doubleSided':True}
+ for name,color,metal,rough in [('Graphite shell',[.035,.045,.06,1],.18,.5),('White connector housing',[.88,.9,.93,1],.0,.45),('Silver contacts',[.65,.7,.76,1],.72,.25),('Navy PCB',[.025,.055,.09,1],.1,.6)]]
+gltf['materials'].append({'name':'White lid markings','pbrMetallicRoughness':{'baseColorFactor':[1,1,1,1],'metallicFactor':0,'roughnessFactor':.65},'emissiveFactor':[.08,.08,.08],'doubleSided':True})
+def material_for(label,face):
+ b=face.BoundBox
+ # Existing shallow engraved/raised lid markings; keep the large surrounding lid dark.
+ if label=='2_0' and b.ZMin>=-6.05 and b.ZMax<=-5.99 and face.Area<200:
+  return 4
+ if label!='1_0': return 2 if label.startswith('4_') else 0
+ dx,dy,dz=b.XLength,b.YLength,b.ZLength
+ if b.ZMax<=-14.94:return 3
+ # Chip package and large central component, not connector plastic.
+ if b.XMin>-30 and b.XMax<-15 and b.YMin>26 and b.YMax<41:return 0
+ # USB shell at rear edge: retain a silver metal enclosure.
+ if b.XMin>-36 and b.XMax<-18 and b.YMin>42 and b.ZMax<-7:return 2
+ dims=sorted([dx,dy,dz])
+ # Narrow pin/contact surfaces; these are visual CAD-face masks, not electrical pin metadata.
+ if dims[1]<1.18 and .35<dims[2]<8 and face.Area>.08:return 2
+ if dx<1.6 and dy<1.6 and dz>1.2:return 2
+ return 1
+for label,shape in parts:
+ buckets={}
+ for face in shape.Faces:
+  material=material_for(label,face)
+  positions,normals,indices=buckets.setdefault(material,([],[],[]))
+  pts,tris=face.tessellate(0.035)
+  if not pts or not tris:continue
+  local=[[0.0,0.0,0.0] for _ in pts]
+  for a,b,c in tris:
+   u=pts[b]-pts[a];v=pts[c]-pts[a];n=u.cross(v)
+   for idx in (a,b,c):
+    local[idx][0]+=n.x;local[idx][1]+=n.y;local[idx][2]+=n.z
+  offset=len(positions)//3
+  for p,n in zip(pts,local):
+   q=p-center;positions.extend([q.x*.001,q.z*.001,-q.y*.001])
+   length=math.sqrt(sum(v*v for v in n)) or 1
+   normals.extend([n[0]/length,n[2]/length,-n[1]/length])
+  indices.extend(offset+i for tri in tris for i in tri)
+ primitives=[];vertex_count=0;triangle_count=0
+ for material,(positions,normals,indices) in sorted(buckets.items()):
+  if not indices:continue
+  pa=add(positions,3,5126,'VEC3',34962);na=add(normals,3,5126,'VEC3',34962);ia=add(indices,1,5125,'SCALAR',34963)
+  primitives.append({'attributes':{'POSITION':pa,'NORMAL':na},'indices':ia,'material':material})
+  vertex_count+=len(positions)//3;triangle_count+=len(indices)//3
+ mi=len(gltf['meshes']);gltf['meshes'].append({'name':label,'primitives':primitives})
+ ni=len(gltf['nodes']);gltf['nodes'].append({'name':label,'mesh':mi});gltf['scenes'][0]['nodes'].append(ni)
+ summaries.append({'label':label,'sourceFaces':len(shape.Faces),'sourceSolids':len(shape.Solids),'vertices':vertex_count,'triangles':triangle_count})
+gltf['buffers'][0]['byteLength']=len(binary)
+j=json.dumps(gltf,separators=(',',':'),ensure_ascii=False).encode();j+=b' '*((-len(j))%4)
+binary+=b'\0'*((-len(binary))%4)
+blob=struct.pack('<III',0x46546c67,2,12+8+len(j)+8+len(binary))+struct.pack('<I4s',len(j),b'JSON')+j+struct.pack('<I4s',len(binary),b'BIN\0')+binary
+out=root/'c-board-official-colored.glb';out.write_bytes(blob)
+report={'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'outputSha256':hashlib.sha256(blob).hexdigest(),'outputBytes':len(blob),'unitMapping':'STEP mm -> metres, (x,y,z) -> (x,z,-y); centered','bboxSourceMm':[bb.XLength,bb.YLength,bb.ZLength],'meshes':summaries,'triangleCount':sum(x['triangles'] for x in summaries),'scope':'All 8 leaf solids; no duplicate App::Part aggregate geometry. Neutral materials; source colours/textures not exported. No decimation. Tessellation is an approximation, not manufacturing certification.'}
+(root/'colored-conversion.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(report,ensure_ascii=False))
+App.closeDocument(doc.Name)

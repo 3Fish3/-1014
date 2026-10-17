@@ -1,0 +1,78 @@
+"""Local official STEP review only; no source edits or public redistribution."""
+import sys, json, struct, math, hashlib, time, argparse, importlib.util, re
+from pathlib import Path
+sys.path.append('/usr/lib/freecad/lib')
+import FreeCAD as App, Import
+parser=argparse.ArgumentParser()
+parser.add_argument('source',type=Path)
+parser.add_argument('output',type=Path)
+parser.add_argument('--deflection',type=float,default=.035)
+parser.add_argument('--palette',type=Path)
+args=parser.parse_args()
+source=args.source.resolve(); out=args.output.resolve();out.parent.mkdir(parents=True,exist_ok=True)
+root=out.parent
+if not 0<args.deflection<=.3: raise ValueError('deflection outside review budget')
+source_text=source.read_text(errors='replace')
+if not re.search(r'SI_UNIT\s*\(\s*\.MILLI\.\s*,\s*\.METRE\.\s*\)', source_text): raise ValueError('mm units not confirmed; inspect unit context before export')
+palette=json.loads(args.palette.read_text()) if args.palette else {}
+doc=App.newDocument('CBoardMesh')
+Import.insert(str(source),doc.Name);doc.recompute()
+parts=[]
+bb=App.BoundBox()
+for o in doc.Objects:
+ if o.TypeId!='Part::Feature' or o.Shape.isNull() or not o.Shape.Faces: continue
+ s=o.Shape.copy()
+ if not s.isValid(): raise ValueError('invalid source geometry '+o.Name)
+ parent=o.getGlobalPlacement().multiply(o.Placement.inverse())
+ # Validate original BRep, tessellate unchanged faces, then place mesh vertices.
+ # Do not rewrite BRep placements: rigid transform roundoff can affect BRepCheck.
+ bounds=s.copy();bounds.Placement=parent.multiply(bounds.Placement)
+ bb.add(bounds.BoundBox)
+ parts.append((o.Label,s,parent))
+if not parts: raise ValueError('No supported Part::Feature faces; inspect source structure, do not substitute placeholders')
+center=App.Vector((bb.XMin+bb.XMax)/2,(bb.YMin+bb.YMax)/2,(bb.ZMin+bb.ZMax)/2)
+gltf={'asset':{'version':'2.0','generator':'FreeCAD STEP per-face tessellation; neutral inspection material','extras':{'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'linearDeflectionMm':args.deflection,'sourceUnits':'mm','outputUnits':'m','license':'unknown; private review only','colorNote':'Neutral review material, not manufacturer texture/colour certification'}},'scene':0,'scenes':[{'nodes':[]}],'nodes':[],'meshes':[],'materials':[{'name':'Neutral CAD review','pbrMetallicRoughness':{'baseColorFactor':[0.42,0.48,0.57,1],'metallicFactor':0.15,'roughnessFactor':0.5},'doubleSided':True}],'buffers':[{'byteLength':0}],'bufferViews':[],'accessors':[]}
+binary=bytearray();summaries=[]
+def add(values,components,component_type,kind,target):
+ while len(binary)%4:binary.append(0)
+ start=len(binary);fmt='f' if component_type==5126 else 'I'
+ binary.extend(struct.pack('<'+fmt*len(values),*values))
+ vi=len(gltf['bufferViews']);gltf['bufferViews'].append({'buffer':0,'byteOffset':start,'byteLength':len(binary)-start,'target':target})
+ a={'bufferView':vi,'componentType':component_type,'count':len(values)//components,'type':kind}
+ if kind=='VEC3' and target==34962:
+  a['min']=[min(values[i::3]) for i in range(3)];a['max']=[max(values[i::3]) for i in range(3)]
+ ai=len(gltf['accessors']);gltf['accessors'].append(a);return ai
+for label,shape,parent in parts:
+ color=palette.get(label,palette.get('default',[.42,.48,.57,1]))
+ mat_index=len(gltf['materials']);gltf['materials'].append({'name':label+' review palette','pbrMetallicRoughness':{'baseColorFactor':color,'metallicFactor':.25,'roughnessFactor':.45},'doubleSided':True})
+ positions=[];normals=[];indices=[]
+ for face in shape.Faces:
+  pts,tris=face.tessellate(args.deflection)
+  if not pts or not tris:continue
+  pts=[parent.multVec(p) for p in pts]
+  local=[[0.0,0.0,0.0] for _ in pts]
+  for a,b,c in tris:
+   u=pts[b]-pts[a];v=pts[c]-pts[a];n=u.cross(v)
+   for idx in (a,b,c):
+    local[idx][0]+=n.x;local[idx][1]+=n.y;local[idx][2]+=n.z
+  offset=len(positions)//3
+  for p,n in zip(pts,local):
+   q=p-center;positions.extend([q.x*.001,q.z*.001,-q.y*.001])
+   length=math.sqrt(sum(v*v for v in n)) or 1
+   normals.extend([n[0]/length,n[2]/length,-n[1]/length])
+  indices.extend(offset+i for tri in tris for i in tri)
+ if not indices:raise ValueError('empty mesh '+label)
+ assert len(indices)//3<2000000
+ pa=add(positions,3,5126,'VEC3',34962);na=add(normals,3,5126,'VEC3',34962);ia=add(indices,1,5125,'SCALAR',34963)
+ mi=len(gltf['meshes']);gltf['meshes'].append({'name':label,'primitives':[{'attributes':{'POSITION':pa,'NORMAL':na},'indices':ia,'material':mat_index}]})
+ ni=len(gltf['nodes']);gltf['nodes'].append({'name':label,'mesh':mi});gltf['scenes'][0]['nodes'].append(ni)
+ summaries.append({'label':label,'sourceFaces':len(shape.Faces),'sourceSolids':len(shape.Solids),'sourceShells':len(shape.Shells),'sourceValid':True,'vertices':len(positions)//3,'triangles':len(indices)//3})
+gltf['buffers'][0]['byteLength']=len(binary)
+j=json.dumps(gltf,separators=(',',':'),ensure_ascii=False).encode();j+=b' '*((-len(j))%4)
+binary+=b'\0'*((-len(binary))%4)
+blob=struct.pack('<III',0x46546c67,2,12+8+len(j)+8+len(binary))+struct.pack('<I4s',len(j),b'JSON')+j+struct.pack('<I4s',len(binary),b'BIN\0')+binary
+out.write_bytes(blob)
+report={'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'outputSha256':hashlib.sha256(blob).hexdigest(),'outputBytes':len(blob),'unitMapping':'STEP mm -> metres, (x,y,z) -> (x,z,-y); centered','bboxSourceMm':[bb.XLength,bb.YLength,bb.ZLength],'meshes':summaries,'triangleCount':sum(x['triangles'] for x in summaries),'scope':'Valid Part::Feature face-bearing shapes including shells; source BRep unmodified, rigid placement applied to mesh vertices; hierarchy flattened for review; verify omissions/links separately. Neutral materials; source colours/textures not exported. No decimation. Tessellation is an approximation, not manufacturing certification.'}
+out.with_suffix('.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(report,ensure_ascii=False))
+App.closeDocument(doc.Name)

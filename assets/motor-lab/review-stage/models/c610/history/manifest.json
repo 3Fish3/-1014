@@ -1,0 +1,56 @@
+{
+  "status": "conversion_validated_but_visual_material_review_incomplete",
+  "source_url": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20C610.STEP",
+  "source_sha256": "f3f0b019b1440a892e0c9963297b51f09e674627407f31672aa4826cf6a9e92c",
+  "normalized_sha256": "141076b5cef36f7a2eaac23bda07478d30eeac6cf725df09823b7eff3a3c179f",
+  "normalization_only_unit_token_whitespace": true,
+  "inspection": "work/inspection.json",
+  "validator": "review/gltf_validation.json",
+  "browser": "review/browser.json",
+  "outputs": {
+    "high.glb": {
+      "sha256": "4be5cdc979b9e5ebc8aa2094ff72b6d18598a0e4e245786f8197ff4d530d1af3",
+      "bytes": 3740160
+    },
+    "web.glb": {
+      "sha256": "1125dd72e88e47dfb15da22d126ff5422ea0e873db7103b653f9037de9ecdec1",
+      "bytes": 3224232
+    }
+  },
+  "license": "unknown; local research only",
+  "material_status": "neutral grey; not completed hardware coloring",
+  "missing": [
+    "board/interface close-up",
+    "per-part material assignment",
+    "final main-agent acceptance"
+  ],
+  "main_final_review": {
+    "status": "local_static_display_candidate_checked",
+    "geometry_BIN_preserved": true,
+    "files": [
+      {
+        "device": "c610",
+        "file": "high.glb",
+        "sha256": "60763630da5598d703a7dfc65e6cd82357905e195e6c677687e5146b468fd9b0",
+        "bytes": 3740128,
+        "triangles": 103542,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "device": "c610",
+        "file": "web.glb",
+        "sha256": "e114c65eff137a2f235a9c79e10bc7c92a4054116e6e4d266ad4f91b008985c5",
+        "bytes": 3224200,
+        "triangles": 89438,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    ],
+    "body_closeup": "review/body-closeup.png",
+    "materials": "display approximation; not certified manufacturer materials",
+    "integration": "not integrated into courseware"
+  }
+}

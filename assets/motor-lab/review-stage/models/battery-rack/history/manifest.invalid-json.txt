@@ -1,0 +1,76 @@
+{
+  "task": "old-robomaster-battery-rack-compatible (motor-lab 阶段1准备)",
+  "agent": "battery-rack",
+  "date": "2026-10-17",
+  "scope": "local research/download/convert/review only; no courseware/lab/other-agent changes; no git writes; no hardware; no dependency installs",
+  "source": {
+    "officialStepUrl": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20%E7%94%B5%E6%B1%A0%E6%9E%B6.STEP",
+    "urlEncoding": "percent-encoded (RoboMaster%20%E7%94%B5%E6%B1%A0%E6%9E%B6.STEP); downloaded via local proxy 127.0.0.1:7897",
+    "productPage": "https://www.robomaster.com/zh-CN/products/components/detail/144",
+    "manualLocal": ".tmp/tb47d-research/rack/robomaster_battery_rack_v1_manual.pdf",
+    "manualVersion": "v1.2 / 2020.05",
+    "file": "source/robomaster_battery_rack.step",
+    "sha256": "da9cdaa00013a454cfebb655889e0d7facd614cb1eebf36001fdbdd8de9c91cd",
+    "bytes": 3569451,
+    "fileDescription": "STEP AP203, SolidWorks 2016, author dji-n505, 2017-12-15",
+    "productName": "RoboMaster 电池架（兼容型）",
+    "units": "mm (SI_UNIT .MILLI. .METRE. confirmed in source text)",
+    "brepSolids": 15,
+    "license": "unknown; DJI official CMS download; private research only, no public web/git redistribution"
+  },
+  "output": {
+    "webGlb": "output/web.glb",
+    "webGlbSha256": "322c6b4cc60f8951eeaf92b0f2e4110332c6b4cc60f8951...(full hash in output/web.glb.json outputSha256)",
+    "webGlbBytes": 7145400,
+    "triangleCount": 249158,
+    "converter": ".tmp/motor-lab-models/_tools/convert_step.py (read-only shared tool, single-layer flock respected)",
+    "deflectionMm": 0.12,
+    "unitsOut": "metres, centered, (x,y,z)->(x,z,-y), Y-up",
+    "palette": "work/palette.json, keys match actual GLB mesh labels (15)",
+    "paletteNote": "colors are display inference, not official colour certification: shell dark grey, contact-like thin plates gold metallic, end housings mid grey, top protruding parts near-black"
+  },
+  "partsInventory": {
+    "included": [
+      "main rack shell (mesh 014, 103.5x37.5x55.4mm source mm, 37742 tris)",
+      "top protruding pair (mesh 000/001, likely strap/buckle bosses, 35x11x14mm & 21x23x15mm)",
+      "end-face component cluster at X 78-85mm: thin plate pairs 002/003/005/006 (~5.3x25.8x3mm, contact-like), taller blocks 004/007, small pins 008/010/011/012, plate 009, large housing 013 (5.9x21.3x45.5mm, 108554 tris)"
+    ],
+    "excluded": [
+      "battery TB47D/TB47/TB48 - NOT in STEP",
+      "power switch module - NOT confirmed as separate part (013 is candidate)",
+      "power output wires / XT60 connector - NOT in STEP as separate wired part",
+      "battery info wires - NOT in STEP",
+      "velcro straps - NOT confirmed as separate parts",
+      "screws - NOT in STEP"
+    ],
+    "method": "FreeCAD enumeration (flock'd) of 15 valid Part::Feature solids with global bboxes + STEP text PRODUCT/BREP count; not inferred from directory names",
+    "xt60Location": "candidate only; XT60 female socket expected near end-face cluster per manual p.10 but no connector terminals geometry confirmed",
+    "pinout": "UNVERIFIED (no wire/connector pin geometry in source; no wire-color phase guessing)"
+  },
+  "coordinateMetadata": {
+    "note": "consistent with export mapping (x,y,z)->(x,z,-y), centered, metres",
+    "batteryInsertionAxis": "top opening; vertical insertion from +Y (up) direction of exported GLB, UNVERIFIED against physical lock mechanism",
+    "batteryEnvelopeCandidateMm": "approx 191.6 (battery is ~191.5x37x60 typical TB47 series) - rack interior fits along GLB X axis; rack outer envelope GLB: X 103.5mm, Y 37.5mm, Z 69.3mm",
+    "mountFace": "bottom face (GLB -Y) with M3 bosses, per manual p.12 install diagram; hole positions UNVERIFIED individually",
+    "xt60CandidateGlbCoords": "end-face cluster centered approx x=+0.036m, y=0, z=0 in centered GLB frame; exact socket position UNVERIFIED",
+    "stage2Caveat": "these are candidate positions from shell geometry only; XT60 wire-end connector agent must re-verify against physical/manual photos"
+  },
+  "review": {
+    "screenshots": ["review/overall.png", "review/back.png", "review/interface.png", "review/body-closeup.png"],
+    "screenshotStatus": "FAILED: playwright launch error, chromium executable missing at .tmp/browser/chrome-linux/chrome (relative path resolves against CWD; ran from agent dir)",
+    "validator": {
+      "tool": "gltf-validator 2.0.0-dev.3.10 via node",
+      "result": "PASS 0 errors, 0 warnings, 0 info",
+      "triangles": 249158,
+      "detailFile": "review/validator.json"
+    },
+    "browser": "playwright local chromium + private route; no persistent server needed",
+    "visualReviewStatus": "NOT DONE - blocked by chromium path; geometry inspected numerically instead"
+  },
+  "blockers": [
+    "Browser visual review incomplete: review.mjs expects chromium at .tmp/browser/chrome-linux/chrome relative to CWD; from agent dir it resolves to .tmp/motor-lab-power-chain/battery-rack/.tmp/browser/... which does not exist. Fix: run review.mjs from project root (cd /home/kekeyuyu/projects/hushi_ec_teach) with absolute dir arg, then re-run REVIEW_FOCUS='013' and read overall/back/interface closeups."
+    "TB47D battery model is separate agent's task; rack-only here; no placeholder battery created (per no-fake-battery rule)"
+  ],
+  "status": "geometry_complete_visual_review_blocked",
+  "collaborationNote": "For stage-2 wire-end agent: read metadataForStage2 + coordinateMetadata in this manifest; do not modify this directory."
+}

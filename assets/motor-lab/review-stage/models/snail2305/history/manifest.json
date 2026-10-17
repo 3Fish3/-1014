@@ -1,0 +1,114 @@
+{
+  "device": "Snail2305",
+  "category": "brushless_dc_motor",
+  "source": {
+    "url": "https://rm-static.djicdn.com/tem/17348/snail_2305_brushless_dc_motor.stp",
+    "filename": "snail_2305_brushless_dc_motor.stp",
+    "sha256": "aa34d09b8d49ae25517910735d58ffb22954fc1228a8cfdf10bfa287cfbc82e4",
+    "bytes": 849988,
+    "format": "STEP AP203 / CONFIG_CONTROL_DESIGN",
+    "authorTool": "CREO PARAMETRIC BY PTC INC, 2015080",
+    "sourceDate": "2019-10-16",
+    "unit": "SI_UNIT(.MILLI.,.METRE.)",
+    "license": "unknown; official DJI download for private review"
+  },
+  "coordinateMapping": {
+    "rule": "(x, y, z) -> (x, z, -y); centered, mm to m",
+    "stepX_to_glb": "GLB X",
+    "stepY_to_glb": "GLB -Z (motor rotational axis along STEP Y maps to GLB -Z)",
+    "stepZ_to_glb": "GLB Y (STEP Z maps to GLB Y; wires extend toward GLB +Y)",
+    "motorRotationalAxisSource": [0.0, 1.0, 0.0],
+    "motorRotationalAxisGlb": [0.0, 0.0, -1.0]
+  },
+  "shellAndSolidAudit": {
+    "faceBearingObjectsInSource": 3,
+    "leafSolidObjectsInSource": 3,
+    "leafShellObjectsInSource": 3,
+    "totalSourceFaces": 445,
+    "omittedShellsOrFaces": 0,
+    "auditResult": "No shell or face omissions. All 3 leaf solids/shells (445 faces) converted."
+  },
+  "geometry": {
+    "numLeafSolids": 3,
+    "leafSolidLabels": [
+      "SNAIL_2305_BRUSHLESS_DC_MOTOR_A",
+      "SNAIL_2305_BRUSHLESS_DC_MOTOR_A001",
+      "SNAIL_2305_BRUSHLESS_DC_MOTOR_A002"
+    ],
+    "assemblyCompound": "SNAIL_2305_BRUSHLESS_DC_MOTOR_A003",
+    "sourceBBoxMm": {
+      "min": [-91.676, -14.400, -15.897],
+      "max": [15.897, 13.800, 91.530],
+      "size": [107.573, 28.200, 107.427]
+    },
+    "motorCoreBBoxMm": {
+      "diameter": 29.0,
+      "height": 28.2,
+      "shaftDiameter": 2.96,
+      "shaftLength": 10.0,
+      "mountingHoleRadius": [8.0, 9.5],
+      "mountingHoles": "M3 (radius 1.5mm) on 16mm/19mm PCD"
+    },
+    "outputShaft": {
+      "axisSourceStep": [0.0, 1.0, 0.0],
+      "axisGlb": [0.0, 0.0, -1.0],
+      "centerSourceStep": [0.0, 0.0],
+      "nominalDiameterMm": 3.0,
+      "measuredDiameterMm": 2.96,
+      "measuredLengthMm": 10.0,
+      "isIndependentPart": false,
+      "separationNote": "Merged into main leaf solid in source STEP; cannot animate rotation without destructive mesh slicing."
+    }
+  },
+  "outputs": {
+    "high": {
+      "path": "output/high.glb",
+      "linearDeflectionMm": 0.035,
+      "bytes": 2012504,
+      "sha256": "b9b41f76265922c927c539b868d0772007161f06c69a46ebac5e4ecdbaa1831b",
+      "triangles": 62678,
+      "vertices": 52359,
+      "gltfValidation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    },
+    "web": {
+      "path": "output/web.glb",
+      "linearDeflectionMm": 0.12,
+      "bytes": 1986224,
+      "sha256": "1943f3155041e661e8ffe1eca410f2a50c6143a178ea9bb422ce2854cffcb9a7",
+      "triangles": 61692,
+      "vertices": 51757,
+      "gltfValidation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    }
+  },
+  "palette": {
+    "SNAIL_2305_BRUSHLESS_DC_MOTOR_A": [0.35, 0.40, 0.48, 1.0],
+    "SNAIL_2305_BRUSHLESS_DC_MOTOR_A001": [0.22, 0.25, 0.28, 1.0],
+    "SNAIL_2305_BRUSHLESS_DC_MOTOR_A002": [0.22, 0.25, 0.28, 1.0],
+    "default": [0.42, 0.48, 0.57, 1.0],
+    "note": "Neutral CAD review palette. Factory finishes/textures unknown."
+  },
+  "visualReview": {
+    "screenshots": [
+      {
+        "file": "review/render_overall.png",
+        "description": "Isometric view showing motor bell, base, and 3 long phase leads."
+      },
+      {
+        "file": "review/render_back.png",
+        "description": "Bottom view showing 4 M3 mounting holes (16mm/19mm PCD) and wire exit."
+      },
+      {
+        "file": "review/render_shaft_interface.png",
+        "description": "Top view showing 2.96mm diameter output shaft and rotor bell ventilation."
+      }
+    ]
+  }
+}

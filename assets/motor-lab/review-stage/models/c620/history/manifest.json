@@ -1,0 +1,617 @@
+{
+  "device": "c620",
+  "deviceName": "RoboMaster C620 无刷电机调速器",
+  "status": "blocked_by_shared_tool_contract",
+  "source": {
+    "url": "https://rm-static.djicdn.com/tem/17348/C620无刷电机调速器.STEP",
+    "encodedUrl": "https://rm-static.djicdn.com/tem/17348/C620%E6%97%A0%E5%88%B7%E7%94%B5%E6%9C%BA%E8%B0%83%E9%80%9F%E5%99%A8.STEP",
+    "filename": "C620无刷电机调速器.STEP",
+    "bytes": 6946526,
+    "sha256": "85f82c36fdf055fefba64880e804be95ca216b63339a31e9a3c6fde715773a4c",
+    "license": "unknown; private review only",
+    "headerStandard": "STEP AP203",
+    "units": "SI_UNIT ( .MILLI., .METRE. ) (带空格)"
+  },
+  "geometryInspection": {
+    "totalDocObjects": 73,
+    "leafPartFeatureSolids": 21,
+    "totalSolids": 21,
+    "totalFaces": 1686,
+    "envelopeMm": {
+      "xLength": 93.05,
+      "yLength": 11.522,
+      "zLength": 26.125
+    },
+    "solidsValidity": {
+      "validSolidsCount": 20,
+      "unorientableOnTransformCount": 1,
+      "problematicObject": "Part__Feature (Label '6', faces: 127)"
+    }
+  },
+  "toolchainFindings": {
+    "blocker1": "convert_step.py 第 16 行硬编码匹配 'SI_UNIT(.MILLI.,.METRE.)'（无空格），拦截了 C620 原厂文件标准的 'SI_UNIT ( .MILLI., .METRE. )' 格式",
+    "blocker2": "convert_step.py 第 24 行在 placement 变换后执行 `s.isValid()`，FreeCAD 底层 BRepCheck 对变换后几何判定为 Unorientable shape，尽管原始几何有效且可正常细分三角化（tessellate 测试输出 11424 面片），转换被终止",
+    "policyAction": "遵循只读使用统一转换工具及禁止修改源文件/禁止删除有效几何以求过测试的红线约束，按协议如实落盘阻塞分析报告，由主模型统一协同决策"
+  },
+  "artifacts": {
+    "sourceDir": ".tmp/motor-lab-models/c620/source/",
+    "workDir": ".tmp/motor-lab-models/c620/work/",
+    "outputDir": ".tmp/motor-lab-models/c620/output/",
+    "reviewDir": ".tmp/motor-lab-models/c620/review/",
+    "report": ".tmp/motor-lab-models/c620/report.md"
+  },
+  "main_review": {
+    "status": "converted_and_format_checked_not_final_appearance",
+    "objects": 28,
+    "high": {
+      "sourceSha256": "85f82c36fdf055fefba64880e804be95ca216b63339a31e9a3c6fde715773a4c",
+      "outputSha256": "777f58db48e8ecdcb8c1aaa928a6bee0240c0d24ab5be2656466556deac100e0",
+      "outputBytes": 12385396,
+      "unitMapping": "STEP mm -> metres, (x,y,z) -> (x,z,-y); centered",
+      "bboxSourceMm": [
+        345.35745031014665,
+        14.72218577025765,
+        26.12527500225708
+      ],
+      "meshes": [
+        {
+          "label": "6",
+          "sourceFaces": 127,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 11310,
+          "triangles": 11424
+        },
+        {
+          "label": "7",
+          "sourceFaces": 490,
+          "sourceSolids": 1,
+          "sourceShells": 2,
+          "sourceValid": true,
+          "vertices": 22800,
+          "triangles": 21936
+        },
+        {
+          "label": "8",
+          "sourceFaces": 633,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 31535,
+          "triangles": 35274
+        },
+        {
+          "label": "2",
+          "sourceFaces": 20,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 96,
+          "triangles": 60
+        },
+        {
+          "label": "001",
+          "sourceFaces": 29,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 156,
+          "triangles": 104
+        },
+        {
+          "label": "002",
+          "sourceFaces": 45,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 252,
+          "triangles": 168
+        },
+        {
+          "label": "003",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "004",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "005",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "006",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "007",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "008",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "009",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "010",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "5",
+          "sourceFaces": 66,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 25338,
+          "triangles": 45112
+        },
+        {
+          "label": "012",
+          "sourceFaces": 66,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 25338,
+          "triangles": 45112
+        },
+        {
+          "label": "013",
+          "sourceFaces": 66,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 25338,
+          "triangles": 45112
+        },
+        {
+          "label": "014",
+          "sourceFaces": 66,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 25338,
+          "triangles": 45112
+        },
+        {
+          "label": "14",
+          "sourceFaces": 10,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 1524,
+          "triangles": 1508
+        },
+        {
+          "label": "015",
+          "sourceFaces": 10,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 1524,
+          "triangles": 1508
+        },
+        {
+          "label": "016",
+          "sourceFaces": 10,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 1524,
+          "triangles": 1508
+        },
+        {
+          "label": "1",
+          "sourceFaces": 56,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 5780,
+          "triangles": 6392
+        },
+        {
+          "label": "017",
+          "sourceFaces": 89,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 13324,
+          "triangles": 23116
+        },
+        {
+          "label": "10",
+          "sourceFaces": 4,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 508,
+          "triangles": 500
+        },
+        {
+          "label": "019",
+          "sourceFaces": 5,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 2960,
+          "triangles": 5264
+        },
+        {
+          "label": "020",
+          "sourceFaces": 5,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 2967,
+          "triangles": 5278
+        },
+        {
+          "label": "021",
+          "sourceFaces": 1,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 35,
+          "triangles": 33
+        },
+        {
+          "label": "022",
+          "sourceFaces": 231,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 89250,
+          "triangles": 161191
+        }
+      ],
+      "triangleCount": 455808,
+      "scope": "Valid Part::Feature face-bearing shapes including shells; source BRep unmodified, rigid placement applied to mesh vertices; hierarchy flattened for review; verify omissions/links separately. Neutral materials; source colours/textures not exported. No decimation. Tessellation is an approximation, not manufacturing certification."
+    },
+    "web": {
+      "sourceSha256": "85f82c36fdf055fefba64880e804be95ca216b63339a31e9a3c6fde715773a4c",
+      "outputSha256": "cc3da5114289382239787ca710a052f825b03d6c18822b6eb6a98525c0b20211",
+      "outputBytes": 8573648,
+      "unitMapping": "STEP mm -> metres, (x,y,z) -> (x,z,-y); centered",
+      "bboxSourceMm": [
+        345.35745031014665,
+        14.72218577025765,
+        26.12527500225708
+      ],
+      "meshes": [
+        {
+          "label": "6",
+          "sourceFaces": 127,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 8142,
+          "triangles": 8256
+        },
+        {
+          "label": "7",
+          "sourceFaces": 490,
+          "sourceSolids": 1,
+          "sourceShells": 2,
+          "sourceValid": true,
+          "vertices": 19019,
+          "triangles": 18158
+        },
+        {
+          "label": "8",
+          "sourceFaces": 633,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 22138,
+          "triangles": 23144
+        },
+        {
+          "label": "2",
+          "sourceFaces": 20,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 96,
+          "triangles": 60
+        },
+        {
+          "label": "001",
+          "sourceFaces": 29,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 156,
+          "triangles": 104
+        },
+        {
+          "label": "002",
+          "sourceFaces": 45,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 252,
+          "triangles": 168
+        },
+        {
+          "label": "003",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "004",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "005",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "006",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "007",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "008",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "009",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "010",
+          "sourceFaces": 6,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 24,
+          "triangles": 12
+        },
+        {
+          "label": "5",
+          "sourceFaces": 66,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 11534,
+          "triangles": 19388
+        },
+        {
+          "label": "012",
+          "sourceFaces": 66,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 11534,
+          "triangles": 19388
+        },
+        {
+          "label": "013",
+          "sourceFaces": 66,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 11534,
+          "triangles": 19388
+        },
+        {
+          "label": "014",
+          "sourceFaces": 66,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 11534,
+          "triangles": 19388
+        },
+        {
+          "label": "14",
+          "sourceFaces": 10,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 1524,
+          "triangles": 1508
+        },
+        {
+          "label": "015",
+          "sourceFaces": 10,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 1524,
+          "triangles": 1508
+        },
+        {
+          "label": "016",
+          "sourceFaces": 10,
+          "sourceSolids": 1,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 1524,
+          "triangles": 1508
+        },
+        {
+          "label": "1",
+          "sourceFaces": 56,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 5780,
+          "triangles": 6392
+        },
+        {
+          "label": "017",
+          "sourceFaces": 89,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 13208,
+          "triangles": 22978
+        },
+        {
+          "label": "10",
+          "sourceFaces": 4,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 508,
+          "triangles": 500
+        },
+        {
+          "label": "019",
+          "sourceFaces": 5,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 2959,
+          "triangles": 5262
+        },
+        {
+          "label": "020",
+          "sourceFaces": 5,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 2965,
+          "triangles": 5274
+        },
+        {
+          "label": "021",
+          "sourceFaces": 1,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 30,
+          "triangles": 28
+        },
+        {
+          "label": "022",
+          "sourceFaces": 231,
+          "sourceSolids": 0,
+          "sourceShells": 1,
+          "sourceValid": true,
+          "vertices": 75520,
+          "triangles": 136499
+        }
+      ],
+      "triangleCount": 308995,
+      "scope": "Valid Part::Feature face-bearing shapes including shells; source BRep unmodified, rigid placement applied to mesh vertices; hierarchy flattened for review; verify omissions/links separately. Neutral materials; source colours/textures not exported. No decimation. Tessellation is an approximation, not manufacturing certification."
+    },
+    "validator": "review/main-validation.json",
+    "browser": "review/browser.json",
+    "missing": [
+      "material colors",
+      "board/interface close-up review"
+    ],
+    "supersedes": "Earlier solid-only 21-object count and blocker status; source geometry not rewritten"
+  },
+  "main_final_review": {
+    "status": "local_static_display_candidate_checked",
+    "geometry_BIN_preserved": true,
+    "files": [
+      {
+        "device": "c620",
+        "file": "high.glb",
+        "sha256": "bdff91f1cfaa7951df6cc5fe48cf2c855db3f819730c35d453aaabf0f5d3102a",
+        "bytes": 12385376,
+        "triangles": 455808,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "device": "c620",
+        "file": "web.glb",
+        "sha256": "0f8494e63a8201315c83de57ecfa012a52b85a05f5bcb06ef811a44e42e051b3",
+        "bytes": 8573632,
+        "triangles": 308995,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    ],
+    "body_closeup": "review/body-closeup.png",
+    "materials": "display approximation; not certified manufacturer materials",
+    "integration": "not integrated into courseware"
+  }
+}

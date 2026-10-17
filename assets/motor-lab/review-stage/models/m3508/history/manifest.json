@@ -1,0 +1,106 @@
+{
+  "audit_version": "1.0.0",
+  "source": {
+    "path": ".tmp/m3508-model/m3508.stp",
+    "sha256": "12e62a62c12495210feb74f1272f4d71cffed070fd91a601d646b6c2a6d57087",
+    "file_size_bytes": 4595780,
+    "format": "STEP AP203 (CONFIG_CONTROL_DESIGN)",
+    "generator": "CREO PARAMETRIC BY PTC INC, 2015080",
+    "author": "daisy.huang",
+    "timestamp": "2019-05-06T",
+    "units": "SI_UNIT(.MILLI.,.METRE.)",
+    "license": "unknown (proprietary vendor review only)"
+  },
+  "geometry_summary": {
+    "total_objects_in_step": 104,
+    "face_bearing_leaf_parts": 41,
+    "solid_parts_count": 24,
+    "shell_parts_count": 17,
+    "all_parts_valid": true,
+    "root_assembly": "WS2017_M3508_______ASM",
+    "hierarchy_levels": 3,
+    "duplicate_parent_child": false,
+    "shaft_axis_center_mm": [-1.79, 18.27],
+    "shaft_alignment_axis": "Z"
+  },
+  "dimensions_comparison": {
+    "total_length_mm": {
+      "nominal_manual_p10": "98.40±1",
+      "model_measured": 98.4000,
+      "status": "PASS"
+    },
+    "body_outer_diameter_mm": {
+      "nominal_manual_p10": "42.0",
+      "model_measured": 42.00,
+      "status": "PASS"
+    },
+    "mounting_holes_pcd_mm": {
+      "nominal_manual_p10": "35.0 (4xM4x0.7, deep 10)",
+      "model_measured": 35.00,
+      "hole_core_diameter_mm": 3.30,
+      "hole_count": 4,
+      "status": "PASS"
+    },
+    "shaft_diameter_mm": {
+      "nominal_manual_p10": "10 (-0.05 / -0.10)",
+      "model_measured": 10.00,
+      "status": "PASS"
+    },
+    "flange_step_diameter_mm": {
+      "nominal_manual_p10": "26 (-0.10 / 0)",
+      "model_measured": 26.00,
+      "status": "PASS"
+    },
+    "shaft_extension_length_mm": {
+      "nominal_manual_p10": "27.30",
+      "model_measured": 27.30,
+      "status": "PASS"
+    },
+    "shaft_center_thread_hole": {
+      "nominal_manual_p10": "M5-6H, deep 10",
+      "model_measured": "Core diam 4.20mm, present at tip Z=113.74",
+      "status": "PASS"
+    },
+    "shaft_cross_pin_hole": {
+      "nominal_manual_p10": "Present, 10mm from tip",
+      "model_measured": "Diam 2.50mm at Z=103.74 (10.00mm from tip)",
+      "status": "PASS"
+    }
+  },
+  "bounding_box_mm": {
+    "overall_with_wires": {
+      "x_len": 63.71,
+      "y_len": 140.92,
+      "z_len": 98.40
+    },
+    "motor_body_only": {
+      "x_len": 42.00,
+      "y_len": 42.01,
+      "z_len": 98.40
+    }
+  },
+  "visual_inspection": {
+    "review_glb": {
+      "path": ".tmp/motor-lab-models/m3508-audit/review.glb",
+      "sha256": "4b7b8fa2794eb6ce8c0be002a793b3828e02ed615766ddf485c7d0282016f54f",
+      "file_size_bytes": 17583620,
+      "meshes_count": 41,
+      "triangle_count": 600662
+    },
+    "screenshots": [
+      ".tmp/motor-lab-models/m3508-audit/review/overall.png",
+      ".tmp/motor-lab-models/m3508-audit/review/back.png",
+      ".tmp/motor-lab-models/m3508-audit/review/interface.png",
+      ".tmp/motor-lab-models/m3508-audit/review/shaft_closeup.png",
+      ".tmp/motor-lab-models/m3508-audit/review/shaft_front.png"
+    ]
+  },
+  "readiness": {
+    "status": "READY_WITH_PROCESSING",
+    "direct_use_as_assembly": true,
+    "independent_shaft_animation": "REQUIRES_TRANSFORM_OFFSET (Shaft is separate leaf Part::Feature label=17, but requires rotation around axis [-1.79, 18.27, Z]; gear train inside is not modeled)",
+    "internal_gear_train": "ABSENT (Outer gearbox housing and bearings are present; planetary gears/sun gear tooth geometry omitted)",
+    "wires_and_connectors": "PRESENT (3-phase wires with connector housing present; 7-pin socket receptacle present, mating 7-pin wire harness absent)",
+    "license": "unknown"
+  }
+}

@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motor Lab · 单电机系统接线与运行虚拟实验台 (离线原型)</title>
+  <link rel="stylesheet" href="./css/motor-lab.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body data-mode="normal">
+  <!-- 顶栏：导航、标题与全局工具栏 -->
+  <header class="lab-header" role="banner">
+    <div class="header-left">
+      <a href="./hero-tour.html" class="nav-link nav-back" id="nav-back-tour" title="返回第一章 · 英雄机器人结构导览">
+        ← 第一章 结构导览
+      </a>
+      <div class="header-title-wrap">
+        <span class="badge lab-badge">Motor Lab 原型</span>
+        <h1 class="header-title">单电机系统接线与运行虚拟实验台</h1>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="header-btn-group" role="toolbar" aria-label="视图与显示工具栏">
+        <button type="button" id="btn-toggle-left-panel" class="header-btn" title="折叠/展开左侧器件与接线面板" aria-expanded="true">
+          <span class="btn-icon">🔌</span>
+          <span class="btn-text">器件/接线</span>
+        </button>
+        <button type="button" id="btn-toggle-right-panel" class="header-btn" title="折叠/展开右侧控制与诊断面板" aria-expanded="true">
+          <span class="btn-icon">📊</span>
+          <span class="btn-text">控制/遥测</span>
+        </button>
+        <button type="button" id="btn-toggle-projection" class="header-btn" title="切换课堂大屏高对比投影模式" aria-pressed="false">
+          <span class="btn-icon">📽️</span>
+          <span class="btn-text">投影模式</span>
+        </button>
+        <button type="button" id="btn-reset-camera" class="header-btn" title="恢复3D场景默认全局观察视角">
+          <span class="btn-icon">🎥</span>
+          <span class="btn-text">视角复位</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="./ui-v2.html" class="nav-link nav-next" id="nav-next-lesson" title="前往第二章 · 从零制造一台能移动的机器人">
+        前往第二章 造车课 →
+      </a>
+    </div>
+  </header>
+
+  <!-- 主体三栏工作区 -->
+  <main class="lab-main" role="main">
+    <!-- 左侧栏：器件说明、图例与接线拓扑 -->
+    <aside class="lab-panel lab-panel-left" id="panel-left" aria-label="器件与接线拓扑面板">
+      <div class="panel-header">
+        <div class="panel-title-row">
+          <h2 class="panel-title">硬件拓扑与端点接线</h2>
+          <button type="button" id="btn-collapse-left" class="collapse-icon-btn" title="收起左侧栏" aria-label="收起左侧栏">◀</button>
+        </div>
+        <p class="panel-subtitle">包含电源、中心板2、C板、C620与M3508五大核心节点</p>
+      </div>
+
+      <div class="panel-scroll-content">
+        <!-- 四类接口信号图例 -->
+        <section class="section-card legend-card" aria-label="电气信号分类图例">
+          <h3 class="section-heading">电气信号规范图例</h3>
+          <div class="legend-grid">
+            <div class="legend-item power-tag">
+              <span class="legend-dot dot-power"></span>
+              <div class="legend-info">
+                <strong>功率/供电 (24V)</strong>
+                <small>XT60主供电 / XT30分路</small>
+              </div>
+            </div>
+            <div class="legend-item can-tag">
+              <span class="legend-dot dot-can"></span>
+              <div class="legend-info">
+                <strong>控制信息 (CAN)</strong>
+                <small>差分CANH/CANL，并联总线</small>
+              </div>
+            </div>
+            <div class="legend-item phases-tag">
+              <span class="legend-dot dot-phases"></span>
+              <div class="legend-info">
+                <strong>三相动力 (Motor)</strong>
+                <small>三相动力·原装同色匹配示意</small>
+              </div>
+            </div>
+            <div class="legend-item data-tag">
+              <span class="legend-dot dot-data"></span>
+              <div class="legend-info">
+                <strong>专用数据 (7-pin)</strong>
+                <small>专用电机数据，未知逐脚非通用</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 硬件器件调查与定位 -->
+        <section class="section-card devices-card" aria-label="实验器件认知">
+          <h3 class="section-heading">五大器件状态清单</h3>
+          <div class="devices-list">
+            <article class="device-item" data-device="power">
+              <div class="device-badge">电源</div>
+              <div class="device-detail">
+                <h4>TB47D电池＋兼容电池架</h4>
+                <p>电池架按官方安装说明套于电池颈部展示（名义几何检查，卡扣公差未认证）。24V仅为教学仿真假设，通过架输出端示意向分电板供电。</p>
+                <div class="device-status-tag">真实源模型 · 候选取电位置 · 机械装配未认证</div>
+              </div>
+            </article>
+
+            <article class="device-item" data-device="center-board">
+              <div class="device-badge">分电</div>
+              <div class="device-detail">
+                <h4>电调中心板 2 (Center Board 2)</h4>
+                <p>XT60输入并联7路XT30，8路CAN并联接口。非CAN交换机。</p>
+                <div class="device-status-tag">调研状态：官方STP已确认 · 待CAD分发授权</div>
+              </div>
+            </article>
+
+            <article class="device-item" data-device="controller">
+              <div class="device-badge">主控</div>
+              <div class="device-detail">
+                <h4>RoboMaster C型开发板</h4>
+                <p>STM32主控核心，XT30供电，CAN1(2-pin)/CAN2(4-pin)通信。</p>
+                <div class="device-status-tag">官方STEP派生外形 · 白色接口与丝印 · 逐针连接未认证</div>
+              </div>
+            </article>
+
+            <article class="device-item" data-device="esc">
+              <div class="device-badge">电调</div>
+              <div class="device-detail">
+                <h4>RoboMaster C620 无刷电调</h4>
+                <p>24V供电，CAN控制接收，7-pin数据口与三相动力输出。</p>
+                <div class="device-status-tag">官方STEP派生外形 · 原长线局部隐藏，改用互动示意线</div>
+              </div>
+            </article>
+
+            <article class="device-item" data-device="motor">
+              <div class="device-badge">电机</div>
+              <div class="device-detail">
+                <h4>RoboMaster M3508 直流无刷电机</h4>
+                <p>额定减速比 3591/187 (约19.2:1)，界面转速由教学SIM计算，不是硬件测量。</p>
+                <div class="device-status-tag">本地独立STEP派生 · 机身不冒充转轴动画</div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 接线链路操作与列表 -->
+        <section class="section-card wiring-card" aria-label="7条标准链路接线控制">
+          <div class="wiring-header">
+            <h3 class="section-heading">电气接线管理 (7条标准链路)</h3>
+            <div class="wiring-actions">
+              <button type="button" id="btn-auto-connect" class="action-btn btn-sm btn-primary" title="一键建立全部7条标准电气链路">
+                一键自动接线
+              </button>
+              <button type="button" id="btn-disconnect-all" class="action-btn btn-sm btn-secondary" title="断开所有已连接线路">
+                全部断开
+              </button>
+            </div>
+          </div>
+
+          <div class="connection-tip-box" id="connection-tip-box">
+            <span class="tip-icon">💡</span>
+            <span class="tip-text">拖动彩色端口到匹配端口并松手即可接线；也可依次点击两端，或用下方列表连接/断开。</span>
+          </div>
+
+          <div class="links-list" id="links-list" role="list">
+            <!-- 7条标准链路项由JS根据LINKS状态动态渲染或更新 -->
+            <div class="link-row" data-link-id="supply-center">
+              <div class="link-meta">
+                <span class="link-type-badge type-power">功率</span>
+                <span class="link-name">电源 ➔ 中心板2 XT60</span>
+              </div>
+              <span class="link-status" id="status-supply-center">未连接</span>
+              <button type="button" class="btn-link-action" data-action="toggle" data-target="supply-center">连接</button>
+            </div>
+
+            <div class="link-row" data-link-id="center-controller">
+              <div class="link-meta">
+                <span class="link-type-badge type-power">功率</span>
+                <span class="link-name">中心板2 ➔ C板 XT30输入</span>
+              </div>
+              <span class="link-status" id="status-center-controller">未连接</span>
+              <button type="button" class="btn-link-action" data-action="toggle" data-target="center-controller">连接</button>
+            </div>
+
+            <div class="link-row" data-link-id="center-esc">
+              <div class="link-meta">
+                <span class="link-type-badge type-power">功率</span>
+                <span class="link-name">中心板2 ➔ C620 电源线</span>
+              </div>
+              <span class="link-status" id="status-center-esc">未连接</span>
+              <button type="button" class="btn-link-action" data-action="toggle" data-target="center-esc">连接</button>
+            </div>
+
+            <div class="link-row" data-link-id="controller-can">
+              <div class="link-meta">
+                <span class="link-type-badge type-can">CAN</span>
+                <span class="link-name">C板 CAN1 ➔ 中心板2 CAN</span>
+              </div>
+              <span class="link-status" id="status-controller-can">未连接</span>
+              <button type="button" class="btn-link-action" data-action="toggle" data-target="controller-can">连接</button>
+            </div>
+
+            <div class="link-row" data-link-id="esc-can">
+              <div class="link-meta">
+                <span class="link-type-badge type-can">CAN</span>
+                <span class="link-name">中心板2 CAN ➔ C620 CAN</span>
+              </div>
+              <span class="link-status" id="status-esc-can">未连接</span>
+              <button type="button" class="btn-link-action" data-action="toggle" data-target="esc-can">连接</button>
+            </div>
+
+            <div class="link-row" data-link-id="esc-phases">
+              <div class="link-meta">
+                <span class="link-type-badge type-phases">三相</span>
+                <span class="link-name">C620 三相 ➔ M3508 三相口</span>
+              </div>
+              <span class="link-status" id="status-esc-phases">未连接</span>
+              <button type="button" class="btn-link-action" data-action="toggle" data-target="esc-phases">连接</button>
+            </div>
+
+            <div class="link-row" data-link-id="esc-data">
+              <div class="link-meta">
+                <span class="link-type-badge type-data">数据</span>
+                <span class="link-name">C620 7-pin ➔ M3508 7-pin</span>
+              </div>
+              <span class="link-status" id="status-esc-data">未连接</span>
+              <button type="button" class="btn-link-action" data-action="toggle" data-target="esc-data">连接</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <!-- 中间 3D 实验台展示区 -->
+    <section class="lab-stage" id="lab-stage" aria-label="3D虚拟实验台交互区">
+      <!-- 醒目教学近似免责横幅 -->
+      <div class="disclaimer-banner" role="note">
+        <span class="disclaimer-badge">教学规范声明</span>
+        <span class="disclaimer-text">
+          源STEP真实外形 · 线头／彩色端点为功能示意，逐针未核实 · 仅本地研究预览
+        </span>
+      </div>
+
+      <!-- 3D 渲染容器 -->
+      <div id="motor-lab-canvas" class="canvas-viewport" aria-label="3D单电机接线实验场景"></div>
+
+      <!-- 交互提示悬浮卡片 -->
+      <div class="stage-overlay-hud" aria-live="polite">
+        <div class="port-prompt-card" id="port-prompt-card">
+          <span class="prompt-icon">🎯</span>
+          <span class="prompt-text" id="port-prompt-text">拖动彩色端口到另一端松手接线；空白处拖动可旋转视角</span>
+        </div>
+
+        <div class="quick-view-controls" aria-label="快速观察视角选择">
+          <button type="button" class="view-btn" data-view="overview" title="全局工作台俯瞰">全局</button>
+          <button type="button" class="view-btn" data-view="motor" title="聚焦M3508电机与输出轴">电机</button>
+          <button type="button" class="view-btn" data-view="esc" title="聚焦C620电调与中心板">电调</button>
+          <button type="button" class="view-btn" data-view="controller" title="聚焦C型开发板">主控</button>
+          <button type="button" class="view-btn" data-view="supply" title="聚焦TB47D电池">电池</button>
+          <button type="button" class="view-btn" data-view="center" title="聚焦电调中心板2">分电</button>
+        </div>
+      </div>
+
+      <!-- WebGL 初始化失败回退提示 -->
+      <div id="webgl-fallback" class="webgl-fallback" style="display: none;" role="alert">
+        <div class="fallback-card">
+          <h3>⚠️ 3D 渲染器初始化失败</h3>
+          <p>当前浏览器环境未能成功创建 WebGL 上下文，请确认硬件加速已开启，或尝试使用现代 Chromium / Firefox 浏览器。</p>
+          <p>您仍可通过右侧面板与左侧面板进行仿真逻辑状态验证与代码测试。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右侧栏：步骤引导、运行控制、代码交互、遥测与诊断 -->
+    <aside class="lab-panel lab-panel-right" id="panel-right" aria-label="控制与遥测诊断面板">
+      <div class="panel-header">
+        <div class="panel-title-row">
+          <h2 class="panel-title">运行控制与遥测诊断</h2>
+          <button type="button" id="btn-collapse-right" class="collapse-icon-btn" title="收起右侧栏" aria-label="收起右侧栏">▶</button>
+        </div>
+        <p class="panel-subtitle">支持交互式教学引导、指令控制与故障模拟闭环</p>
+      </div>
+
+      <div class="panel-scroll-content">
+        <!-- 6-7分钟教学引导步骤卡片 -->
+        <section class="section-card walkthrough-card" id="walkthrough-section" aria-label="课程实验步骤引导">
+          <div class="walkthrough-header">
+            <div class="step-indicator">
+              <span class="step-badge" id="walkthrough-step-badge">步骤 1 / 6</span>
+              <h3 class="walkthrough-title" id="walkthrough-step-title">认识五大核心器件与拓扑</h3>
+            </div>
+            <button type="button" id="btn-skip-walkthrough" class="btn-text-link" title="跳过引导自由实验">自由模式</button>
+          </div>
+
+          <p class="walkthrough-desc" id="walkthrough-step-desc">
+            在电控系统中，不能直接将电池接入电机。请在3D舞台中观察电源、中心板2、主控板、电调与电机的物理布局。
+          </p>
+
+          <div class="walkthrough-nav">
+            <button type="button" id="btn-walkthrough-prev" class="action-btn btn-sm" disabled>上一步</button>
+            <button type="button" id="btn-walkthrough-next" class="action-btn btn-sm btn-primary">下一步</button>
+          </div>
+        </section>
+
+        <!-- 运行主控制台 -->
+        <section class="section-card control-card" aria-label="运行控制台">
+          <h3 class="section-heading">系统电源与电机运行控制</h3>
+
+          <div class="control-grid">
+            <!-- 电源开关 -->
+            <button type="button" id="btn-toggle-power" class="toggle-btn btn-power-off" aria-pressed="false">
+              <span class="toggle-icon">⚡</span>
+              <span class="toggle-label" id="power-btn-label">24V电源：关</span>
+            </button>
+
+            <!-- 运行/暂停开关 -->
+            <button type="button" id="btn-toggle-run" class="toggle-btn btn-run-off" aria-pressed="false" disabled>
+              <span class="toggle-icon">▶</span>
+              <span class="toggle-label" id="run-btn-label">电机控制：停机</span>
+            </button>
+
+            <!-- 单步步进 -->
+            <button type="button" id="btn-step" class="action-btn btn-secondary" title="单步模拟前进 0.05 秒">
+              单步步进 (0.05s)
+            </button>
+
+            <!-- 暂停/继续时间模拟推进 -->
+            <button type="button" id="btn-toggle-pause" class="action-btn" title="暂停/继续物理仿真时间自动推进">
+              <span id="pause-btn-label">暂停模拟</span>
+            </button>
+
+            <!-- 重置系统 -->
+            <button type="button" id="btn-reset" class="action-btn btn-danger" title="重置全部接线与仿真状态">
+              系统重置
+            </button>
+          </div>
+
+          <!-- 目标转速设置 -->
+          <div class="rpm-control-block">
+            <div class="rpm-label-row">
+              <label for="input-target-rpm-range">目标转速设定 (RPM):</label>
+              <div class="rpm-input-wrap">
+                <input type="number" id="input-target-rpm" min="-3000" max="3000" step="50" value="0">
+                <span class="rpm-unit">RPM</span>
+              </div>
+            </div>
+            <input type="range" id="input-target-rpm-range" min="-3000" max="3000" step="50" value="0">
+            <div class="rpm-quick-buttons">
+              <button type="button" class="btn-quick-rpm" data-rpm="0">0</button>
+              <button type="button" class="btn-quick-rpm" data-rpm="1000">+1000</button>
+              <button type="button" class="btn-quick-rpm" data-rpm="2500">+2500</button>
+              <button type="button" class="btn-quick-rpm" data-rpm="-1500">-1500</button>
+            </div>
+          </div>
+
+          <!-- 设备 ID 与指令 ID 配置 -->
+          <div class="id-config-row">
+            <div class="id-item">
+              <label for="select-motor-id">电调硬件 ID:</label>
+              <select id="select-motor-id">
+                <option value="1" selected>ID 1 (默认)</option>
+                <option value="2">ID 2</option>
+                <option value="3">ID 3</option>
+                <option value="4">ID 4</option>
+              </select>
+            </div>
+            <div class="id-item">
+              <label for="select-command-id">控制指令 ID:</label>
+              <select id="select-command-id">
+                <option value="1" selected>ID 1 (默认)</option>
+                <option value="2">ID 2</option>
+                <option value="3">ID 3</option>
+                <option value="4">ID 4</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 故障注入与排障模拟 -->
+          <div class="fault-injection-block">
+            <div class="fault-label-row">
+              <label for="select-fault">故障注入演练:</label>
+              <button type="button" id="btn-clear-fault" class="btn-text-sm">清除故障</button>
+            </div>
+            <select id="select-fault">
+              <option value="none" selected>正常无故障 (none)</option>
+              <option value="can">CAN总线断开故障 (can)</option>
+              <option value="power">供电电压跌落故障 (power)</option>
+              <option value="data">7-pin编码器数据断开 (data)</option>
+              <option value="phases">三相动力缺相故障 (phases)</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- 代码控制台 (SIM API 白名单，不执行 eval) -->
+        <section class="section-card code-card" aria-label="教学代码控制台">
+          <div class="code-card-header">
+            <h3 class="section-heading">固件代码指令输入</h3>
+            <span class="code-safety-tag">严格安全白名单 · 无eval</span>
+          </div>
+
+          <p class="code-rules-note">
+            仅支持语法：<code>set_target_rpm(1, ±RPM);</code>、<code>start_motor(1);</code>、<code>stop_motor(1);</code>
+          </p>
+
+          <textarea id="code-editor" class="code-editor" rows="3" spellcheck="false" placeholder="set_target_rpm(1, 1500);&#10;start_motor(1);"></textarea>
+
+          <div class="code-actions-row">
+            <button type="button" id="btn-run-code" class="action-btn btn-sm btn-primary">执行指令</button>
+            <div class="code-snippets">
+              <button type="button" class="btn-snippet" data-code="set_target_rpm(1, 1200); start_motor(1);">启转 1200</button>
+              <button type="button" class="btn-snippet" data-code="set_target_rpm(1, -1800); start_motor(1);">反转 -1800</button>
+              <button type="button" class="btn-snippet" data-code="stop_motor(1);">停止电机</button>
+            </div>
+          </div>
+
+          <div id="code-feedback" class="code-feedback" aria-live="polite"></div>
+        </section>
+
+        <!-- 实时遥测仪表盘 -->
+        <section class="section-card telemetry-card" aria-label="电机实时遥测">
+          <h3 class="section-heading">电机运行实时遥测</h3>
+
+          <div class="telemetry-grid">
+            <div class="telemetry-metric">
+              <div class="metric-title">转子机械转速 (Rotor)</div>
+              <div class="metric-value-wrap">
+                <span class="metric-num" id="telemetry-rotor-rpm">0.0</span>
+                <span class="metric-unit">RPM</span>
+              </div>
+              <small class="metric-sub">仿真一阶阻尼转速</small>
+            </div>
+
+            <div class="telemetry-metric">
+              <div class="metric-title">减速输出轴转速 (Shaft)</div>
+              <div class="metric-value-wrap">
+                <span class="metric-num" id="telemetry-shaft-rpm">0.0</span>
+                <span class="metric-unit">RPM</span>
+              </div>
+              <small class="metric-sub">额定减速比 3591/187</small>
+            </div>
+
+            <div class="telemetry-metric">
+              <div class="metric-title">转矩电流</div>
+              <div class="metric-value-wrap">
+                <span class="metric-num-na" id="telemetry-current">未建模/无硬件采样</span>
+              </div>
+              <small class="metric-sub">离线不估算电流</small>
+            </div>
+
+            <div class="telemetry-metric">
+              <div class="metric-title">电机温度</div>
+              <div class="metric-value-wrap">
+                <span class="metric-num-na" id="telemetry-temp">未建模/无硬件采样</span>
+              </div>
+              <small class="metric-sub">无物理热敏采样</small>
+            </div>
+          </div>
+
+          <div class="sim-disclaimer-tag">
+            【离线简化仿真】一阶阻尼响应，非物理硬件高频闭环采样
+          </div>
+        </section>
+
+        <!-- CAN 通信协议报文示例观察 (C620 规范帧) -->
+        <section class="section-card can-frame-card" aria-label="CAN总线报文监视">
+          <div class="card-title-row">
+            <h3 class="section-heading">C620 CAN 总线报文监视 (离线教学算例)</h3>
+            <span class="frame-tag">标准数据帧 DLC=8</span>
+          </div>
+
+          <div class="can-frame-box">
+            <div class="frame-row">
+              <span class="frame-type">TX 控制帧</span>
+              <span class="frame-id" id="frame-tx-id">ID: 0x200</span>
+              <span class="frame-data" id="frame-tx-data">03 E8 00 00 00 00 00 00</span>
+            </div>
+            <div class="frame-row">
+              <span class="frame-type">RX 反馈帧</span>
+              <span class="frame-id" id="frame-rx-id">ID: 0x201</span>
+              <span class="frame-data" id="frame-rx-data">10 00 FF C4 00 64 19 00</span>
+            </div>
+          </div>
+
+          <p class="frame-note" id="frame-note">
+            【离线教学算例】展示固定规范编码（TX: raw=1000电流槽1，RX: 4096角度/-60RPM/100raw/25℃静态示例），仅作协议格式演示，不参与SIM物理计算，严禁把RPM当raw直接写入真实报文。
+          </p>
+        </section>
+
+        <!-- 阻塞诊断输出面板 -->
+        <section class="section-card diagnostics-card" aria-label="系统运行诊断">
+          <div class="diagnostics-header">
+            <h3 class="section-heading">运行条件诊断与故障告警</h3>
+            <span class="diag-status-dot dot-idle" id="diag-status-dot"></span>
+          </div>
+
+          <div class="diagnostics-box">
+            <ul class="diagnostics-list" id="diagnostics-list">
+              <li class="diag-item diag-warn">主电源未开启 (系统处于断电状态)</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </aside>
+  </main>
+
+  <!-- 底部精简状态栏 -->
+  <footer class="lab-footer" role="contentinfo">
+    <div class="footer-left">
+      <span class="status-indicator-dot" id="footer-dot"></span>
+      <span class="footer-status-text" id="footer-status-text">系统准备就绪 · 离线虚拟仿真环境</span>
+    </div>
+    <div class="footer-right">
+      <span class="footer-tag">Motor Lab 独立虚拟原型 v0.1.0</span>
+      <span class="footer-divider">|</span>
+      <span>Three.js WebGL (本地单管线)</span>
+    </div>
+  </footer>
+
+  <!-- 页面入口脚本 -->
+  <script type="module" src="./js/motor-lab/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "main_review": {
+    "status": "网页静态候选已生成；尚缺high和接口近景",
+    "notes": "主模型实际看整体图，82网格包含USB座/板体元件；未核具体逻辑电平/针序，不作为已选适配器。",
+    "sources": [
+      {
+        "file": "source/USB-UART CH340 converter board 3D.step",
+        "bytes": 2309612,
+        "sha256": "5598221710c7e1fbd13c70d5bbaae0c6bbfa8b8a802bd5c34cc962e8f3aaadb1"
+      }
+    ],
+    "outputs": [
+      {
+        "file": "web.glb",
+        "bytes": 3949660,
+        "sha256": "8fd7f65a28b5be4442371de10e54d079e202b37e3ebd2bf871985537aa1394a1",
+        "meshes": 82,
+        "colors": 10,
+        "triangles": 131620,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    ],
+    "license": "本阶段未核公开分发条件；USB-UART已知TAPR OHL1.0文本另审范围"
+  }
+}

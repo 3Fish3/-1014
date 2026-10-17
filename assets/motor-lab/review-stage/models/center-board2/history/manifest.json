@@ -1,0 +1,53 @@
+{
+  "device": "RM_ESC_Center_Board2",
+  "deviceNameCn": "电调中心板2",
+  "source": {
+    "url": "https://rm-static.djicdn.com/tem/17348/RM_ESC_Center_Board2.stp",
+    "filename": "RM_ESC_Center_Board2.stp",
+    "sha256": "652f318dd2ca9649d69dec1716d8c1bb7f947278e78351d25a0a9b2701673c38",
+    "sizeBytes": 3821051,
+    "versionLicense": "unknown; official DJI download, private local review only",
+    "confirmedUnits": "SI_UNIT(.MILLI.,.METRE.)",
+    "totalDocObjects": 181,
+    "leafPartFeatures": 37,
+    "pureShellPartFeatures": 0,
+    "totalLeafSolids": 37,
+    "totalLeafFaces": 4970,
+    "sourceBboxMm": [41.0, 14.1, 48.505]
+  },
+  "palette": {
+    "file": "work/palette.json",
+    "entryCount": 38,
+    "basis": "Exact STEP label matching. SHELL_UP/DOWN: black PC/ABS enclosure; CENTER_DISTRIBUTION_BOARD: dark green FR4 PCB substrate; XT60/XT30 nylon: Amass yellow nylon; XT60/MR30 contact pins: gold-plated brass; JST GH series: natural ivory/off-white plastic; default: neutral technical CAD grey-blue"
+  },
+  "outputs": {
+    "high": {
+      "path": "output/high.glb",
+      "deflectionMm": 0.035,
+      "sizeBytes": 12039488,
+      "sha256": "0c9e2f4d766ccfb1564805b298ca25fc1edc78114712e7c4474ee33c10c631f7",
+      "meshes": 37,
+      "triangles": 362700,
+      "gltfValidator": { "errors": 0, "warnings": 0 }
+    },
+    "web": {
+      "path": "output/web.glb",
+      "deflectionMm": 0.12,
+      "sizeBytes": 10637312,
+      "sha256": "a0195cbbd73017d05051a4fb21d9da17acbd8612ce7592d28650eaf4ff34dddd",
+      "meshes": 37,
+      "triangles": 318002,
+      "runtimeBboxM": [0.041, 0.048505, 0.0141],
+      "gltfValidator": { "errors": 0, "warnings": 0 }
+    }
+  },
+  "review": {
+    "screenshots": [
+      "review/overall.png",
+      "review/back.png",
+      "review/interface.png"
+    ],
+    "browserValidation": "review/browser.json",
+    "gltfValidation": "review/gltf-validation.json"
+  }
+}

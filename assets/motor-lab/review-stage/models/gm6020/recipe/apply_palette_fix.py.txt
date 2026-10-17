@@ -1,0 +1,112 @@
+import struct, json, hashlib, shutil
+from pathlib import Path
+
+base_dir = Path(".tmp/motor-lab-models/gm6020")
+output_dir = base_dir / "output"
+backup_dir = base_dir / "work/backup_before_palette_fix"
+backup_dir.mkdir(parents=True, exist_ok=True)
+
+# 14-part display presumptive palette based on parts_detail analysis:
+# Index corresponds directly to the 14 meshes (mesh 0: Part 0, mesh 1: Part 1 ... mesh 13: Part 13)
+PART_COLORS = [
+    # 0: Part__Feature (Rotor top flange with M3 holes)
+    [0.18, 0.19, 0.22, 1.0],
+    # 1: Part__Feature001 (Center hollow shaft sleeve)
+    [0.75, 0.76, 0.80, 1.0],
+    # 2: Part__Feature002 (Outer rotor cylinder body A)
+    [0.22, 0.23, 0.26, 1.0],
+    # 3: Part__Feature003 (Locating pin / small hardware)
+    [0.50, 0.52, 0.55, 1.0],
+    # 4: Part__Feature004 (Connector housing A, presumptive GH1.25/JST off-white nylon)
+    [0.88, 0.88, 0.90, 1.0],
+    # 5: Part__Feature005 (Connector terminal pins A, presumptive brass/gold contacts)
+    [0.85, 0.70, 0.25, 1.0],
+    # 6: Part__Feature006 (Connector internal bracket / PCB)
+    [0.30, 0.32, 0.35, 1.0],
+    # 7: Part__Feature007 (Shim / gasket)
+    [0.50, 0.52, 0.55, 1.0],
+    # 8: Part__Feature008 (Connector housing B, presumptive off-white nylon)
+    [0.88, 0.88, 0.90, 1.0],
+    # 9: Part__Feature009 (Connector terminal pins B, presumptive brass/gold contacts)
+    [0.85, 0.70, 0.25, 1.0],
+    # 10: Part__Feature010 (Connector metal latch/shield A)
+    [0.60, 0.62, 0.66, 1.0],
+    # 11: Part__Feature011 (Connector metal latch/shield B)
+    [0.60, 0.62, 0.66, 1.0],
+    # 12: Part__Feature012 (Outer rotor cylinder body B - source duplicate of 002)
+    [0.22, 0.23, 0.26, 1.0],
+    # 13: Part__Feature013 (Stator base housing)
+    [0.16, 0.17, 0.20, 1.0]
+]
+
+def fix_glb_materials(glb_path: Path):
+    raw = glb_path.read_bytes()
+    magic, version, length = struct.unpack('<III', raw[:12])
+    assert magic == 0x46546c67, "Not a GLB"
+    assert version == 2, "Not GLTF 2.0"
+    
+    # Read chunk 0 (JSON)
+    json_len, chunk_type = struct.unpack('<II', raw[12:20])
+    assert chunk_type == 0x4e4f534a, "Chunk 0 is not JSON"
+    json_bytes = raw[20:20 + json_len]
+    gltf = json.loads(json_bytes.decode('utf-8'))
+    
+    # Read chunk 1 (BIN)
+    bin_header_offset = 20 + json_len
+    bin_len, bin_type = struct.unpack('<II', raw[bin_header_offset:bin_header_offset + 8])
+    assert bin_type == 0x004e4942, "Chunk 1 is not BIN"
+    bin_bytes = raw[bin_header_offset + 8:bin_header_offset + 8 + bin_len]
+    
+    bin_sha_before = hashlib.sha256(bin_bytes).hexdigest()
+    file_sha_before = hashlib.sha256(raw).hexdigest()
+    
+    # Backup original file
+    backup_file = backup_dir / glb_path.name
+    shutil.copy2(glb_path, backup_file)
+    print(f"Backed up {glb_path.name} to {backup_file}")
+    
+    print(f"[{glb_path.name}] Meshes: {len(gltf['meshes'])}, Materials: {len(gltf['materials'])}")
+    
+    # Update materials
+    # Material index 0 is 'Neutral CAD review'.
+    # Materials 1 to 14 correspond to the 14 meshes (mesh primitives reference material index i + 1)
+    for i, mesh in enumerate(gltf['meshes']):
+        mat_idx = mesh['primitives'][0]['material']
+        color = PART_COLORS[i]
+        gltf['materials'][mat_idx]['pbrMetallicRoughness']['baseColorFactor'] = color
+        print(f"  Mesh {i} ('{mesh['name']}') -> Material {mat_idx} color set to {color}")
+        
+    # Serialize JSON with 4-byte alignment padding
+    new_json_bytes = json.dumps(gltf, separators=(',', ':'), ensure_ascii=False).encode('utf-8')
+    pad_len = (-len(new_json_bytes)) % 4
+    new_json_bytes += b' ' * pad_len
+    
+    # Reassemble GLB
+    total_len = 12 + 8 + len(new_json_bytes) + 8 + len(bin_bytes)
+    new_header = struct.pack('<III', 0x46546c67, 2, total_len)
+    new_json_header = struct.pack('<II', len(new_json_bytes), 0x4e4f534a)
+    new_bin_header = struct.pack('<II', len(bin_bytes), 0x004e4942)
+    
+    new_raw = new_header + new_json_header + new_json_bytes + new_bin_header + bin_bytes
+    glb_path.write_bytes(new_raw)
+    
+    bin_sha_after = hashlib.sha256(bin_bytes).hexdigest()
+    file_sha_after = hashlib.sha256(new_raw).hexdigest()
+    
+    assert bin_sha_before == bin_sha_after, "FATAL: BIN chunk modified!"
+    print(f"[{glb_path.name}] Updated successfully:")
+    print(f"  File SHA256 before: {file_sha_before}")
+    print(f"  File SHA256 after:  {file_sha_after}")
+    print(f"  BIN SHA256 (identical): {bin_sha_after}")
+    
+    # Also update companion .json metadata
+    meta_path = glb_path.with_suffix('.json')
+    if meta_path.exists():
+        meta = json.loads(meta_path.read_text())
+        meta['outputSha256'] = file_sha_after
+        meta['outputBytes'] = len(new_raw)
+        meta['colorNote'] = "Presumptive display palette applied (dark anodized aluminum body, stainless core, off-white connector shells, brass contact pins). Not manufacturer color certification."
+        meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + '\n')
+
+fix_glb_materials(output_dir / "high.glb")
+fix_glb_materials(output_dir / "web.glb")

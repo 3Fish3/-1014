@@ -1,0 +1,154 @@
+{
+  "id": "rocker_switch_standard_envelope",
+  "name": "rocker switch standard envelope",
+  "source": {
+    "apiUrl": "https://api.step.parts/v1/parts/rocker_switch_standard_envelope",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/rocker_switch_standard_envelope.step",
+    "sha256": "90742b6fddcdd6ac24311b56b646f57fec72a51c18103e19bc79692e31cfde88",
+    "bytes": 23234,
+    "license": "unknown; private review only (step.parts catalog entry, no explicit open license text in file/API; strictly for private review)",
+    "unitsConfirmed": "mm (SI_UNIT .MILLI. .METRE.)"
+  },
+  "geometry": {
+    "sourceObjectsCount": 11,
+    "featureParts": [
+      {
+        "label": "body_00",
+        "typeId": "Part::Feature",
+        "faces": 6,
+        "solids": 1,
+        "shells": 1,
+        "valid": true,
+        "bboxMm": [
+          6.0,
+          6.0,
+          3.0
+        ],
+        "zRangeMm": [
+          -1.5,
+          1.5
+        ],
+        "role": "switch base/housing mounting envelope"
+      },
+      {
+        "label": "body_01",
+        "typeId": "Part::Feature",
+        "faces": 3,
+        "solids": 1,
+        "shells": 1,
+        "valid": true,
+        "bboxMm": [
+          2.1,
+          2.1,
+          4.0
+        ],
+        "zRangeMm": [
+          3.0,
+          7.0
+        ],
+        "role": "switch actuator/shaft envelope"
+      }
+    ],
+    "totalBboxMm": [
+      6.0,
+      6.0,
+      8.5
+    ]
+  },
+  "palette": {
+    "body_00": [
+      0.2,
+      0.22,
+      0.25,
+      1.0
+    ],
+    "body_01": [
+      0.82,
+      0.26,
+      0.22,
+      1.0
+    ],
+    "note": "Palette is for CAD visual review segregation only, not chemical or electrical certification."
+  },
+  "outputs": {
+    "webGlb": {
+      "path": "output/web.glb",
+      "sha256": "5f9e35c0f5e928f6bb5cbea1d776f9b0c6e239c5121980a2e5fb44a2f0200bad",
+      "bytes": 21192,
+      "deflection": 0.12,
+      "triangles": 512,
+      "vertices": 528,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    },
+    "highGlb": {
+      "path": "output/high.glb",
+      "sha256": "a78fd17b35ef515034c232b7c71fbd89863d0ffa474393fa9d689f9864704ecb",
+      "bytes": 21192,
+      "deflection": 0.035,
+      "triangles": 512,
+      "vertices": 528,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    }
+  },
+  "review": {
+    "browser": {
+      "bboxM": [
+        0.006,
+        0.0085,
+        0.006
+      ],
+      "meshes": 2,
+      "errors": []
+    },
+    "screenshots": [
+      "review/overall.png",
+      "review/back.png",
+      "review/interface.png",
+      "review/body-closeup.png"
+    ]
+  },
+  "main_review": {
+    "status": "外形审查不通过：不可作为船型开关真实模型",
+    "notes": "主模型看图为方块底座+红柱，不具船型摇板特征。目录名不能代替几何认证；只保留通用占位体，禁止接入高保真图库。",
+    "sources": [
+      {
+        "file": "source/rocker_switch_standard_envelope.step",
+        "bytes": 23234,
+        "sha256": "90742b6fddcdd6ac24311b56b646f57fec72a51c18103e19bc79692e31cfde88"
+      }
+    ],
+    "outputs": [
+      {
+        "file": "web.glb",
+        "bytes": 21192,
+        "sha256": "5f9e35c0f5e928f6bb5cbea1d776f9b0c6e239c5121980a2e5fb44a2f0200bad",
+        "meshes": 2,
+        "colors": 2,
+        "triangles": 512,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "file": "high.glb",
+        "bytes": 21192,
+        "sha256": "a78fd17b35ef515034c232b7c71fbd89863d0ffa474393fa9d689f9864704ecb",
+        "meshes": 2,
+        "colors": 2,
+        "triangles": 512,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    ],
+    "license": "本阶段未核公开分发条件；USB-UART已知TAPR OHL1.0文本另审范围"
+  }
+}

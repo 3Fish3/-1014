@@ -1,0 +1,705 @@
+{
+  "createdUtc": "2026-10-17T07:58:57.115828+00:00",
+  "baseCommit": "13f45c4",
+  "reviewBranch": "review/motor-lab-wiring-20261017",
+  "models": [
+    {
+      "id": "c-board",
+      "status": "active_lab_display",
+      "sourceReference": "https://rm-static.djicdn.com/tem/35228/mounting_the_board_type_c_asm(202001072134).stp",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/c-board/source.step",
+          "bytes": 10843660,
+          "sha256": "237365773a6114ee14a64a92992df8e462d2b4e9e20b708dd40054d7efd74bae"
+        },
+        {
+          "path": "assets/motor-lab/c-board/c-board-official-white-silver.glb",
+          "bytes": 22414380,
+          "sha256": "7cb3c5132ba26a4cd2c72d9b2e4987783c89049d3a6cce3672e8fbe9b0ddb777"
+        }
+      ]
+    },
+    {
+      "id": "center-board2",
+      "status": "active_lab_display",
+      "sourceReference": "https://rm-static.djicdn.com/tem/17348/RM_ESC_Center_Board2.stp",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/center-board2/source.step",
+          "bytes": 3821051,
+          "sha256": "652f318dd2ca9649d69dec1716d8c1bb7f947278e78351d25a0a9b2701673c38"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/center-board2/web.glb",
+          "bytes": 10637312,
+          "sha256": "a0195cbbd73017d05051a4fb21d9da17acbd8612ce7592d28650eaf4ff34dddd"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/center-board2/high.glb",
+          "bytes": 12039488,
+          "sha256": "0c9e2f4d766ccfb1564805b298ca25fc1edc78114712e7c4474ee33c10c631f7"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/center-board2/history/report.md",
+          "bytes": 7797,
+          "sha256": "c736c425d85d523783d39e6c9897aad99a85a5eee7a08db3605f20bbebe9f73d"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/center-board2/history/manifest.json",
+          "bytes": 1913,
+          "sha256": "ba8e99c6f731ef9bdaa1a6dd5d421520d1555435e99e8913b2269cf7a47dccd3"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/center-board2/recipe/palette.json",
+          "bytes": 2500,
+          "sha256": "82be7bad0667a61a0a5d481a578d2a1c33e86c567e8ab387e19e7949828e9616"
+        }
+      ]
+    },
+    {
+      "id": "c620",
+      "status": "active_lab_display",
+      "sourceReference": "https://rm-static.djicdn.com/tem/17348/C620无刷电机调速器.STEP",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/c620/source.step",
+          "bytes": 6946526,
+          "sha256": "85f82c36fdf055fefba64880e804be95ca216b63339a31e9a3c6fde715773a4c"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c620/web.glb",
+          "bytes": 8573632,
+          "sha256": "0f8494e63a8201315c83de57ecfa012a52b85a05f5bcb06ef811a44e42e051b3"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c620/high.glb",
+          "bytes": 12385376,
+          "sha256": "bdff91f1cfaa7951df6cc5fe48cf2c855db3f819730c35d453aaabf0f5d3102a"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c620/history/report.md",
+          "bytes": 8474,
+          "sha256": "e6135b671d1a0d1f6fbab2d155318f4e7f5de061d897ceeb9eb8558e9e2be197"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c620/history/manifest.json",
+          "bytes": 17235,
+          "sha256": "87554430eacb1fc7830605bf2c18474b421aa4ee235c53e9baab51ee6cc6d18f"
+        }
+      ]
+    },
+    {
+      "id": "m3508",
+      "status": "active_lab_display_audit_only",
+      "sourceReference": "Existing local STEP; original source attribution not independently certified",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/m3508/source.step",
+          "bytes": 4595780,
+          "sha256": "12e62a62c12495210feb74f1272f4d71cffed070fd91a601d646b6c2a6d57087"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/m3508/web.glb",
+          "bytes": 17583620,
+          "sha256": "4b7b8fa2794eb6ce8c0be002a793b3828e02ed615766ddf485c7d0282016f54f"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/m3508/history/report.md",
+          "bytes": 10202,
+          "sha256": "5c219d8004fa149b82110fbbba2f80c3dc0ffca00ca5e15ad80f779fbc62c9cd"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/m3508/history/manifest.json",
+          "bytes": 3592,
+          "sha256": "c8721e48a6d0865a97965ab7cac5b3c87bfe39f77b8d336a7893e7a918aaeea7"
+        }
+      ]
+    },
+    {
+      "id": "tb47d",
+      "status": "active_lab_display",
+      "sourceReference": "Existing SERS local archive; folder name is not manufacturer certification",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/tb47d/source.step",
+          "bytes": 695780,
+          "sha256": "3fd17c9b74e478af02b3c909e6a90b9a93ace0f6d03b27cc142f235b24a6545c"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/tb47d/web.glb",
+          "bytes": 702756,
+          "sha256": "3f5b5b97592d41bb01e6b5af0170a80862c664d7ac87ddb1419d7d86fb03ed4b"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/tb47d/high.glb",
+          "bytes": 706364,
+          "sha256": "2be874e285b0568445236930d17577e3d5087fac4da871de43c5ec14160f730a"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/tb47d/history/report.md",
+          "bytes": 3942,
+          "sha256": "c351ea3df74d058af571c8a23d51e0c0d4a764670724dc20acb9098919ab64e6"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/tb47d/history/manifest.json",
+          "bytes": 4735,
+          "sha256": "b91fa03ec5f1dfa7a9429a702d5baae95a8c72fb6b6ac33318bead8f683423ae"
+        }
+      ]
+    },
+    {
+      "id": "battery-rack",
+      "status": "active_lab_display_nominal_fit_only",
+      "sourceReference": "https://rm-static.djicdn.com/tem/17348/RoboMaster 电池架.STEP",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/battery-rack/source.step",
+          "bytes": 3569451,
+          "sha256": "da9cdaa00013a454cfebb655889e0d7facd614cb1eebf36001fdbdd8de9c91cd"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/battery-rack/web.glb",
+          "bytes": 7145400,
+          "sha256": "322c6b4cc60f895152d84c4f0a21e0439968e0f6ec302c79ece5392bd1ee6a89"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/battery-rack/history/report.md",
+          "bytes": 4144,
+          "sha256": "a9c0d21a8f730fb2887f88b288ff5ea164909c27a6ab1afb79ee075dd5765005"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/battery-rack/history/manifest.invalid-json.txt",
+          "bytes": 5527,
+          "sha256": "6dd58bd294037a05aaba5188db9b1215ac80e90a95bd340e8d4d30c90b92676e",
+          "note": "Original malformed metadata preserved byte-for-byte as text; not a loadable JSON configuration."
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/battery-rack/recipe/palette.json",
+          "bytes": 1154,
+          "sha256": "d7e27ee27e1c728d847f25cecf3bb98c8c87c83147310b369966fb68a8c46dd3"
+        }
+      ]
+    },
+    {
+      "id": "gm6020",
+      "status": "extension_candidate_duplicate_ring_retained",
+      "sourceReference": "https://rm-static.djicdn.com/tem/17348/RoboMaster GM6020 Brushless DC Motor.step.zip",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/gm6020/source.step",
+          "bytes": 3896960,
+          "sha256": "113b2ea1a8f82d653bcd9183728ae80441249d6229cccb438cafda0398ab2350"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/gm6020/web.glb",
+          "bytes": 3294848,
+          "sha256": "be54e8fd2c39b8e710021af33440879972daa397b21f14d490c8d35bdd7f9800"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/gm6020/high.glb",
+          "bytes": 3473296,
+          "sha256": "60c05facbf72748ded0470f8bdb9e568b31b9f3524b950382f4c25daaf7cd402"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/gm6020/history/report.md",
+          "bytes": 9030,
+          "sha256": "bd9c4cc105a16bc239f67e94b8ab24030a3ffdacea3de16a5acef87c882e0644"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/gm6020/history/manifest.json",
+          "bytes": 3163,
+          "sha256": "d68c3038eab1ad3cc31babaf8d77f3b6433b3f273b65aff0d7ae5ee847b6cb54"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/gm6020/recipe/palette.json",
+          "bytes": 1404,
+          "sha256": "b96167b2ae2416e9f40049cd35cf8863beae9ab1c9da9fdf9b040db585930e8f"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/gm6020/recipe/apply_palette_fix.py.txt",
+          "bytes": 5088,
+          "sha256": "a1cc45bf80964f57637b734448376e697451b4b049a389167daa09972b17cd32",
+          "originalFilename": "apply_palette_fix.py",
+          "role": "byte-identical historical source snapshot; text evidence, not an executable production module"
+        }
+      ]
+    },
+    {
+      "id": "m2006",
+      "status": "extension_display_candidate",
+      "sourceReference": "https://rm-static.djicdn.com/tem/17348/RoboMaster M2006 P36.STEP",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/m2006/source.step",
+          "bytes": 14285559,
+          "sha256": "aa0d85d6a48a4a2091ad80f069bdfc850813542ea67b8ff03af340eb98b44ea6"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/m2006/web.glb",
+          "bytes": 6558924,
+          "sha256": "995cabb23ae9cc381c6f7913981bf7158de894c2e8e1d6adda641e6ee812fe1c"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/m2006/high.glb",
+          "bytes": 7354808,
+          "sha256": "68b72f0df938c0848cf8f88ad37042625ef02190053ffcbd8eb9117d5d38ca3c"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/m2006/history/report.md",
+          "bytes": 7205,
+          "sha256": "985ebe9c58045a349b64894648d423eb53a952ce9ea2ec9a5b5bdbacc940cb5b"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/m2006/history/manifest.json",
+          "bytes": 2779,
+          "sha256": "f73be156dc5f26bfe9315bf9413fb7d7a337ef9a57919efd907204d6a37def87"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/m2006/recipe/palette.json",
+          "bytes": 215,
+          "sha256": "754cdf3989c836fe58bca5bdf6848930d966f86db5d4f13452a4ccc7d07d3e95"
+        }
+      ]
+    },
+    {
+      "id": "c610",
+      "status": "extension_display_candidate",
+      "sourceReference": "https://rm-static.djicdn.com/tem/17348/RoboMaster C610.STEP",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/c610/source.step",
+          "bytes": 7189320,
+          "sha256": "f3f0b019b1440a892e0c9963297b51f09e674627407f31672aa4826cf6a9e92c"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c610/web.glb",
+          "bytes": 3224200,
+          "sha256": "e114c65eff137a2f235a9c79e10bc7c92a4054116e6e4d266ad4f91b008985c5"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c610/high.glb",
+          "bytes": 3740128,
+          "sha256": "60763630da5598d703a7dfc65e6cd82357905e195e6c677687e5146b468fd9b0"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c610/history/report.md",
+          "bytes": 2292,
+          "sha256": "89cacf8c922e5347daf5683e89c5b27269e88c9f5c4ccddb42ecbd219ffc84d7"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c610/history/manifest.json",
+          "bytes": 1899,
+          "sha256": "0ce4899ff35031d472d0f4e4e9d89e6754bbabc5447342bf952328092a6c61a0"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c610/recipe/palette.json",
+          "bytes": 60,
+          "sha256": "66b81a1774f4b47a9b51ea1af993caf552aa0393c6f99dcdb3341b77c83a3beb"
+        }
+      ]
+    },
+    {
+      "id": "snail2305",
+      "status": "extension_display_candidate_rotor_merged",
+      "sourceReference": "https://rm-static.djicdn.com/tem/17348/snail_2305_brushless_dc_motor.stp",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/snail2305/source.step",
+          "bytes": 849988,
+          "sha256": "aa34d09b8d49ae25517910735d58ffb22954fc1228a8cfdf10bfa287cfbc82e4"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/snail2305/web.glb",
+          "bytes": 1986224,
+          "sha256": "1943f3155041e661e8ffe1eca410f2a50c6143a178ea9bb422ce2854cffcb9a7"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/snail2305/high.glb",
+          "bytes": 2012504,
+          "sha256": "b9b41f76265922c927c539b868d0772007161f06c69a46ebac5e4ecdbaa1831b"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/snail2305/history/report.md",
+          "bytes": 8613,
+          "sha256": "6b6af55c5ba33781dba97e16712db2f60bb720e54a713a9e31639e5065a3d04f"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/snail2305/history/manifest.json",
+          "bytes": 3866,
+          "sha256": "1a9cab4e2ec91e7d8045f26353e85524b542182e0e0d30d3af91f4f5cf8bfacf"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/snail2305/recipe/palette.json",
+          "bytes": 233,
+          "sha256": "984df6bb7c7666ffc60d6ce4e0a626c56fe4f9c1f37789536c61132e56cfc0ed"
+        }
+      ]
+    },
+    {
+      "id": "c615",
+      "status": "extension_display_candidate",
+      "sourceReference": "https://rm-static.djicdn.com/tem/17348/c615_brushless_dc_controller_asm.stp",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/c615/source.step",
+          "bytes": 2955915,
+          "sha256": "e0a712e0b15b92b92b013b8da96621b9213618416ca6fc4b12df502fda4a0537"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c615/web.glb",
+          "bytes": 5225984,
+          "sha256": "90d2c5f94c1ea8aeaa46d103968dc63ea2109653bacc9fb169478eef09b2c49f"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c615/high.glb",
+          "bytes": 5812132,
+          "sha256": "5004d18e5200a0e1059834a088c867bbd7ffa2714100649263a370fe482072f3"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c615/history/report.md",
+          "bytes": 7336,
+          "sha256": "e9c2d3aa38140594b4075684d1cae3e3ece9a0c1b87e9a15d53efcc2ecd2ee71"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c615/history/manifest.json",
+          "bytes": 2073,
+          "sha256": "2950fa8d0ec6756e0b0224da8ec8df74eb97fe1089e25b077d0ca06d18ae8948"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/c615/recipe/palette.json",
+          "bytes": 5108,
+          "sha256": "46712f3c9a0f7e9a27223930020e1b99501c4f070468297a2955b5a65e0244fe"
+        }
+      ]
+    },
+    {
+      "id": "usb-uart",
+      "status": "accessory_candidate_logic_levels_not_selected",
+      "sourceReference": "https://github.com/SolderedElectronics/USB-UART-CH340C-converter-board-hardware-design",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/usb-uart/source.step",
+          "bytes": 2309612,
+          "sha256": "5598221710c7e1fbd13c70d5bbaae0c6bbfa8b8a802bd5c34cc962e8f3aaadb1"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/usb-uart/web.glb",
+          "bytes": 3949660,
+          "sha256": "8fd7f65a28b5be4442371de10e54d079e202b37e3ebd2bf871985537aa1394a1"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/usb-uart/history/report.md",
+          "bytes": 630,
+          "sha256": "461efd7fd13d2ed0aa1037ad480ae1eab8989aedf99ad46f53e66061a178957c"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/usb-uart/history/manifest.json",
+          "bytes": 872,
+          "sha256": "ccaada90f9e3c575607672d337a01663c7e6f11357112b585f2d09ba8ec9eeac"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/usb-uart/recipe/palette.json",
+          "bytes": 5162,
+          "sha256": "d025cabe02b0d43389fa1be31b9962855e0357c0d222d67d3c2fbb8d99ecdb5b"
+        }
+      ]
+    },
+    {
+      "id": "old-center",
+      "status": "old_generation_reference_not_board2",
+      "sourceReference": "https://rm-static.djicdn.com/tem/RoboMaster中心板-STEP.STEP",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/old-center/source.step",
+          "bytes": 3995367,
+          "sha256": "9e742f369588e510a8529e968b037dda42172430aadb34b76cde59d20a90ebbc"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/old-center/web.glb",
+          "bytes": 3721744,
+          "sha256": "8ffe8ea1cd6e0f8c3dd29c03bd7d80ef7fbcf4627daaaa218b67e7377e959afd"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/old-center/high.glb",
+          "bytes": 3613408,
+          "sha256": "6b24b8f8777325ae92c01a6641a91419a97d530a73f8da82fcd6a1d38de8cf07"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/old-center/history/report.md",
+          "bytes": 683,
+          "sha256": "34a669760d87640dffa29a052d0585e709f0cbbcafe7ce7ec83ed693e860a139"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/old-center/history/manifest.json",
+          "bytes": 1209,
+          "sha256": "405eb2d9177a3e868e5f46133641636bbdb3fc9988c88c8c07163f9079a71ee1"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/old-center/recipe/palette.json",
+          "bytes": 533,
+          "sha256": "5ee4fb166ac081664349baca3414f9784fc948843ddedcb7fff8ab592b137411"
+        }
+      ]
+    },
+    {
+      "id": "irm-module",
+      "status": "envelope_candidate_not_lab_power_source",
+      "sourceReference": "https://api.step.parts/v1/parts/converter_acdc_meanwell_irm_60_xx_tht",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/irm-module/source.step",
+          "bytes": 63804,
+          "sha256": "679852f7fdc2e50e53d9679137f312dadae9caffc0cebfe9b46be25ca356042d"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/irm-module/web.glb",
+          "bytes": 1060724,
+          "sha256": "16683d98968972981fa70eec266c3138ddd2cd5f90ad63fc07cad06ea1e6925d"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/irm-module/history/report.md",
+          "bytes": 6287,
+          "sha256": "ef483400afc51ebefe9d9b54c6d4af5d730774feaa4013dde05085ff375f265c"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/irm-module/history/manifest.json",
+          "bytes": 3996,
+          "sha256": "035fd697f43a05e07a7109ae6ea1d60c034121694c2d8acf6a95f79ef9ccdfd4"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/irm-module/recipe/palette.json",
+          "bytes": 482,
+          "sha256": "df214153d191437a2a78e3c9f9be471548b780c3814d15bd62c79034390653bc"
+        }
+      ]
+    },
+    {
+      "id": "rocker-switch",
+      "status": "REJECTED_wrong_visual_shape_do_not_integrate",
+      "sourceReference": "https://api.step.parts/v1/parts/rocker_switch_standard_envelope",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/rocker-switch/source.step",
+          "bytes": 23234,
+          "sha256": "90742b6fddcdd6ac24311b56b646f57fec72a51c18103e19bc79692e31cfde88"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/rocker-switch/web.glb",
+          "bytes": 21192,
+          "sha256": "5f9e35c0f5e928f6bb5cbea1d776f9b0c6e239c5121980a2e5fb44a2f0200bad"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/rocker-switch/history/report.md",
+          "bytes": 673,
+          "sha256": "4515342edad4d9916446d42abf3108b2b578e11806d266de0056dba4374c7f83"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/rocker-switch/history/manifest.json",
+          "bytes": 3930,
+          "sha256": "333c99a79dd428f4f5af1caeb022227a33fa4e5e67d46be358a6cde1c83ecc13"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/rocker-switch/recipe/palette.json",
+          "bytes": 117,
+          "sha256": "d0efd0128dc5d4ca92ea6ce01e1ce7548a41230752932107ce1087149cb097c2"
+        }
+      ]
+    },
+    {
+      "id": "dm4310",
+      "status": "BLOCKED_two_invalid_BRep_objects_no_GLb",
+      "sourceReference": "step.parts exact DM-J4310-2EC V1.1 candidate; see archived report",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/dm4310/source.step",
+          "bytes": 10376661,
+          "sha256": "89d6b025a8411a2da3c57a8df1346cff31f5503d88f2221ed44d263150078b2f"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/dm4310/history/report.md",
+          "bytes": 6751,
+          "sha256": "903a2b63f37e43f4491c8c0c5a653064b9944a16ce75c70df3c633d857a5429c"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/dm4310/history/manifest.json",
+          "bytes": 4183,
+          "sha256": "5bf411c57eaac7f307b7ea79cf7f0938255c0dadea175d192c5b7f209e2c0f57"
+        }
+      ]
+    },
+    {
+      "id": "xt60-f",
+      "status": "board_connector_only_not_finished_cable",
+      "sourceReference": "https://api.step.parts/v1/parts/amass_xt60_f_1x02_p7_2mm_vertical",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-f/source.step",
+          "bytes": 109721,
+          "sha256": "d3b6a8dcb8b46454ad8814dabcaa68dacb311eaf797993bf6d21e4d6bb34dbe5"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-f/web.glb",
+          "bytes": 251768,
+          "sha256": "5c79308cf0e04f46e3228589a3754f986cd093d9ea8d25f49ded66b7e5649a0d"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-f/high.glb",
+          "bytes": 251768,
+          "sha256": "6d61ddaca73321d0ce76d19795a7a641dbf587d8f4f36bd835ef9e4abc06c0f8"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-f/history/report.md",
+          "bytes": 591,
+          "sha256": "e022a2f9f241f8c417585a88090fad9dc09ce3b574a1ca4c38f64bf5e4376040"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-f/history/manifest.json",
+          "bytes": 1982,
+          "sha256": "b2813c1eb09b1d0a1d20b6dc1b0749cda0dce5414d4dad01397984c0ab95e30b"
+        }
+      ]
+    },
+    {
+      "id": "xt60-m",
+      "status": "board_connector_only_not_finished_cable",
+      "sourceReference": "https://api.step.parts/v1/parts/amass_xt60_m_1x02_p7_2mm_vertical",
+      "license": "unknown; publication authorized by user for this review, not a third-party license grant",
+      "files": [
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-m/source.step",
+          "bytes": 182275,
+          "sha256": "44f43347b10c5219354e8a6eb8d5043cf751e181bad09ff587ed32b5989c9241"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-m/web.glb",
+          "bytes": 472204,
+          "sha256": "c6b31b2b3af14aa0177a95566f74afac198fee5eca810d8beff5a633a55da95a"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-m/high.glb",
+          "bytes": 482764,
+          "sha256": "38d1fa5e1c6ce37bc3ef681f98086bc2958d166412cd77c6060f8f640981d6a0"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-m/history/report.md",
+          "bytes": 591,
+          "sha256": "e022a2f9f241f8c417585a88090fad9dc09ce3b574a1ca4c38f64bf5e4376040"
+        },
+        {
+          "path": "assets/motor-lab/review-stage/models/xt60-m/history/manifest.json",
+          "bytes": 1982,
+          "sha256": "b2813c1eb09b1d0a1d20b6dc1b0749cda0dce5414d4dad01397984c0ab95e30b"
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "path": "assets/motor-lab/review-stage/recipes/convert_step.py.txt",
+      "bytes": 5968,
+      "sha256": "6b826a60f9699cc8aa7ccbbf050ae4039854a57924fc183ee2b92d9222253a0c",
+      "originalFilename": "convert_step.py",
+      "role": "byte-identical historical source snapshot; text evidence, not an executable production module"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/recipes/review.mjs.txt",
+      "bytes": 3781,
+      "sha256": "077060829273aa2d9a77ee926d47da124822018d21e860cac8ba45c72ac20bbe",
+      "originalFilename": "review.mjs",
+      "role": "byte-identical historical source snapshot; text evidence, not an executable production module"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/recipes/c-board-color_faces.py.txt",
+      "bytes": 6288,
+      "sha256": "5cb2975ba1e3afccda1df45462c06da56e413eb8163c4912db633abe97e4399c",
+      "originalFilename": "c-board-color_faces.py",
+      "role": "byte-identical historical source snapshot; text evidence, not an executable production module"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/models/tb47d/neutral-web.glb",
+      "bytes": 702764,
+      "sha256": "c7c4a1d5b381fe8d7a1e3c47a7cfb6912b314771c9bd62a4c08c5a3fc81e0e69"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/evidence/historical-assembly-transforms.json",
+      "bytes": 2935,
+      "sha256": "a0c3428a67fc5a65325a71714d2525a80eafe6dee48c3c70947e6795c4f4c651"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/evidence/battery-rack-nominal-fit.json",
+      "bytes": 1513,
+      "sha256": "16fa56075a481a62f38a5ab65328c12fc880948d3673f8c7687e586369d9a753"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/evidence/historical-model-validation.json",
+      "bytes": 3563,
+      "sha256": "ad682b0a78488bb7b1e1236b6e49428efd858e78a9b974c15f90591cdbd1b16a"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/evidence/historical-browser-report.json",
+      "bytes": 2329,
+      "sha256": "b0f823664426a57273a73ee00af519530220cca991178ac32363eba330330f80"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/evidence/historical-routing-status.json",
+      "bytes": 18550,
+      "sha256": "c585984ff597fca9595eb4670f8f3b5225760c79c33d576fd378ce52df530c1b"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/evidence/wiring-overview.png",
+      "bytes": 132727,
+      "sha256": "d27239ceea602dbb5bca469cc4965bd77c491e895f4ce4457343fab5efc191b6"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/evidence/wiring-center-closeup.png",
+      "bytes": 260287,
+      "sha256": "2602a2624befbed3ab615a58b59c37629b253370659adbd957070708dcc673b0"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/evidence/wiring-esc-closeup.png",
+      "bytes": 269683,
+      "sha256": "37c83b0abe57fe42873c0f2ea7e851c7253a04b7f5616aa815afc725021cfb67"
+    },
+    {
+      "path": "assets/motor-lab/review-stage/models/usb-uart/LICENSE.upstream.md",
+      "bytes": 13919,
+      "sha256": "ae647e302f1a8023b5f490f42c4d724fafb410bd551e6086c730d8f814f5e0fe"
+    }
+  ],
+  "scope": "Current and investigated stage models, sources, recipes and historical evidence.",
+  "notIncluded": [
+    "secrets",
+    "other projects",
+    "browser binaries",
+    "dependencies",
+    "logs",
+    "duplicate backups",
+    "unrelated teaching edits"
+  ],
+  "validation": "No new tests or rendering during archival. Hash comparisons and size inventory only.",
+  "pendingLayout": "Center board 180-degree yaw and shorter cable layout requested but not implemented; preserve current snapshot for review.",
+  "malformedHistoricalMetadata": [
+    {
+      "path": "assets/motor-lab/review-stage/models/battery-rack/history/manifest.invalid-json.txt",
+      "error": "Expecting ',' delimiter: line 72 column 5 (char 5174)"
+    }
+  ]
+}

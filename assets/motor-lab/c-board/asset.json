@@ -1,0 +1,94 @@
+{
+  "asset": "c-board-official-white-silver.glb",
+  "sha256": "7cb3c5132ba26a4cd2c72d9b2e4987783c89049d3a6cce3672e8fbe9b0ddb777",
+  "bytes": 22414380,
+  "source": {
+    "url": "https://rm-static.djicdn.com/tem/35228/mounting_the_board_type_c_asm(202001072134).stp",
+    "index_url": "https://rm-static.djicdn.com/live_json/simple_cms.json",
+    "sha256": "237365773a6114ee14a64a92992df8e462d2b4e9e20b708dd40054d7efd74bae",
+    "bytes": 10843660,
+    "use": "用户明确要求的本地外形转换/预览实验，非公开再分发授权",
+    "redistribution_license": "unknown"
+  },
+  "conversion": {
+    "sourceSha256": "237365773a6114ee14a64a92992df8e462d2b4e9e20b708dd40054d7efd74bae",
+    "outputSha256": "7cb3c5132ba26a4cd2c72d9b2e4987783c89049d3a6cce3672e8fbe9b0ddb777",
+    "outputBytes": 22414380,
+    "unitMapping": "STEP mm -> metres, (x,y,z) -> (x,z,-y); centered",
+    "bboxSourceMm": [
+      41.004944,
+      60.327510305177,
+      16.300000000002036
+    ],
+    "meshes": [
+      {
+        "label": "1_0",
+        "sourceFaces": 4203,
+        "sourceSolids": 1,
+        "vertices": 174437,
+        "triangles": 198894
+      },
+      {
+        "label": "1_001",
+        "sourceFaces": 209,
+        "sourceSolids": 1,
+        "vertices": 315807,
+        "triangles": 580910
+      },
+      {
+        "label": "2_0",
+        "sourceFaces": 1671,
+        "sourceSolids": 1,
+        "vertices": 22991,
+        "triangles": 20120
+      },
+      {
+        "label": "3_0",
+        "sourceFaces": 139,
+        "sourceSolids": 1,
+        "vertices": 9580,
+        "triangles": 9326
+      },
+      {
+        "label": "4_0",
+        "sourceFaces": 6,
+        "sourceSolids": 1,
+        "vertices": 1016,
+        "triangles": 1008
+      },
+      {
+        "label": "4_001",
+        "sourceFaces": 6,
+        "sourceSolids": 1,
+        "vertices": 1016,
+        "triangles": 1008
+      },
+      {
+        "label": "4_002",
+        "sourceFaces": 6,
+        "sourceSolids": 1,
+        "vertices": 1016,
+        "triangles": 1008
+      },
+      {
+        "label": "4_003",
+        "sourceFaces": 6,
+        "sourceSolids": 1,
+        "vertices": 1016,
+        "triangles": 1008
+      }
+    ],
+    "triangleCount": 813282,
+    "scope": "All 8 leaf solids; no duplicate App::Part aggregate geometry. Neutral materials; source colours/textures not exported. No decimation. Tessellation is an approximation, not manufacturing certification."
+  },
+  "palette": {
+    "shell": "graphite",
+    "connector_housings": "white",
+    "contacts": "silver",
+    "lid_markings": "white existing CAD markings"
+  },
+  "status": "本地展示审查资产；未获公开再分发许可，不加入公开发布包",
+  "geometry": "8源实体；仅材质分组，不认证逐针或实物版本",
+  "reproduction_sources": ".tmp/c-board-official/color_faces.py; .tmp/c-board-official/c-board-official.stp",
+  "next_candidate": "ESC Center Board 2; source listing verified, conversion not started"
+}

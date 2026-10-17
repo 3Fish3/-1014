@@ -1,0 +1,60 @@
+{
+  "status": "static_board_connector_candidates; detailed_materials_pending",
+  "sources": [
+    {
+      "file": "source/amass_xt60_f_1x02_p7_2mm_vertical.step",
+      "sha256": "d3b6a8dcb8b46454ad8814dabcaa68dacb311eaf797993bf6d21e4d6bb34dbe5",
+      "apiShaMatches": true,
+      "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/amass_xt60_f_1x02_p7_2mm_vertical.step"
+    },
+    {
+      "file": "source/amass_xt60_m_1x02_p7_2mm_vertical.step",
+      "sha256": "44f43347b10c5219354e8a6eb8d5043cf751e181bad09ff587ed32b5989c9241",
+      "apiShaMatches": true,
+      "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/amass_xt60_m_1x02_p7_2mm_vertical.step"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "xt60/output/xt60_f/high.glb",
+      "sha256": "6d61ddaca73321d0ce76d19795a7a641dbf587d8f4f36bd835ef9e4abc06c0f8",
+      "bytes": 251768,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 1,
+      "triangles": 7252
+    },
+    {
+      "file": "xt60/output/xt60_f/web.glb",
+      "sha256": "5c79308cf0e04f46e3228589a3754f986cd093d9ea8d25f49ded66b7e5649a0d",
+      "bytes": 251768,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 1,
+      "triangles": 7252
+    },
+    {
+      "file": "xt60/output/xt60_m/high.glb",
+      "sha256": "38d1fa5e1c6ce37bc3ef681f98086bc2958d166412cd77c6060f8f640981d6a0",
+      "bytes": 482764,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 1,
+      "triangles": 16032
+    },
+    {
+      "file": "xt60/output/xt60_m/web.glb",
+      "sha256": "c6b31b2b3af14aa0177a95566f74afac198fee5eca810d8beff5a633a55da95a",
+      "bytes": 472204,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 1,
+      "triangles": 15648
+    }
+  ],
+  "permission": "unknown",
+  "missing": [
+    "shell/contact material separation",
+    "confirmed wire-end pairing and actual pin mapping"
+  ]
+}

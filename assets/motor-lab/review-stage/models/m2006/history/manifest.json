@@ -1,0 +1,79 @@
+{
+  "device": "RoboMaster M2006 P36",
+  "status": "success",
+  "source": {
+    "url": "https://rm-static.djicdn.com/tem/17348/RoboMaster M2006 P36.STEP",
+    "encoded_url": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20M2006%20P36.STEP",
+    "file_name": "RoboMaster_M2006_P36.STEP",
+    "sha256": "aa0d85d6a48a4a2091ad80f069bdfc850813542ea67b8ff03af340eb98b44ea6",
+    "size_bytes": 14285559,
+    "license": "unknown; official DJI RoboMaster resource for private review only",
+    "schema": "CONFIG_CONTROL_DESIGN (STEP AP203)",
+    "origin_software": "SolidWorks 2016 (SwSTEP 2.0)",
+    "export_timestamp": "2018-02-06T13:05:55"
+  },
+  "inspection": {
+    "units": "mm (confirmed by SI_UNIT ( .MILLI., .METRE. ))",
+    "total_doc_objects": 44,
+    "part_feature_objects": 44,
+    "leaf_meshes_count": 35,
+    "shape_type": "Shell (face-bearing)",
+    "valid_faces_present": true,
+    "bbox_source_mm": [
+      146.46053142262684,
+      147.70070560004112,
+      64.80000000000003
+    ],
+    "envelope_note": "Total bounds include the extended motor power/encoder cable harness (~147mm span). Motor core body diameter is approx 24-28mm with body length approx 34mm."
+  },
+  "transformation": {
+    "tool": ".tmp/motor-lab-models/_tools/convert_step.py",
+    "unit_mapping": "STEP mm -> metres, (x,y,z) -> (x,z,-y); centered",
+    "axis_mapping": "Source Z -> Output Y (Source X -> Output X, Source Y -> Output -Z)",
+    "candidate_pivot_axis": "Output Y axis (derived from motor shaft symmetry, unverified candidate only, no certified kinematics/animation)"
+  },
+  "outputs": {
+    "high_glb": {
+      "path": "output/high.glb",
+      "deflection_mm": 0.035,
+      "size_bytes": 7354808,
+      "sha256": "68b72f0df938c0848cf8f88ad37042625ef02190053ffcbd8eb9117d5d38ca3c",
+      "triangles": 221927,
+      "mesh_nodes": 35,
+      "validator": {
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    "web_glb": {
+      "path": "output/web.glb",
+      "deflection_mm": 0.12,
+      "size_bytes": 6558924,
+      "sha256": "995cabb23ae9cc381c6f7913981bf7158de894c2e8e1d6adda641e6ee812fe1c",
+      "triangles": 200942,
+      "mesh_nodes": 35,
+      "validator": {
+        "errors": 0,
+        "warnings": 0
+      }
+    }
+  },
+  "review": {
+    "renderer": ".tmp/motor-lab-models/_tools/review.mjs (Playwright SwiftShader Three.js)",
+    "browser_result": {
+      "bbox_metres": [
+        0.1464590669043346,
+        0.0648,
+        0.147699757568309
+      ],
+      "meshes_loaded": 35,
+      "errors": []
+    },
+    "screenshots": [
+      "review/overall.png",
+      "review/back.png",
+      "review/interface.png"
+    ],
+    "palette_strategy": "Neutral engineering review palette with differentiated components (palette.json); not manufacturer color certified."
+  }
+}

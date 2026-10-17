@@ -1,0 +1,76 @@
+{
+  "task": "TB47D battery static model candidate from local official STEP",
+  "date": "2026-10-17 (session-local; clock not independently verified)",
+  "scope": "Local review only; no hardware, no procurement, no power-on guidance",
+  "source": {
+    "originalPath": "/home/kekeyuyu/projects/SERS/官方零件/RoboMaster官方零件/TB47d电池/TB47d(1).STEP",
+    "originalBytes": 695780,
+    "originalSha256": "3fd17c9b74e478af02b3c909e6a90b9a93ace0f6d03b27cc142f235b24a6545c",
+    "localCopy": "source/TB47d.STEP",
+    "localCopySha256": "3fd17c9b74e478af02b3c909e6a90b9a93ace0f6d03b27cc142f235b24a6545c",
+    "header": "STEP AP214 (AUTOMOTIVE_DESIGN), SolidWorks 2016, product name TB47d",
+    "license": "unknown; local file identity verified by hash only; directory naming does not certify manufacturer authorization; private review only, no redistribution"
+  },
+  "geometryVerification": {
+    "method": "FreeCAD headless actual enumeration (work/inspect.json, work/features_final.json); no inferred dimensions",
+    "objectCount": 1,
+    "appLinks": 0,
+    "parentAggregates": 0,
+    "singleShape": {
+      "label": "TB47d",
+      "valid": true,
+      "faces": 307,
+      "solids": 1,
+      "shells": 1,
+      "volume_cm3": 402.66,
+      "surfaceTypeCensus": {"Plane": 171, "Cylinder": 128, "Cone": 4, "Sphere": 4}
+    },
+    "globalBBox_mm": {"len": [101.0, 43.0, 139.0], "x": [-57.0, 44.0], "y": [-21.5, 21.5], "z": [0.0, 139.0]},
+    "featureEvidence": {
+      "mainSlab": "x -36.5..36.5, y -20..20, z 0..~119.5 (plan sections at z=10..100, single wire)",
+      "widerTopZone": "z ~119.5..139 widens to full 101x43 mm",
+      "contactClusters": "X sections at x=-56 and x=43.5 each show 10 wires spanning z 121..136, y -12..12: terminal-like contact features present in geometry",
+      "topDetail": "z=138 section: 25 wires (button/LED/contact-like detail)",
+      "bottom": "z=2 section: 2 wires (groove/foot-like detail)"
+    },
+    "notVerified": "Pin order, polarity, button/LED semantics: absent from geometry metadata; not fabricated"
+  },
+  "outputs": [
+    {
+      "file": "output/web.glb",
+      "deflection_mm": 0.12,
+      "bytes": 702764,
+      "sha256": "c7c4a1d5b381fe8d7a1e3c47a7cfb6912b314771c9bd62a4c08c5a3fc81e0e69",
+      "triangles": 20634,
+      "meshes": 1,
+      "validator": "PASS 0 error / 0 warning / 1 info (unused default material, tool-inherent); review/validator-web.json"
+    },
+    {
+      "file": "output/high.glb",
+      "deflection_mm": 0.035,
+      "bytes": 706364,
+      "sha256": "2be874e285b0568445236930d17577e3d5087fac4da871de43c5ec14160f730a",
+      "triangles": 20734,
+      "meshes": 1,
+      "validator": "PASS 0 error / 0 warning / 1 info (unused default material, tool-inherent); review/validator-high.json"
+    }
+  ],
+  "unitsAndAxes": "STEP mm -> metres; (x,y,z) -> (x,z,-y); centered at origin; Y-up (shared converter mapping, recorded in output JSON sidecar)",
+  "hierarchyNote": "Converter flattens hierarchy; source is a single Part::Feature so no hierarchy was lost; no nested App::Link or duplicate aggregation found (enumerated, not assumed)",
+  "coloring": {
+    "status": "NEUTRAL review material only",
+    "reason": "Source has 1 undivided solid: no part labels exist to key a palette, and no local TB47D photos available in .tmp/tb47d-research (PDF/text only). Black-shell/silver-contact colors would be display speculation; declined per constraint. Not applying C-board palette rules."
+  },
+  "simAssumption": "24V used only as teaching SIM assumption elsewhere in power-chain; source rated values (22.2V DJI official / 22.8V AI2019 manual discrepancy) left untouched; no power-on guidance",
+  "screenshotEvidence": {
+    "files": ["review/overall.png", "review/back.png", "review/interface.png"],
+    "browserResult": {"bbox": [0.101, 0.139, 0.043], "meshes": 1, "errors": []},
+    "visualRead": "BLOCKED: session model is non-multimodal; image content filtered on read attempt. Files produced and sized plausibly (27-39 KB) but human/agent visual confirmation NOT completed in this session. Re-read with a multimodal model or review manually."
+  },
+  "unfinished": [
+    "Visual close-up confirmation of screenshots (model cannot read images this session)",
+    "REVIEW_FOCUS body-closeup not generated: single unnamed-at-mesh-level flow; mesh name is 'TB47d' but closeup adds no information beyond interface view for a 1-mesh model",
+    "Terminal pin order, polarity: UNVERIFIED (no source)"
+  ],
+  "constraints": "Writes confined to .tmp/motor-lab-power-chain/tb47d-local/{source,work,output,review}; shared tools read-only; single-level flock; no Git writes, no dependency installs, no network, no service changes; SERS original untouched (read-only)"
+}

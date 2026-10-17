@@ -1,0 +1,93 @@
+{
+  "device": "GM6020",
+  "name": "RoboMaster GM6020 Brushless DC Motor",
+  "source": {
+    "url": "https://rm-static.djicdn.com/tem/17348/RoboMaster GM6020 Brushless DC Motor.step.zip",
+    "encodedUrl": "https://rm-static.djicdn.com/tem/17348/RoboMaster%20GM6020%20Brushless%20DC%20Motor.step.zip",
+    "zipSha256": "64adb1a2ef67d455aa172e6cc5b0781367e50443950c63437d62d4320df09203",
+    "zipSizeBytes": 1510080,
+    "stepFileName": "RoboMaster GM6020 Brushless DC Motor.STEP",
+    "stepSha256": "113b2ea1a8f82d653bcd9183728ae80441249d6229cccb438cafda0398ab2350",
+    "stepSizeBytes": 3896960,
+    "version": "unknown",
+    "license": "unknown; private review only",
+    "archiveSafety": {
+      "pathTraversalSafe": true,
+      "symlinkFree": true,
+      "entryCount": 5,
+      "totalUncompressedBytes": 7793920
+    }
+  },
+  "geometry": {
+    "units": "mm in STEP, transformed to m in GLB",
+    "sourceBBoxMm": [
+      67.71041699959838,
+      66.70000000000452,
+      44.99999999999102
+    ],
+    "glbBBoxM": [
+      0.0667,
+      0.045,
+      0.0667
+    ],
+    "leafSolidCount": 14,
+    "meshCount": 14,
+    "duplicateEntities": [
+      {
+        "part1": "Part__Feature002",
+        "part2": "Part__Feature012",
+        "volumeMm3": 75449.601,
+        "note": "STEP源文件内存在完全重叠几何实体Part 2与Part 12，忠实保留未擅自剔除"
+      }
+    ],
+    "candidatePivot": {
+      "axis": [0.0, 1.0, 0.0],
+      "centerM": [0.00051, 0.00125, 0.0],
+      "status": "展示推定（无内部运动副声明，未经物理动力学与拆装认证）"
+    }
+  },
+  "outputs": {
+    "high": {
+      "path": "output/high.glb",
+      "deflectionMm": 0.035,
+      "fileSizeBytes": 3473308,
+      "sha256": "60c05facbf72748ded0470f8bdb9e568b31b9f3524b950382f4c25daaf7cd402",
+      "binSha256": "9362b979496f64f04177fda03f9ff7d0c8a329dd2d62e53acafd85e34216cc32",
+      "triangleCount": 103666,
+      "vertexCount": 94944,
+      "colorStatus": "展示推定分色（深色金属外壳/不锈钢衬套/浅色胶壳/铜插针），非原厂材质认证",
+      "validator": {
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    "web": {
+      "path": "output/web.glb",
+      "deflectionMm": 0.12,
+      "fileSizeBytes": 3294860,
+      "sha256": "be54e8fd2c39b8e710021af33440879972daa397b21f14d490c8d35bdd7f9800",
+      "binSha256": "60d9b5de7e8c5a6ce86906a41fa1b07840cb8747036acf3814e54e04e436c931",
+      "triangleCount": 98562,
+      "vertexCount": 90317,
+      "colorStatus": "展示推定分色（深色金属外壳/不锈钢衬套/浅色胶壳/铜插针），非原厂材质认证",
+      "validator": {
+        "errors": 0,
+        "warnings": 0
+      }
+    }
+  },
+  "review": {
+    "rendered": true,
+    "screenshots": [
+      "review/overall.png",
+      "review/back.png",
+      "review/interface.png"
+    ],
+    "visualCheck": {
+      "overallView": "深色金属外壳 + 顶部不锈钢高亮通孔衬套确认生效",
+      "backView": "底部深黑定子底座 + 浅色接插件胶壳与金属针脚确认生效"
+    },
+    "validationReport": "review/validator_report.json",
+    "browserInspection": "review/browser.json"
+  }
+}

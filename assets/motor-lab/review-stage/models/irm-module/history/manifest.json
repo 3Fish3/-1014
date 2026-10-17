@@ -1,0 +1,116 @@
+{
+  "partId": "converter_acdc_meanwell_irm_60_xx_tht",
+  "name": "Mean Well IRM-60-xx THT AC/DC Converter Footprint Candidate",
+  "status": "candidate_footprint_verified_not_certified_power_supply",
+  "source": {
+    "stepPartsApi": "https://api.step.parts/v1/parts/converter_acdc_meanwell_irm_60_xx_tht",
+    "stepSourceUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/converter_acdc_meanwell_irm_60_xx_tht.step",
+    "upstreamRepo": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/0bc64e922178140eb6890377646efd45e15011bd/Converter_ACDC.3dshapes/Converter_ACDC_MeanWell_IRM-60-xx_THT.step",
+    "filename": "converter_acdc_meanwell_irm_60_xx_tht.step",
+    "bytes": 63804,
+    "sha256": "679852f7fdc2e50e53d9679137f312dadae9caffc0cebfe9b46be25ca356042d",
+    "license": "Creative Commons CC-BY-SA 4.0 License with KiCad exception",
+    "licenseNote": "CC-BY-SA 4.0 with KiCad exception. Private local review only; not public redistribution.",
+    "units": "SI_UNIT(.MILLI.,.METRE.)"
+  },
+  "geometryInspection": {
+    "totalDocObjects": 60,
+    "partFeatureSolids": 6,
+    "totalFaces": 48,
+    "allSolidsValid": true,
+    "sourceBBoxMm": [87.04119610014621, 52.041196100146195, 33.0],
+    "centerMm": [38.2, -21.0, 13.1],
+    "objectsBreakdown": [
+      {
+        "label": "e50ef681-4cb7-11ee-8265-85d007bab819_part",
+        "description": "Main potted module body",
+        "faces": 26,
+        "solids": 1,
+        "valid": true,
+        "bboxMm": [87.041, 52.041, 29.5]
+      },
+      {
+        "label": "e50ef682-4cb7-11ee-8265-85d007bab819_part",
+        "description": "Orientation / pin1 indicator feature",
+        "faces": 6,
+        "solids": 1,
+        "valid": true,
+        "bboxMm": [0.1, 0.1, 0.1]
+      },
+      {
+        "label": "e50ef683-4cb7-11ee-8265-85d007bab819_part",
+        "description": "THT Pin 1",
+        "faces": 4,
+        "solids": 1,
+        "valid": true,
+        "bboxMm": [2.165, 2.165, 3.6]
+      },
+      {
+        "label": "e50ef683-4cb7-11ee-8265-85d007bab819_part001",
+        "description": "THT Pin 2",
+        "faces": 4,
+        "solids": 1,
+        "valid": true,
+        "bboxMm": [2.165, 2.165, 3.6]
+      },
+      {
+        "label": "e50ef683-4cb7-11ee-8265-85d007bab819_part002",
+        "description": "THT Pin 3",
+        "faces": 4,
+        "solids": 1,
+        "valid": true,
+        "bboxMm": [1.082, 1.082, 3.6]
+      },
+      {
+        "label": "e50ef683-4cb7-11ee-8265-85d007bab819_part003",
+        "description": "THT Pin 4",
+        "faces": 4,
+        "solids": 1,
+        "valid": true,
+        "bboxMm": [1.082, 1.082, 3.6]
+      }
+    ]
+  },
+  "outputs": {
+    "web": {
+      "path": "output/web.glb",
+      "deflection": 0.12,
+      "sha256": "16683d98968972981fa70eec266c3138ddd2cd5f90ad63fc07cad06ea1e6925d",
+      "bytes": 1060724,
+      "triangleCount": 41616,
+      "vertexCount": 23082,
+      "meshes": 6,
+      "materials": 7,
+      "gltfValidator": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 1,
+        "status": "passed_zero_errors_zero_warnings"
+      }
+    },
+    "high": {
+      "status": "skipped_due_to_turn_budget_policy",
+      "reason": "web.glb delivered, reviewed and validated; high deflection 0.035 skipped within turn budget constraint"
+    }
+  },
+  "browserReview": {
+    "overall": "review/overall.png",
+    "back": "review/back.png",
+    "interface": "review/interface.png",
+    "bodyCloseup": "review/body-closeup.png",
+    "pinsCloseup": "review/pins-closeup.png",
+    "browserStats": {
+      "bbox": [0.087, 0.033, 0.052],
+      "meshes": 6,
+      "errors": []
+    }
+  },
+  "boundariesAndConstraints": {
+    "isCertifiedLabPowerSupply": false,
+    "role": "PCB through-hole candidate footprint package only",
+    "voltageVariantsAsserted": false,
+    "currentCapacityAsserted": false,
+    "pinoutElectricalCertification": false,
+    "mainsLiveConstructionPermitted": false
+  }
+}

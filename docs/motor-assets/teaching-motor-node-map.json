@@ -1,0 +1,176 @@
+{
+  "source": {
+    "path": "web/models/diff_car_teaching.glb",
+    "byteSize": 50048,
+    "sha256": "bf561d777edffc595cffcc40b500aa0a646b56145471129e91ae6b410a5f82e7",
+    "nodeCount": 12,
+    "meshCount": 12
+  },
+  "method": "整文件读取与哈希；仅解析 JSON 的变换及 POSITION accessor min/max，不解码 BIN 几何，不写回模型。名称匹配盘点，不保证穷尽未命名电机。",
+  "groups": {
+    "chassis_drive": "底盘驱动电机",
+    "gimbal_friction": "云台摩擦轮电机",
+    "yaw_drive": "Yaw 轴减速电机",
+    "ungrouped": "未归组"
+  },
+  "roles": {
+    "motor_body": "末段含电机型号或为生成脚本明确的教学电机名称；不认证实物型号",
+    "named_part": "末段含电机/Motor但未识别为本体，需区分托架、驱动板等",
+    "assembly_part": "仅祖先段含电机命名，属同子装配内的关联件（摩擦轮等）"
+  },
+  "motorNodeCount": 3,
+  "roleCounts": {
+    "motor_body": 2,
+    "named_part": 1,
+    "assembly_part": 0
+  },
+  "motors": [
+    {
+      "index": 4,
+      "name": "Node_LeftMotor",
+      "ownName": "Node_LeftMotor",
+      "role": "motor_body",
+      "group": "ungrouped",
+      "parentIndex": null,
+      "pathIndices": [
+        4
+      ],
+      "pathNames": [
+        "Node_LeftMotor"
+      ],
+      "triangles": 172,
+      "localBounds": {
+        "min": [
+          -0.0255,
+          -0.012,
+          -0.057
+        ],
+        "max": [
+          0.014,
+          0.012,
+          0.02
+        ],
+        "size": [
+          0.0395,
+          0.024,
+          0.077
+        ]
+      },
+      "worldBounds": {
+        "min": [
+          -0.0905,
+          -0.012,
+          -0.057
+        ],
+        "max": [
+          -0.051,
+          0.012,
+          0.02
+        ],
+        "size": [
+          0.0395,
+          0.024,
+          0.077
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "name": "Node_RightMotor",
+      "ownName": "Node_RightMotor",
+      "role": "motor_body",
+      "group": "ungrouped",
+      "parentIndex": null,
+      "pathIndices": [
+        5
+      ],
+      "pathNames": [
+        "Node_RightMotor"
+      ],
+      "triangles": 172,
+      "localBounds": {
+        "min": [
+          -0.014,
+          -0.012,
+          -0.057
+        ],
+        "max": [
+          0.0255,
+          0.012,
+          0.02
+        ],
+        "size": [
+          0.0395,
+          0.024,
+          0.077
+        ]
+      },
+      "worldBounds": {
+        "min": [
+          0.051,
+          -0.012,
+          -0.057
+        ],
+        "max": [
+          0.0905,
+          0.012,
+          0.02
+        ],
+        "size": [
+          0.0395,
+          0.024,
+          0.077
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "name": "Node_MotorDriver",
+      "ownName": "Node_MotorDriver",
+      "role": "named_part",
+      "group": "ungrouped",
+      "parentIndex": null,
+      "pathIndices": [
+        6
+      ],
+      "pathNames": [
+        "Node_MotorDriver"
+      ],
+      "triangles": 60,
+      "localBounds": {
+        "min": [
+          -0.026000001,
+          -0.001,
+          -0.024
+        ],
+        "max": [
+          0.026000001,
+          0.018999999,
+          0.024
+        ],
+        "size": [
+          0.052000001,
+          0.019999999,
+          0.048
+        ]
+      },
+      "worldBounds": {
+        "min": [
+          -0.026000001,
+          0.041,
+          -0.059
+        ],
+        "max": [
+          0.026000001,
+          0.060999999,
+          -0.011
+        ],
+        "size": [
+          0.052000001,
+          0.019999999,
+          0.048
+        ]
+      }
+    }
+  ]
+}

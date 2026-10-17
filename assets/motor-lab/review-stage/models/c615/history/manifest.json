@@ -1,0 +1,68 @@
+{
+  "device": "C615",
+  "description": "DJI C615 Brushless DC Controller (ESC) CAD Model Review & WebGL Optimization",
+  "source": {
+    "filename": "c615_brushless_dc_controller_asm.stp",
+    "url": "https://rm-static.djicdn.com/tem/17348/c615_brushless_dc_controller_asm.stp",
+    "sha256": "e0a712e0b15b92b92b013b8da96621b9213618416ca6fc4b12df502fda4a0537",
+    "bytes": 2955915,
+    "unit": "mm",
+    "unitConfirmation": "SI_UNIT(.MILLI.,.METRE.) confirmed in header/data context",
+    "license": "unknown; private review only",
+    "modelNote": "DJI Snail / RoboMaster C615 brushless ESC assembly including PCB, SMD components, thermal spreader, harness wires and connectors"
+  },
+  "geometry": {
+    "totalStepObjects": 174,
+    "appPartCount": 10,
+    "leafSolidCount": 84,
+    "missingSolids": 0,
+    "unsupportedLinks": 0,
+    "bboxSourceMm": [
+      15.102969920918461,
+      179.17506450523516,
+      11.977681519299978
+    ],
+    "centeredThreeJsBBoxM": [
+      0.015102969920918467,
+      0.011977681519299978,
+      0.1791750599192949
+    ]
+  },
+  "outputs": {
+    "high": {
+      "file": "output/high.glb",
+      "deflectionMm": 0.035,
+      "bytes": 5812132,
+      "triangles": 214432,
+      "meshCount": 84,
+      "sha256": "5004d18e5200a0e1059834a088c867bbd7ffa2714100649263a370fe482072f3",
+      "gltfValidation": {
+        "errors": 0,
+        "warnings": 0,
+        "status": "PASS"
+      }
+    },
+    "web": {
+      "file": "output/web.glb",
+      "deflectionMm": 0.12,
+      "bytes": 5225984,
+      "triangles": 192148,
+      "meshCount": 84,
+      "sha256": "90d2c5f94c1ea8aeaa46d103968dc63ea2109653bacc9fb169478eef09b2c49f",
+      "gltfValidation": {
+        "errors": 0,
+        "warnings": 0,
+        "status": "PASS"
+      }
+    }
+  },
+  "review": {
+    "screenshots": [
+      "review/overall.png",
+      "review/back.png",
+      "review/interface.png"
+    ],
+    "browserValidation": "review/browser.json",
+    "colorNote": "Neutral CAD review material and functional classification palette, not manufacturer texture/color certification"
+  }
+}

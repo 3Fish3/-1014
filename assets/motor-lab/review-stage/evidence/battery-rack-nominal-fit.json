@@ -1,0 +1,88 @@
+{
+  "batteryRotationYDegrees": 180,
+  "rackRotationXDegrees": -90,
+  "rackOffsetRelativeToBatteryCenterMm": [
+    -0.5,
+    12,
+    -6.95
+  ],
+  "parts": [
+    {
+      "part": 0,
+      "overlapMm3": 0.0,
+      "distanceMm": 8.775239
+    },
+    {
+      "part": 1,
+      "overlapMm3": 0.0,
+      "distanceMm": 8.277388
+    },
+    {
+      "part": 2,
+      "overlapMm3": 0.0,
+      "distanceMm": 1.95
+    },
+    {
+      "part": 3,
+      "overlapMm3": 0.0,
+      "distanceMm": 1.95
+    },
+    {
+      "part": 4,
+      "overlapMm3": 0.0,
+      "distanceMm": 1.865
+    },
+    {
+      "part": 5,
+      "overlapMm3": 0.0,
+      "distanceMm": 1.95
+    },
+    {
+      "part": 6,
+      "overlapMm3": 0.0,
+      "distanceMm": 1.95
+    },
+    {
+      "part": 7,
+      "overlapMm3": 0.0,
+      "distanceMm": 1.865
+    },
+    {
+      "part": 8,
+      "overlapMm3": 0.0,
+      "distanceMm": 4.48152
+    },
+    {
+      "part": 9,
+      "overlapMm3": 0.0,
+      "distanceMm": 2.15
+    },
+    {
+      "part": 10,
+      "overlapMm3": 0.0,
+      "distanceMm": 4.48152
+    },
+    {
+      "part": 11,
+      "overlapMm3": 0.0,
+      "distanceMm": 4.48152
+    },
+    {
+      "part": 12,
+      "overlapMm3": 0.0,
+      "distanceMm": 4.48152
+    },
+    {
+      "part": 13,
+      "overlapMm3": 0.0,
+      "distanceMm": 2.75
+    },
+    {
+      "part": 14,
+      "overlapMm3": 0.0,
+      "distanceMm": 0.25
+    }
+  ],
+  "totalOverlapMm3": 0.0,
+  "scope": "BRep nominal shape volume check, not pin mapping or physical tolerance certification"
+}

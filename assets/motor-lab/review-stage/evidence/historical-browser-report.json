@@ -1,0 +1,120 @@
+{
+  "results": [
+    {
+      "name": "6个真实模型全部loaded>0",
+      "passed": true
+    },
+    {
+      "name": "首屏端口投影/五器件fit",
+      "passed": true
+    },
+    {
+      "name": "自动7链路",
+      "passed": true
+    },
+    {
+      "name": "十四端点法线与七条线身连续/采样无三角面穿入",
+      "passed": true
+    },
+    {
+      "name": "供电+target run及实时SIM状态栏",
+      "passed": true
+    },
+    {
+      "name": "断数据线阻塞",
+      "passed": true
+    },
+    {
+      "name": "重接恢复",
+      "passed": true
+    },
+    {
+      "name": "错误配对拒绝",
+      "passed": true
+    },
+    {
+      "name": "手动两端click接线",
+      "passed": true
+    },
+    {
+      "name": "手动两端drag接线",
+      "passed": true
+    },
+    {
+      "name": "pointercancel恢复",
+      "passed": true
+    },
+    {
+      "name": "七条链路均可逐一三维拖线",
+      "passed": true
+    },
+    {
+      "name": "orbit空白drag/pan/zoom后状态不变",
+      "passed": true
+    },
+    {
+      "name": "折叠双侧栏画布同步铺满且接线不丢失",
+      "passed": true
+    },
+    {
+      "name": "布局1920x1080",
+      "passed": true
+    },
+    {
+      "name": "布局1366x768",
+      "passed": true
+    },
+    {
+      "name": "布局390x844",
+      "passed": true
+    },
+    {
+      "name": "手机导航不裁",
+      "passed": true
+    },
+    {
+      "name": "reset 完整重置",
+      "passed": true
+    },
+    {
+      "name": "暂停冻结",
+      "passed": true
+    },
+    {
+      "name": "单步只推进0.05秒",
+      "passed": true
+    },
+    {
+      "name": "恢复运行",
+      "passed": true
+    },
+    {
+      "name": "混合注入程序被拒绝且无副作用",
+      "passed": true
+    },
+    {
+      "name": "合法SIM程序与反转运行",
+      "passed": true
+    },
+    {
+      "name": "ID不匹配诊断及恢复",
+      "passed": true
+    },
+    {
+      "name": "四类故障注入与恢复",
+      "passed": true
+    },
+    {
+      "name": "零外部请求/pageerror",
+      "passed": true
+    },
+    {
+      "name": "缺件场景ready=false且不能运行",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "skipped": [],
+  "external": [],
+  "scope": "headless SwiftShader only; not physical projector acceptance"
+}

@@ -1,0 +1,38 @@
+{
+  "main_review": {
+    "status": "两档静态转换通过格式检查；局部几何仍待复核",
+    "notes": "主模型已补三视图并查看整体。模型含长输出线，需板体/接口近景；high三角115836小于web122018，不把参数档位等同实际细节优劣。",
+    "sources": [
+      {
+        "file": "source/RoboMaster_Center_Board_STEP.step",
+        "bytes": 3995367,
+        "sha256": "9e742f369588e510a8529e968b037dda42172430aadb34b76cde59d20a90ebbc"
+      }
+    ],
+    "outputs": [
+      {
+        "file": "web.glb",
+        "bytes": 3721744,
+        "sha256": "8ffe8ea1cd6e0f8c3dd29c03bd7d80ef7fbcf4627daaaa218b67e7377e959afd",
+        "meshes": 11,
+        "colors": 9,
+        "triangles": 122018,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "file": "high.glb",
+        "bytes": 3613408,
+        "sha256": "6b24b8f8777325ae92c01a6641a91419a97d530a73f8da82fcd6a1d38de8cf07",
+        "meshes": 11,
+        "colors": 9,
+        "triangles": 115836,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      }
+    ],
+    "license": "本阶段未核公开分发条件；USB-UART已知TAPR OHL1.0文本另审范围"
+  }
+}

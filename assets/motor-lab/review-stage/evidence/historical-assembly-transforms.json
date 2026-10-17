@@ -1,0 +1,58 @@
+{
+  "schema": "assembly-transforms-candidate-v1",
+  "project": "motor-lab-power-chain",
+  "assembly": "TB47D Battery + RoboMaster Battery Rack (Compatible)",
+  "units": "metres",
+  "coordinate_convention": "GLB scene coordinates: (x, z, -y) from STEP; Y-up, right-handed; scale strictly [1.0, 1.0, 1.0] for physical metric integrity",
+  "default_mode": "separated_candidate",
+  "components": {
+    "battery_rack": {
+      "source_file": "battery-rack/output/web.glb",
+      "source_origin": "DJI Official CMS STEP (RoboMaster Battery Rack compatible)",
+      "mesh_count": 15,
+      "transform": {
+        "position": [0.0, 0.0, 0.0],
+        "quaternion": [0.0, 0.0, 0.0, 1.0],
+        "rotation_euler_xyz_deg": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "role": "assembly_base_chassis_anchor",
+      "basis": "Rack placed at origin as the stationary mounting foundation. Bottom mount face (-Y) and side mount face (-Z) align with chassis coordinate frames."
+    },
+    "battery_tb47d": {
+      "source_file": "output/battery.glb",
+      "source_origin": "Local SERS STEP archive (directory name does not certify manufacturer authorization)",
+      "mesh_count": 1,
+      "candidates": {
+        "separated_candidate": {
+          "status": "DEFAULT_RECOMMENDED",
+          "certification": "UNVERIFIED_INSPECTION_ONLY",
+          "transform": {
+            "position": [0.0, 0.100, 0.0],
+            "quaternion": [0.0, 0.0, 0.0, 1.0],
+            "rotation_euler_xyz_deg": [0.0, 0.0, 0.0],
+            "scale": [1.0, 1.0, 1.0]
+          },
+          "basis": "User guide v1.2 p.6/p.12 shows vertical top insertion along +Y opening. Lifting battery by +0.10m completely avoids false collision/penetration, reveals bottom contact surfaces and rack internal cavity terminal pads cleanly.",
+          "penetration_check": "Zero penetration; clearance between battery bottom and rack top is approximately 30.5mm."
+        },
+        "seated_candidate": {
+          "status": "EXPERIMENTAL_UNVERIFIED",
+          "certification": "NOT_MECHANICALLY_CERTIFIED",
+          "transform": {
+            "position": [0.0, 0.045, 0.0],
+            "quaternion": [0.0, 0.0, 0.0, 1.0],
+            "rotation_euler_xyz_deg": [0.0, 0.0, 0.0],
+            "scale": [1.0, 1.0, 1.0]
+          },
+          "basis": "Geometric placement reference: aligns battery main slab (73x40mm) into rack opening, setting battery bottom plate at rack cavity floor support level (Y ≈ -0.015m).",
+          "uncertainties_and_risks": [
+            "Source STEPs lack latch micro-geometry, guide rails, and spring contact deflect geometry.",
+            "TB47D terminal cluster located on lateral wings does not directly mate with rack terminal pads without an unmodeled intermediate adapter board.",
+            "No mechanical tolerance or interference analysis has been certified by physical testing."
+          ]
+        }
+      }
+    }
+  }
+}
